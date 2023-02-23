@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from "react-router-dom";
 
 const Login=()=>{
+  const[email,setEmail]=useState("")
+  const[password,setPassword]=useState("")
+  // console.log(email, password)
  return(
     <div className="grid place-content-center sm:text-center sm:justify-center">
     <div className="flex flex-col gap-[2.5rem] items-center px-[5.25rem] py-[1.125rem] border border-neutral-300 rounded-lg w-fit">
@@ -15,6 +18,8 @@ const Login=()=>{
         <input
           type="text"
           id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           name="email"
           placeholder="Enter Your Email"
           className="h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
@@ -23,6 +28,8 @@ const Login=()=>{
           type="password"
           id="password"
           name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter Your Password"
           className="h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
         />
