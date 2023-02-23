@@ -51,6 +51,7 @@ const Signup=()=>{
            onChange={(e) => setNumber(e.target.value)}
           type="tel"
           id="number"
+          pattern="[0-9]{4}-[0-9]{6}-[0-9]{1}"
           name="number"
           placeholder="Enter Your WhatsApp Number"
           className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
