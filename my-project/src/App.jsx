@@ -10,6 +10,7 @@ import Store from './Pages/Store/Store'
 import StoreProfile from './Components/CreateStore/StoreProfile'
 import StoreTime from './Components/CreateStore/StoreTime'
 import StoreLinks from './Components/CreateStore/StoreLinks'
+import ForgotPassword from './Pages/Auth/ForgotPassword'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/Login" element={<Login/>} />
         <Route eaxct path="/Register" element={<Register/>} />
         <Route eaxct path="/Signup" element={<Signup/>} />
+        <Route exact path="/forgotpassword" element={<ForgotPassword/>}/>
         <Route eaxct path="/Store" element={<Store/>} />
         <Route eaxct path="/StoreProfile" element={<StoreProfile/>}></Route>
         <Route eaxct path="/StoreTime" element={<StoreTime/>}></Route>
