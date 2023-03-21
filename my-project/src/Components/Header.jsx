@@ -1,63 +1,93 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  UserAddOutlined,
+  HomeTwoTone,
+  DashboardTwoTone,
+  LogoutOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
+import { Menu } from "antd";
+const { SubMenu, Item } = Menu;
 
 const Header = () => {
+  // const [current, setCurrent] = useState("home");
+  // let dispatch = useDispatch();
+  // let {user} = useSelector((state)=>({...state}));
+  // let navigate = useNavigate();
+  // const onClick = (e) => {
+  //   setCurrent(e.key);
+  // };
+  // const logout = () => {
+  //   firebase.auth().signOut();
+  //   dispatch({
+  //     type: "LOG_OUT",
+  //     payload: null,
+  //   });
+  //   navigate("/login");
+  // };
   return (
-    <nav className="navbar navbar-expand-lg">
-      <Link className="mt-3 mx-20 h-50 w-80 ">
-       <img  className="h-30 w-[10rem] " src="Logo.png" alto=""/>
-      </Link>
-      
-      {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link text-emerald-50" to="/">
-              Home <span className="sr-only">(current)</span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" href="/Login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              UserName
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
-                DashBoard
-              </a>
-              <a className="dropdown-item" href="#">
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <form className="form-inline my-2 my-lg-0">
+    
+      <Menu
+        // onClick={onClick}
+        // selectedKeys={[current]}
+        mode="horizontal"
+        className="menu shadow h-fit flex flex-wrap my-2 justify-evenly"
+      >
+        <Item>
+          <Link to="/">
+            <img className="h-30 w-[10rem] " src="Logo.png" alto="" />
+          </Link>
+        </Item>
+        <Item>
           <input
-            className="form-control mr-sm-2"
+            className=" border-none font-sans  text-xl outline-none text-[#248F59]"
             type="search"
-            placeholder="Search"
-            aria-label="Search"
+            placeholder="Search Shops..."
           />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search Store
-          </button>
-        </form>
-      </div> */}
-    </nav>
+        </Item>
+
+        <Item>
+          <p className=" flex flex-wrap font-sans font-semibold text-[#248F59]">
+            Delivering to:
+            <img className="h-2/6 my-auto" src="Location on.png" alt="" />
+          </p>
+        </Item>
+        <Item key="register">
+          <Link to="/Signup">
+            <button className="h-9 mb-2 w-[7.4375rem] align-middle text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+            <UserAddOutlined className="align-middle" style={{fontSize:"1.1rem"}}/> Sign Up
+            </button>
+          </Link>
+        </Item>
+
+        <Item key="login">
+          <Link to="/Login">
+            <p className="font-sans  mx-auto text-[#248F59]">
+              <LoginOutlined className="align-middle" /> Login
+            </p>
+          </Link>
+        </Item>
+
+        <Item>
+          <Link>
+            <img src="Account circle.png" alt="" />
+          </Link>
+        </Item>
+        <Item>
+          <Link>
+            <img src="Shopping cart.png" alt="" />
+          </Link>
+        </Item>
+        <SubMenu title="User">
+          <Item key="dashboard" icon={<DashboardTwoTone />}>
+            <Link to="/dashboard">Dashboard</Link>
+          </Item>
+          <Item icon={<LogoutOutlined />}>LogOut</Item>
+        </SubMenu>
+      </Menu>
+    
   );
 };
+
 export default Header;

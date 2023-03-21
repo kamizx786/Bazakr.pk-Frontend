@@ -1,8 +1,8 @@
 import React from "react";
 const StoreHome = () => {
   return (
-    <div className="mx-20">
-      <div className="col-md-6 float-left my-16">
+    <div className="mx-20 flex flex-row">
+      <div className="my-16 flex flex-col">
         <h3 className="text-4xl font-serif">
           Let’s Create A <span className=" text-[#248F59]">Store</span> Now!
         </h3>
@@ -15,7 +15,7 @@ const StoreHome = () => {
           Create A Store
         </button>
       </div>
-      <div className="col-md-6 float-right mb-5">
+      <div className="flex flex-col">
         <img src="unsplash.png" alto="" />
       </div>
     </div>
