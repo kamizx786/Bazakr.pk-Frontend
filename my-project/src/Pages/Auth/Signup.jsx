@@ -20,7 +20,7 @@ const Signup=()=>{
           id="email"
           name="email"
           placeholder="Enter Your Email"
-          className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
+          className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
         />
         {/* Name */}
         <h4 className="font-sans font-semibold  uppercase mt-1">Name</h4>
@@ -31,7 +31,7 @@ const Signup=()=>{
           id="name"
           name="name"
           placeholder="Enter Your Name"
-          className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
+          className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
         />
         {/* Address */}
         <h4 className=" font-sans font-semibold uppercase mt-1">Address</h4>
@@ -42,7 +42,7 @@ const Signup=()=>{
           id="address"
           name="address"
           placeholder="Enter Your Address"
-          className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
+          className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
         />
         {/* Phone No# */}
         <h4 className=" font-sans font-semibold uppercase mt-1">WhatsApp </h4>
@@ -54,7 +54,7 @@ const Signup=()=>{
           pattern="[0-9]{4}-[0-9]{6}-[0-9]{1}"
           name="number"
           placeholder="Enter Your WhatsApp Number"
-          className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
+          className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
         />
         {/* Password */}
         <h4 className=" font-sans uppercase font-semibold mt-1">Password </h4>
@@ -65,7 +65,7 @@ const Signup=()=>{
           id="password"
           name="password"
           placeholder="Enter Your Password"
-          className="h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
+          className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12 w-[20.4375rem] px-5 border rounded-lg border-neutral-300"
         />
           {/* Button */}
           <button className="h-12 mt-3 w-[20.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">

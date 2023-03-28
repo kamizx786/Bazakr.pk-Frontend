@@ -22,7 +22,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
             placeholder="Enter Your Email"
-            className="h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
           />
           <input
             type="password"
@@ -31,7 +31,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter Your Password"
-            className="h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
           />
           <Link
             to="/forgotpassword"

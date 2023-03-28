@@ -17,28 +17,30 @@ import Shop from "./Pages/Shops/Shop";
 import ShopProfile from "./Pages/Shops/ShopProfile";
 import Footer from "./Components/Footer";
 import SellerDashboard from "./Pages/Seller-Bar/SellerDashboard";
-
+import AddProduct from "./Pages/Seller-Bar/AddProduct";
+import React from "react";
 function App() {
   return (
-    <div>
+    <React.Fragment>
       {location.pathname !== "/SellerDashboard" && <Header />}
       <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/Login" element={<Login />} />
-        <Route eaxct path="/Register" element={<Register />} />
-        <Route eaxct path="/Signup" element={<Signup />} />
+        <Route exact path="/Register" element={<Register />} />
+        <Route exact path="/Signup" element={<Signup />} />
         <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-        <Route eaxct path="/Store" element={<Store />} />
-        <Route eaxct path="/StoreProfile" element={<StoreProfile />}></Route>
-        <Route eaxct path="/StoreTime" element={<StoreTime />}></Route>
-        <Route eaxct path="/StoreLinks" element={<StoreLinks />}></Route>
-        <Route eaxct path="/Shop" element={<Shop />}></Route>
-        <Route eaxct path="/ShopProfile" element={<ShopProfile />}></Route>
-        <Route exact path="/SellerDashboard" element={<SellerDashboard />} ></Route>
+        <Route exact path="/Store" element={<Store />} />
+        <Route exact path="/StoreProfile" element={<StoreProfile />}></Route>
+        <Route exact path="/StoreTime" element={<StoreTime />}></Route>
+        <Route exact path="/StoreLinks" element={<StoreLinks />}></Route>
+        <Route exact path="/Shop" element={<Shop />}></Route>
+        <Route exact path="/ShopProfile" element={<ShopProfile />}></Route>
+        <Route exact path="/SellerDashboard" element={<SellerDashboard />}></Route>
+        <Route exact path="/AddProduct" element={<AddProduct/>}></Route>
       </Routes>
       {location.pathname !== "/SellerDashboard" && <Footer />}
-    </div>
+    </React.Fragment>
   );
 }
 

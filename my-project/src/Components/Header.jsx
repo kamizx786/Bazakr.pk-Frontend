@@ -32,7 +32,7 @@ const Header = () => {
         // onClick={onClick}
         // selectedKeys={[current]}
         mode="horizontal"
-        className="menu border-b border-[#D9D9D9] h-fit flex flex-wrap items-center py-3 justify-evenly"
+        className="menu hover:border-b-[#248F59] border-b border-[#D9D9D9] h-fit flex flex-wrap items-center py-3 justify-evenly"
       >
         {/* Logo */}
         <Item>

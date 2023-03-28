@@ -4,12 +4,12 @@ import React from "react";
 
 const SellerHome = () => {
   return (
-    <div className="flex flex-col w-screen-viewport  ml-24 my-2 px-2 py-2">
+    <div className="flex flex-col w-screen-viewports  ml-24 my-2 px-2 py-2">
       {" "}
       <div className="flex flex-row ">
         <div className="flex flex-col ">
-          <div className="border shadow-inner flex flex-row w-fit h-fit px-2 py-2 rounded">
-            <div className="flex flex-col">
+          <div className="border shadow-inner flex flex-row w-[45.4375rem] h-fit px-2 py-2 rounded">
+            <div className="flex flex-col w-full">
               <p className="font-sans flex my-2 font-normal text-lg text-[#248F59]">
                 Good Morning, Salman!
               </p>
@@ -29,14 +29,14 @@ const SellerHome = () => {
                 Today’s total sales
               </p>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               <img src="../Dashboard/bro.png" alt="" />
             </div>
           </div>
           <div className="border h-fit flex flex-col rounded shadow-inner py-2 mt-2">
             <div className="flex flex-row justify-between">
               <p className="flex font-sans text-lg px-2">Analytics</p>
-              <select className="flex font-sans outline-none text-sm ">
+              <select className="flex font-sans outline-none  text-sm ">
                 <option>Weekly</option>
                 <option>Monthly</option>
                 <option>Yearly</option>
@@ -44,7 +44,7 @@ const SellerHome = () => {
               </select>
             </div>
             <img
-              className="w-[35rem] px-2 py-2 "
+              className="w-fit px-2 py-2 "
               src="../Dashboard/Bar.png"
               alt=""
             />
@@ -61,7 +61,7 @@ const SellerHome = () => {
           </div>
         </div>
         <div className="flex flex-col ">
-          <div className="border rounded-md shadow-inner flex flex-col mx-5 mb-2 px-2 py-2 h-fit w-[25rem] ">
+          <div className="border rounded-md shadow-inner flex flex-col mx-5 mt-6 px-2 py-2 h-fit w-[25rem] ">
             <h5 className="font-sans flex  ">Weekly Sales</h5>
             <p className="font-sans flex my-4 font-semibold text-2xl">
               US$10,360.66{" "}
@@ -73,7 +73,7 @@ const SellerHome = () => {
               </div>
             </div>
           </div>
-          <div className="border rounded-md shadow-inner flex flex-col mx-5 mb-2 px-2 py-2 h-fit w-[25rem] ">
+          <div className="border rounded-md shadow-inner flex flex-col mx-5 mt-2 mb-3 px-2 py-2 h-fit w-[25rem] ">
             <h5 className="font-sans flex  ">Weekly Orders</h5>
             <p className="font-sans flex my-4 font-semibold text-2xl">123</p>
             <div className="flex flex-row  font-sans justify-between">
@@ -83,7 +83,7 @@ const SellerHome = () => {
               </div>
             </div>
           </div>
-          <div className="border rounded-md shadow-inner flex flex-col mt-4 mx-5 mb-2 px-2 py-2 h-fit w-[25rem] ">
+          <div className="border rounded-md shadow-inner flex flex-col mx-5 mt-20 mb-2 px-2 py-2 h-fit w-[25rem] ">
             <h5 className="font-sans flex  ">Sold Items</h5>
             <p className="font-sans flex my-4 font-semibold text-2xl">123</p>
             <div className="flex flex-row  font-sans justify-between">
@@ -93,7 +93,7 @@ const SellerHome = () => {
               </div>
             </div>
           </div>
-          <div className="border rounded-md shadow-inner flex flex-col mx-5 mb-2 px-2 py-2 h-fit w-[25rem] ">
+          <div className="border rounded-md shadow-inner flex flex-col mx-5  px-2 py-2 h-fit w-[25rem] ">
             <h5 className="font-sans flex  ">Sold Items</h5>
             <p className="font-sans flex my-4 font-semibold text-2xl">123</p>
             <div className="flex flex-row  font-sans justify-between">
