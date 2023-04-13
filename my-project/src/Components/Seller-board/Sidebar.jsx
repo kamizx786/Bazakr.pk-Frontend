@@ -24,7 +24,7 @@ const SideBar = () => {
       // onClick={onClick}
       // selectedKeys={[current]}
       mode="vertical"
-      className="menu shadow fixed h-screen bg-[#248F59]  w-[4.275rem] flex flex-wrap py-2 justify-evenly"
+      className="menu shadow overflow-x-scroll fixed h-screen bg-[#248F59]  w-[4.275rem] flex flex-wrap py-2 justify-evenly"
     >
       <Item>
         <Link to="#">

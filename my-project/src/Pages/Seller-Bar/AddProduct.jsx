@@ -1,8 +1,14 @@
 import React from "react";
+import SellerDashboard from "./SellerDashboard";
 
 const addProduct = () => {
   return (
-    <React.Fragment>
+    <>
+    <div className="grid grid-cols-12" >
+    <div className="col-span-1" >
+    <SellerDashboard/>
+    </div>
+    <div className="col-span-11">
       <div className="flex flex-row mx-2 px-2 my-2 py-2">
         <div className="flex flex-col flex-wrap mx-auto">
           {/* Details */}
@@ -78,7 +84,9 @@ const addProduct = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+      </div>
+    </div>
+    </>
   );
 };
 

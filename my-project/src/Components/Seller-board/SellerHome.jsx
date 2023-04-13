@@ -1,9 +1,11 @@
 import { RiseOutlined } from "@ant-design/icons";
 import { CheckOutlined, ClockCircleOutlined, FallOutlined } from "@ant-design/icons/lib/icons";
 import React from "react";
+import SellerDashboard from "../../Pages/Seller-Bar/SellerDashboard";
 
 const SellerHome = () => {
   return (
+    <>
     <div className="flex flex-col w-screen-viewports  ml-24 my-2 px-2 py-2">
       {" "}
       <div className="flex flex-row ">
@@ -198,6 +200,7 @@ const SellerHome = () => {
       </div>
       </div>
     </div>
+    </>
   );
 };
 export default SellerHome;
