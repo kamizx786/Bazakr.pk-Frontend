@@ -60,8 +60,9 @@ const handleCart=()=>{
             Shop
           </Link>
           </div>
+          
           <div >
-          <Link className="text-muted text-lg" >
+          <Link to="/contact" className="text-muted text-lg" >
             Contact
           </Link>
           </div>
