@@ -13,7 +13,7 @@ const Hero = () => {
                     Shop Online,
                     <br /> In Your Area!
                     </h1>
-                    <p class="flex font-sans text-lg font-normal text-[#FFFFFF]  leading-6 tracking-normal text-center w-[25rem] opacity-90">
+                    <p class="flex font-sans text-lg font-normal text-[#FFFFFF]  leading-6 tracking-normal text-center w-[15rem] md:w-[25rem] opacity-90">
                     Enter your address and we’ll take you to your local bazaar.
                     </p>
                 </div>
@@ -25,9 +25,9 @@ const Hero = () => {
                     // value={password}
                     // onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter Your Address"
-                    className="my-2 focus:outline-none focus:ring-2 font-sans focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+                    className="my-2 focus:outline-none focus:ring-2 font-sans focus:ring-green-600 h-16 w-[18.4375rem]  md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
                     />
-                    <button className="my-2 transition-transform hover:scale-95 h-16 w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+                    <button className="my-2 transition-transform hover:scale-95 h-16 w-[18.4375rem]  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
                     Find My Bazar
                     </button>
                 </div>
