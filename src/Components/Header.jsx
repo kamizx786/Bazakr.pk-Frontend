@@ -117,7 +117,7 @@ const handleCart=()=>{
           </Link>
           </div>
           <div >
-          <Link  onClick={onClose}
+          <Link to="/contact" onClick={onClose}
            className="text-muted flex gap-3 items-center text-base" >
           <PhoneXMarkIcon  className="w-8 text-[#248F59]"/>
                 <div className="font-sans text-[#00000080]">Contact</div>
