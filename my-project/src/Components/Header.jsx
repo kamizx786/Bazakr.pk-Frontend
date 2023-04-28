@@ -25,7 +25,7 @@ const Header = () => {
     setOpen(false);
   };
   return (
-    <header className="flex items-center justify-between px-10 py-3 border-b border-[#D9D9D9]">
+    <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
       <Link to="/">
             <img className="h-30 w-[10rem] " src="Logo.svg" alto="" />
       </Link>
@@ -34,7 +34,7 @@ const Header = () => {
         // onClick={onClick}
         // selectedKeys={[current]}
         mode="horizontal"
-        className="menu border-b border-[#D9D9D9] h-fit hidden md:flex flex-wrap items-center py-3 justify-evenly"
+        className="menu h-fit hidden md:flex flex-wrap items-center py-3 justify-evenly"
       >
         {/* Search */}
         <Item>
@@ -70,7 +70,7 @@ const Header = () => {
       
       <div className="md:hidden" >
           <Button type="primary" onClick={showDrawer}>
-            Open
+            <img src="../Menu.svg" className="w-8" />
           </Button>
           <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
             <div className="flex flex-col gap-3">

@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import "./index.css";
 import "@ant-design/icons";
 import "antd";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import Signup from "./Pages/Auth/Signup";
