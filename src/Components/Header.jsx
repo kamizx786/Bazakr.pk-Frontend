@@ -5,7 +5,7 @@ import { useState } from "react";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import CartSidebarView from "./cart_sidebar_viewer";
-
+import {ShoppingBagIcon,PhoneXMarkIcon} from "@heroicons/react/24/solid"
 
 
 const Header = () => {
@@ -55,7 +55,16 @@ const handleCart=()=>{
           />
        
         </div>  
-        
+        <div >
+          <Link to="/shops" className="text-muted text-lg">
+            Shop
+          </Link>
+          </div>
+          <div >
+          <Link className="text-muted text-lg" >
+            Contact
+          </Link>
+          </div>
         {/* Account */}
        <div onClick={handleModal}>
           <Link >
@@ -98,6 +107,19 @@ const handleCart=()=>{
                 placeholder="Search..."
               />
             </div>
+            <div >
+          <Link to="/shops" className="flex gap-3 items-center text-base
+          text-muted ">
+                 <ShoppingBagIcon className="w-8 text-[#248F59]" />
+                <div className="font-sans text-[#00000080]">Shop</div>
+          </Link>
+          </div>
+          <div >
+          <Link className="text-muted flex gap-3 items-center text-base" >
+          <PhoneXMarkIcon  className="w-8 text-[#248F59]"/>
+                <div className="font-sans text-[#00000080]">Contact</div>
+          </Link>
+          </div>
             {/* Account */}
             <div  onClick={handleModal}>
               <Link className="flex gap-3 items-center text-base">

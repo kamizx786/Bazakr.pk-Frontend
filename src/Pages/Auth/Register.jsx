@@ -21,7 +21,7 @@ const Register = ({setauthCon}) => {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
             placeholder="Enter Your Email"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
           />
            <h4 className="font-sans font-semibold uppercase">Name</h4>
           <input
@@ -31,7 +31,7 @@ const Register = ({setauthCon}) => {
             onChange={(e) => setEmail(e.target.value)}
             name="Name"
             placeholder="Enter Your Name"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
           />
              <h4 className="font-sans font-semibold uppercase">Address</h4>
           <input
@@ -41,7 +41,7 @@ const Register = ({setauthCon}) => {
             onChange={(e) => setEmail(e.target.value)}
             name="address"
             placeholder="Enter Your Address"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
           />
              <h4 className="font-sans font-semibold uppercase">Whatsapp</h4>
           <input
@@ -51,7 +51,7 @@ const Register = ({setauthCon}) => {
             onChange={(e) => setEmail(e.target.value)}
             name="Number"
             placeholder="Enter Your Number"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
           />
               <h4 className="font-sans font-semibold uppercase">Password</h4>
           <input
@@ -61,10 +61,10 @@ const Register = ({setauthCon}) => {
             onChange={(e) => setEmail(e.target.value)}
             name="password"
             placeholder="Enter Your password"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
           />
           {/* Button */}
-          <button className="h-16 w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+          <button className="h-16 w-[18.4375rem] md:w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
             Register
           </button>
         </div>
@@ -72,11 +72,11 @@ const Register = ({setauthCon}) => {
       
         {/* OR */}
         <div>
-          <div className="h-0.5 -mb-3.5 w-[23.4375rem] bg-neutral-300"></div>
+          <div className="h-0.5 -mb-3.5 w-[18.4375rem] md:w-[23.4375rem] bg-neutral-300"></div>
           <div className="w-fit px-2 m-auto bg-white">OR</div>
         </div>
         {/* Google Button */}
-        <button className="h-16 w-[23.4375rem] flex gap-4 items-center justify-center border border-neutral-300 rounded-lg">
+        <button className="h-16 w-[18.4375rem] md:w-[23.4375rem] flex gap-4 items-center justify-center border border-neutral-300 rounded-lg">
           <img src="Group.jpg" />
           <div className="font-sans font-semibold text-neutral-800 uppercase">
             Register with Google
