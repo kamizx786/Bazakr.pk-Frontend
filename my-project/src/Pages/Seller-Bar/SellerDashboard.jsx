@@ -4,11 +4,10 @@ import SideBar from "../../Components/Seller-board/Sidebar";
      
 const SellerDashboard=()=>{
     return(
-        <div className="flex">
+       <>
             <SideBar/>
-          <SellerHome/>
-    
-        </div>
+            </>
+        
     );
 }
 export default SellerDashboard;
