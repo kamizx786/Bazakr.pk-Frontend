@@ -4,7 +4,7 @@ const Hero = () => {
             {/* HERO SECTION */}
             <div
                 class="h-screen bg-center bg-cover"
-                style={{ backgroundImage: "url('../home/home.svg')" }}
+                style={{ backgroundImage: "url('https://res.cloudinary.com/die5mkbau/image/upload/v1682702053/home_sdg0v2.svg')" }}
             >
                 {/* Hero Content */}
                 <div class="flex flex-col gap-4 items-center justify-center h-full">
