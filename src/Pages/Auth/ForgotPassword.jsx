@@ -18,10 +18,11 @@ const ForgotPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
             placeholder="Enter Your Email"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[23.4375rem] px-2 border rounded-lg border-neutral-300"
+            className="focus:outline-none focus:ring-2 focus:ring-green-600
+             h-16 w-[16.4375rem] md:w-[23.4375rem] px-2 border rounded-lg border-neutral-300"
           />
           {/* Button */}
-          <button className="h-16 w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+          <button className="h-16 w-[16.4375rem] md:w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase">
             Reset Password
           </button>
         </div>

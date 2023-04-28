@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = ({setauthCon}) => {
+const Login = ({setauthCon,setOpenModal}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // console.log(email, password)
@@ -36,6 +36,7 @@ const Login = ({setauthCon}) => {
           <Link
             to="/forgotpassword"
             className="-mr-[16rem] relative text-[#248F59] "
+            onClick={()=>setOpenModal(false)}
           >
             Forgot Password?
           </Link>

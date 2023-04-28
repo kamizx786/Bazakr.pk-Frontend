@@ -108,14 +108,16 @@ const handleCart=()=>{
               />
             </div>
             <div >
-          <Link to="/shops" className="flex gap-3 items-center text-base
+          <Link to="/shops" onClick={onClose}
+           className="flex gap-3 items-center text-base
           text-muted ">
                  <ShoppingBagIcon className="w-8 text-[#248F59]" />
                 <div className="font-sans text-[#00000080]">Shop</div>
           </Link>
           </div>
           <div >
-          <Link className="text-muted flex gap-3 items-center text-base" >
+          <Link  onClick={onClose}
+           className="text-muted flex gap-3 items-center text-base" >
           <PhoneXMarkIcon  className="w-8 text-[#248F59]"/>
                 <div className="font-sans text-[#00000080]">Contact</div>
           </Link>
@@ -150,7 +152,7 @@ const handleCart=()=>{
 footer={null}
 closable={false}
  open={openModal} onCancel={()=>setOpenModal(false)}>
-{!authCon?<Login setauthCon={setauthCon} />:
+{!authCon?<Login setauthCon={setauthCon} setOpenModal={setOpenModal}/>:
 <Register setauthCon={setauthCon}/>}
 </Modal>
 </>
