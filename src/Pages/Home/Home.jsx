@@ -3,13 +3,14 @@ import Hero from "./components/Hero";
 import cities from "./components/cities";
 import CityGrid from "./components/CityGrid";
 import BecomeSeller from "./components/BecomeSeller";
+import PromotionSlider from "../../Components/PromotionSlider";
 
 const Home = () => {
   return (
     <>
       {/* HERO SECTION */}
       <Hero />
-
+      <PromotionSlider/>
       {/* CITIES */}
       <div className="py-20">
         <div class="flex flex-col items-center gap-3 pb-10">
