@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setauthCon}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // console.log(email, password)
   return (
     <div className="grid place-content-center sm:text-center sm:justify-center">
-      <div className="flex flex-col gap-[2.5rem] items-center px-[5.25rem] py-[1.125rem] border border-neutral-300 rounded-lg w-fit">
+      <div className="flex flex-col gap-[2.5rem] items-center px-[3.25rem] py-[1.125rem]  rounded-lg w-fit">
         {/* Title */}
-        <h3 className="text-4xl font-serif">Login</h3>
+        <h3 className="text-2xl font-serif">Login</h3>
 
         {/* Login With Email */}
 
@@ -62,7 +62,7 @@ const Login = () => {
         <p className="font-sans text-base -mt-5">
           Don't have an Account?
           <span className="text-[#248F59]">
-            <Link to="/register"> Register</Link>
+            <Link onClick={()=>setauthCon(true)}> Register</Link>
           </span>
         </p>
       </div>

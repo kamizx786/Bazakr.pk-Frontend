@@ -1,84 +1,30 @@
 import React from "react";
+import Shops from "../../Components/Shops";
+import ShopCard from "../../Components/ShopCard";
 const Shop = () => {
   return (
-    <div className="mx-10">
-      <div className="flex flex-row">
-        <div className="bg-gray-200 font-medium w-[10.4375rem] font-sans rounded  mx-2 mt-3 p-2  text-center ">
-          Men's Clothing
-        </div>
-        <div className="bg-gray-200 font-medium w-[10.4375rem] font-sans rounded  mx-2 mt-3 p-2 text-center ">
-          Women's Clothing
-        </div>
-        <div className="bg-gray-200 font-medium w-[10.4375rem] font-sans rounded  mx-2 mt-3 p-2 text-center">
-          Grocery
-        </div>
+    <div className="min-h-screen bg-white ">
+    <div className="flex flex-col w-full max-w-6xl p-8 mx-auto pt-14">
+      <h3 className="mb-8 text-2xl font-bold text-heading">
+       All Shops
+      </h3>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {!Shops.length ? (
+          <>
+            <h1>No Shops Found</h1>
+          </>
+        ) : (
+          Shops.map((shop) => <ShopCard shop={shop} key={shop.id} />)
+        )}
       </div>
-      {/* Shops */}
-      <div className="flex flex-row justify-between ">
-        {/* Shops category Name */}
-        <h3 className="text-3xl font-serif mt-3">Men's Fashion</h3>
-        <p className="font-sans mt-3  text-[#248F59]">See All</p>
-      </div>
-      {/* Shops Cards */}
-      <div className=" flex flex-row">
-        <div className="h-[18.4375rem] w-[17.8125rem] mr-2 rounded mt-3 shadow-md">
-          <img src="pants.png" />
-          <img className="-mt-7" src="circle.png" />
-          <h4 className="text-3xl font-sans font-semibold mt-2">Jean’s Club</h4>
-          <div className="flex flex-row">
-            <img src="Rating.png" alt="" />
-            <img className="ml-[9.125rem]" src="Arrow.png" alt="" />
-          </div>
+        <div className="flex items-center justify-center mt-8 lg:mt-12">
+          <button className="bg-[#248F59] text-white py-3 px-3 rounded">
+           LoadMore
+          </button>
         </div>
-        <div className="h-[18.4375rem] w-[17.8125rem] rounded mt-3 shadow-md">
-          <img src="pants.png" />
-          <img className="-mt-7" src="circle.png" />
-          <h4 className="text-3xl font-sans font-semibold mt-2">
-            Dubai Collection
-          </h4>
-          <div className="flex flex-row">
-            <img src="Rating.png" alt="" />
-            <img className="ml-[9.125rem]" src="Arrow.png" alt="" />
-          </div>
-        </div>
-      </div>
-      {/* Shops */}
-      <div className="flex flex-row justify-between ">
-        {/* Shops category Name */}
-        <h3 className="text-3xl font-serif mt-3">Women's Fashion</h3>
-        <p className="font-sans mt-3  text-[#248F59]">See All</p>
-      </div>
-      {/* Shops Cards */}
-      <div className=" flex flex-row">
-        <div className="h-[18.4375rem] w-[17.8125rem] mr-2 rounded mt-3 shadow-md">
-          <img src="pants.png" />
-          <img className="-mt-7" src="circle.png" />
-          <h4 className="text-3xl font-sans font-semibold mt-2">Jean’s Club</h4>
-          <div className="flex flex-row">
-            <img src="Rating.png" alt="" />
-            <img className="ml-[9.125rem]" src="Arrow.png" alt="" />
-          </div>
-        </div>
-        <div className="h-[18.4375rem] w-[17.8125rem] rounded mt-3 shadow-md">
-          <img src="pants.png" />
-          <img className="-mt-7" src="circle.png" />
-          <h4 className="text-3xl font-sans font-semibold mt-2">
-            Dubai Collection
-          </h4>
-          <div className="flex flex-row">
-            <img src="Rating.png" alt="" />
-            <img className="ml-[9.125rem]" src="Arrow.png" alt="" />
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
     </div>
+  </div>
   );
 };
 export default Shop;

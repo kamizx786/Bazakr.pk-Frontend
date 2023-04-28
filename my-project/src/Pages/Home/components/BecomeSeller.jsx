@@ -6,7 +6,7 @@ const BecomeSeller = () => {
             style={{ backgroundImage: "url('../Public/home/seller.png')" }}
             >
                 <div class="flex flex-col items-center justify-center h-full">
-                <h1 class="flex text-[3rem] md:text-[4rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center pb-3">
+                <h1 class="flex text-[3rem] md:text-[3rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center pb-3">
                     Become a Seller!
                 </h1>
                 <p class="flex font-sans text-lg font-normal text-[#FFFFFF] leading-6 tracking-normal text-center w-[25rem] pb-4">

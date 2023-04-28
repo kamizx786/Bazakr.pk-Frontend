@@ -9,7 +9,7 @@ const Hero = () => {
                 {/* Hero Content */}
                 <div class="flex flex-col gap-4 items-center justify-center h-full">
                 <div className="flex flex-col gap-2">
-                    <h1 class="flex text-[4rem] md:text-[5rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center justify-center">
+                    <h1 class="flex text-[3.5rem] md:text-[3.5rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center justify-center">
                     Shop Online,
                     <br /> In Your Area!
                     </h1>

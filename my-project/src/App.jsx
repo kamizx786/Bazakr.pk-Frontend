@@ -26,15 +26,15 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/Login" element={<Login />} />
-        <Route exact path="/Register" element={<Register />} />
-        <Route exact path="/Signup" element={<Signup />} />
+        {/* <Route exact path="/Login" element={<Login />} />
+        <Route exact path="/Register" element={<Register />} /> */}
+        {/* <Route exact path="/Signup" element={<Signup />} /> */}
         <Route exact path="/forgotpassword" element={<ForgotPassword />} />
         <Route exact path="/Store" element={<Store />} />
         <Route exact path="/StoreProfile" element={<StoreProfile />}></Route>
         <Route exact path="/StoreTime" element={<StoreTime />}></Route>
         <Route exact path="/StoreLinks" element={<StoreLinks />}></Route>
-        <Route exact path="/Shop" element={<Shop />}></Route>
+        <Route exact path="/Shops" element={<Shop />}></Route>
         <Route exact path="/ShopProfile" element={<ShopProfile />}></Route>
         <Route exact path="/SellerDashboard" element={<SellerDashboard />}></Route>
         <Route exact path="/AddProduct" element={<AddProduct/>}></Route>
