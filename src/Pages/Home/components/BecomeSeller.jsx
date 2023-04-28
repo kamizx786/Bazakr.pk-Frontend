@@ -3,7 +3,7 @@ const BecomeSeller = () => {
         <>
             <div
             class="bg-no-repeat bg-cover bg-right py-20"
-            style={{ backgroundImage: "url('../Public/home/seller.png')" }}
+            style={{ backgroundImage: "url('../home/seller.png')" }}
             >
                 <div class="flex flex-col items-center justify-center h-full">
                 <h1 class="flex text-[3rem] md:text-[3rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center pb-3">

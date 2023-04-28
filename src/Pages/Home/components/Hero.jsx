@@ -4,7 +4,7 @@ const Hero = () => {
             {/* HERO SECTION */}
             <div
                 class="h-screen bg-center bg-cover"
-                style={{ backgroundImage: "url('../Public/home/Home.svg')" }}
+                style={{ backgroundImage: "url('../home/home.svg')" }}
             >
                 {/* Hero Content */}
                 <div class="flex flex-col gap-4 items-center justify-center h-full">
