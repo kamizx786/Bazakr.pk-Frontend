@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.16",
     "all": "^0.0.0",
     "antd": "^5.2.2",

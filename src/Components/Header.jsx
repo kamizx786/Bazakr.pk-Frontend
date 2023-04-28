@@ -6,12 +6,14 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import CartSidebarView from "./cart_sidebar_viewer";
 import { ShoppingBagIcon, PhoneXMarkIcon ,Bars3Icon} from "@heroicons/react/24/solid";
+import AuthorizedMenu from "./authorizedMenu";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpencart] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [authCon, setauthCon] = useState(false);
+  const [user, setuser] = useState(false);
 
   //handle Drawer
   const showDrawer = () => {
@@ -42,7 +44,7 @@ const Header = () => {
           // onClick={onClick}
           // selectedKeys={[current]}
           mode="horizontal"
-          className="menu h-fit sm:hidden hidden md:flex gap-3 flex-wrap items-center py-3  justify-evenly"
+          className="menu h-fit sm:hidden hidden md:flex gap-4 flex-wrap items-center py-3  justify-evenly"
         >
           <div>
             {/* Search */}
@@ -59,37 +61,34 @@ const Header = () => {
             </Link>
           </div>
 
-          <div>
+          <div >
             <Link to="/contact" className="text-muted text-lg">
               Contact
             </Link>
           </div>
-          {/* Account */}
-          <div onClick={handleModal}>
-            <Link>
-              <img className="w-8" src="Account.svg" alt="" />
-            </Link>
-          </div>
-
-          {/* Cart */}
-          <div onClick={handleCart}>
-            <Link>
-              <img className="w-8" src="Cart.svg" alt="" />
-            </Link>
-          </div>
-          <div>
+          <div >
             <button className="bg-[#248F59] text-white py-3 px-3 rounded">
               Become a Seller
             </button>
           </div>
-          {/* <SubMenu title="User">
-          <Item key="dashboard" icon={<DashboardTwoTone />}>
-            <Link to="/dashboard">Dashboard</Link>
-          </Item>
-          <Item icon={<LogoutOutlined />}>LogOut</Item>
-        </SubMenu> */}
-        </div>
+         
 
+          {/* Cart */}
+          <div  onClick={handleCart}>
+            <Link>
+              <img className="w-8" src="Cart.svg" alt="" />
+            </Link>
+          </div>
+        
+        </div>
+         {/* Account */}
+         <div  >
+           {user? <Link onClick={handleModal}>
+              <img className="w-8" src="Account.svg" alt="" />
+            </Link>:
+            <AuthorizedMenu/>}
+          </div>
+          
         <div
           className="md:hidden menu h-fit  flex-wrap items-center py-3 justify-evenly" >
           <Button onClick={showDrawer} className="pb-2">
@@ -131,14 +130,7 @@ const Header = () => {
                   <div className="font-sans text-[#00000080]">Contact</div>
                 </Link>
               </div>
-              {/* Account */}
-              <div onClick={handleModal}>
-                <Link className="flex gap-3 items-center text-base">
-                  <img className="w-8" src="Account.svg" alt="" />
-                  <div className="font-sans text-[#00000080]">Account</div>
-                </Link>
-              </div>
-
+           
               {/* Cart */}
               <div onClick={handleCart}>
                 <Link className="flex gap-3 items-center text-base">
@@ -146,6 +138,11 @@ const Header = () => {
                   <div className="font-sans text-[#00000080]">Cart</div>
                 </Link>
               </div>
+              <div>
+            <button className="bg-[#248F59] text-white py-3 px-3 rounded">
+              Become a Seller
+            </button>
+          </div>
             </div>
           </Drawer>
         </div>
