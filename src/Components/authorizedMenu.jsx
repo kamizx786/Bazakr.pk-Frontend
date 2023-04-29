@@ -7,7 +7,7 @@ const AuthorizedMenu = () => {
     <Menu as="div" className="relative inline-block text-left ml-5s">
       <Menu.Button className="flex items-center focus:outline-none">
         <Space wrap size={20}>
-        <img className="w-8" src="Account.svg" alt="" />
+        <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg" alt="" />
         </Space>
       </Menu.Button>
 

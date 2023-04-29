@@ -1,7 +1,10 @@
 import React from "react";
 import Shops from "../../Components/Shops";
 import ShopCard from "../../Components/ShopCard";
+import ProductLoader from "../../Components/product-loader"
+import jsxRangeMap from "../../Components/range-map";
 const Shop = () => {
+  const limit=10;
   return (
     <div className="min-h-screen bg-white ">
     <div className="flex flex-col w-full max-w-6xl p-8 mx-auto pt-14">
@@ -10,11 +13,11 @@ const Shop = () => {
       </h3>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {!Shops.length ? (
-          <>
-            <h1>No Shops Found</h1>
-          </>
-        ) : (
+        {!Shops.length ? 
+          jsxRangeMap(limit, (i) => (
+            <ProductLoader key={i} uniqueKey={`product-${i}`} />
+          ))
+         : (
           Shops.map((shop) => <ShopCard shop={shop} key={shop.id} />)
         )}
       </div>

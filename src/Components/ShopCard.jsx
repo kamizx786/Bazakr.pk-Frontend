@@ -4,7 +4,7 @@ import {MapPinIcon} from "@heroicons/react/24/outline"
 
 const ShopCard = ({shop}) => {
   return (
-    <Link >
+    <Link to={`/shop/${shop.name}`} >
     <div className="relative flex cursor-pointer items-center rounded border border-gray-200 p-5">
       {/* {isNew && (
         <span className="absolute top-2 rounded bg-blue-500 px-2 py-1 text-xs text-light ltr:right-2 rtl:left-2">

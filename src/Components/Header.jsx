@@ -37,7 +37,7 @@ const Header = () => {
     <>
       <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
         <Link to="/">
-          <img className="h-30 w-[10rem] " src="Logo.svg" alto="" />
+          <img className="h-30 w-[10rem] " src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg" alto="" />
         </Link>
 
         <div
@@ -78,7 +78,7 @@ const Header = () => {
           {/* Cart */}
           <div  onClick={handleCart}>
             <Link>
-              <img className="w-8" src="Cart.svg" alt="" />
+              <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg" alt="" />
             </Link>
           </div>
         
@@ -86,7 +86,7 @@ const Header = () => {
          {/* Account */}
          <div  >
            {user? <Link onClick={handleModal}>
-              <img className="w-8" src="Account.svg" alt="" />
+              <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg" alt="" />
             </Link>:
             <AuthorizedMenu/>}
           </div>
@@ -136,7 +136,7 @@ const Header = () => {
               {/* Cart */}
               <div onClick={handleCart}>
                 <Link className="flex gap-3 items-center text-base">
-                  <img className="w-8" src="Cart.svg" alt="" />
+                  <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg" alt="" />
                   <div className="font-sans text-[#00000080]">Cart</div>
                 </Link>
               </div>
