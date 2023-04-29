@@ -68,7 +68,9 @@ const Header = () => {
           </div>
           <div >
             <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-              Become a Seller
+            <a href="https://bazar-pk-sellerside.vercel.app/">  
+            Become a Seller
+            </a>
             </button>
           </div>
          
@@ -140,7 +142,9 @@ const Header = () => {
               </div>
               <div>
             <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-              Become a Seller
+            <a href="https://bazar-pk-sellerside.vercel.app/">  
+            Become a Seller
+            </a>
             </button>
           </div>
             </div>
