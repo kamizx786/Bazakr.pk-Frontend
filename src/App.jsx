@@ -11,22 +11,21 @@ import ShopProfile from "./Pages/Shops/ShopProfile";
 import Footer from "./Components/Footer";
 import React from "react";
 import Contact from "./Pages/Contact";
+import ProductDetails from "./Pages/Products/ProductsDetail";
 function App() {
   return (
     <React.Fragment>
-      {location.pathname !== "/SellerDashboard" && <Header />}
+      <Header />
       <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/contact" element={<Contact/>} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-        <Route exact path="/Shops" element={<Shop />}/>
-        <Route exact path="/shop/:name" element={<ShopProfile />}/>
-        <Route exact path="/ShopProfile" element={<ShopProfile />}/>
-       
-     
+        <Route exact path="/Shops" element={<Shop />} />
+        <Route exact path="/shop/:name" element={<ShopProfile />} />
+        <Route exact path="/product/:slug" element={<ProductDetails />} />
       </Routes>
-      {location.pathname !== "/SellerDashboard" && <Footer />}
+    <Footer />
     </React.Fragment>
   );
 }

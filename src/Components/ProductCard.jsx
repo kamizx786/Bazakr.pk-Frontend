@@ -1,7 +1,9 @@
 import React from 'react'
 import { PlusOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 const ProductCard = ({product}) => {
   return (
+  
     <article
     className='h-full transform overflow-hidden 
     rounded bg-white 
@@ -9,6 +11,7 @@ const ProductCard = ({product}) => {
     // onClick={handleProductQuickView}
     role="button"
   >
+     <Link to={`/product/${product.slug}`}>
     <div className="p-5 relative flex md:h-56 h-62 w-auto items-center justify-center">
       <span className="sr-only"></span>
       <img
@@ -100,6 +103,7 @@ const ProductCard = ({product}) => {
       
       {/* End of product title */}
     </header>
+    </Link>
   </article>
   )
 }
