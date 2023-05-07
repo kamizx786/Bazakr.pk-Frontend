@@ -1,6 +1,7 @@
 import CartItem from "./cartItem";
 import {ShoppingBagIcon,ShoppingCartIcon,XCircleIcon} from "@heroicons/react/24/outline"
 import items from "./cartArray";
+import { Link } from "react-router-dom";
 
 const CartSidebarView = ({setOpencart}) => {
   return (
@@ -46,9 +47,9 @@ const CartSidebarView = ({setOpencart}) => {
           className="flex h-12 w-full justify-between rounded-full bg-[#248F59] p-1 text-sm font-bold shadow-700 transition-colors hover:bg-accent-hover focus:bg-accent-hover focus:outline-none md:h-14"
          
         >
-          <span className="flex h-full flex-1 items-center px-5 text-light">
+          <Link to="/checkout" className="flex h-full flex-1 cursor-pointer items-center px-5 text-light">
             Checkout
-          </span>
+          </Link>
           <span className="flex h-full shrink-0 items-center rounded-full bg-light px-5 text-accent">
             0
           </span>

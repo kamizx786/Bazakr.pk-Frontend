@@ -5,7 +5,9 @@ import { useState } from "react";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import CartSidebarView from "./cart_sidebar_viewer";
-import { ShoppingBagIcon, PhoneXMarkIcon ,Bars3Icon} from "@heroicons/react/24/solid";
+import {Bars3Icon} from "@heroicons/react/24/solid";
+import {BsFillTelephoneFill} from "react-icons/bs";
+import {AiTwotoneShopping} from "react-icons/ai"
 import AuthorizedMenu from "./authorizedMenu";
 
 const Header = () => {
@@ -118,7 +120,7 @@ const Header = () => {
                   className="flex gap-3 items-center text-base
           text-muted "
                 >
-                  <ShoppingBagIcon className="w-8 text-[#248F59]" />
+                  <AiTwotoneShopping className="w-8 text-[#248F59]" />
                   <div className="font-sans text-[#00000080]">Shop</div>
                 </Link>
               </div>
@@ -128,7 +130,7 @@ const Header = () => {
                   onClick={onClose}
                   className="text-muted flex gap-3 items-center text-base"
                 >
-                  <PhoneXMarkIcon className="w-8 text-[#248F59]" />
+                  <BsFillTelephoneFill size={25} className="w-8 text-[#248F59]" />
                   <div className="font-sans text-[#00000080]">Contact</div>
                 </Link>
               </div>
