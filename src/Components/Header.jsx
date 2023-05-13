@@ -1,25 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 import { Button, Drawer, Modal } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ForgotPassword from "../Pages/Auth/ForgotPassword";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
-import CartSidebarView from "./cart_sidebar_viewer";
-import {Bars3Icon} from "@heroicons/react/24/solid";
-import {BsFillTelephoneFill} from "react-icons/bs";
-import {AiTwotoneShopping} from "react-icons/ai"
 import AuthorizedMenu from "./authorizedMenu";
-
+import CartSidebarView from "./cart_sidebar_viewer";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpencart] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [authCon, setauthCon] = useState(false);
-  const [user, setuser] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const { loggedIn } = useSelector((state) => ({ ...state }));
 
   //handle Drawer
   const showDrawer = () => {
     setOpen(true);
+  };
+
+  const handleForgotPassword = () => {
+    setShowForgotPassword(true);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setShowForgotPassword(false);
   };
 
   const onClose = () => {
@@ -39,7 +49,11 @@ const Header = () => {
     <>
       <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
         <Link to="/">
-          <img className="h-30 w-[10rem] " src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg" alto="" />
+          <img
+            className="h-30 w-[10rem] "
+            src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg"
+            alto=""
+          />
         </Link>
 
         <div
@@ -63,40 +77,48 @@ const Header = () => {
             </Link>
           </div>
 
-          <div >
+          <div>
             <Link to="/contact" className="text-muted text-lg">
               Contact
             </Link>
           </div>
-          <div >
+          <div>
             <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-            <a href="https://bazar-pk-sellerside.vercel.app/">  
-            Become a Seller
-            </a>
+              <a href="https://bazar-pk-sellerside.vercel.app/">
+                Become a Seller
+              </a>
             </button>
           </div>
-         
 
           {/* Cart */}
-          <div  onClick={handleCart}>
+          <div onClick={handleCart}>
             <Link>
-              <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg" alt="" />
+              <img
+                className="w-8"
+                src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
+                alt=""
+              />
             </Link>
           </div>
-        
         </div>
-         {/* Account */}
-         <div  >
-           {user? <Link onClick={handleModal}>
-              <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg" alt="" />
-            </Link>:
-            <AuthorizedMenu/>}
-          </div>
-          
-        <div
-          className="md:hidden menu h-fit  flex-wrap items-center py-3 justify-evenly" >
+        {/* Account */}
+        <div>
+          {!loggedIn || !loggedIn.token ? (
+            <Link onClick={handleModal}>
+              <img
+                className="w-8"
+                src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg"
+                alt=""
+              />
+            </Link>
+          ) : (
+            <AuthorizedMenu />
+          )}
+        </div>
+
+        <div className="md:hidden menu h-fit  flex-wrap items-center py-3 justify-evenly">
           <Button onClick={showDrawer} className="pb-2">
-            <Bars3Icon  className="h-8 pb-2 text-[#248F59]" />
+            <Bars3Icon className="h-8 pb-2 text-[#248F59]" />
           </Button>
           <Drawer
             title="Mobile Menu"
@@ -117,10 +139,12 @@ const Header = () => {
                 <Link
                   to="/shops"
                   onClick={onClose}
-                  className="flex gap-3 items-center text-base
-          text-muted "
+                  className="flex gap-3 items-center text-base text-muted "
                 >
-                  <AiTwotoneShopping className="w-8 text-[#248F59]" />
+                  <img
+                    src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Subtract_mulomt.svg"
+                    alt=""
+                  />
                   <div className="font-sans text-[#00000080]">Shop</div>
                 </Link>
               </div>
@@ -130,25 +154,32 @@ const Header = () => {
                   onClick={onClose}
                   className="text-muted flex gap-3 items-center text-base"
                 >
-                  <BsFillTelephoneFill size={25} className="w-8 text-[#248F59]" />
+                  <BsFillTelephoneFill
+                    size={25}
+                    className="w-8 text-[#248F59]"
+                  />
                   <div className="font-sans text-[#00000080]">Contact</div>
                 </Link>
               </div>
-           
+
               {/* Cart */}
               <div onClick={handleCart}>
                 <Link className="flex gap-3 items-center text-base">
-                  <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg" alt="" />
+                  <img
+                    className="w-8"
+                    src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
+                    alt=""
+                  />
                   <div className="font-sans text-[#00000080]">Cart</div>
                 </Link>
               </div>
               <div>
-            <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-            <a href="https://bazar-pk-sellerside.vercel.app/">  
-            Become a Seller
-            </a>
-            </button>
-          </div>
+                <button className="bg-[#248F59] text-white py-3 px-3 rounded">
+                  <a href="https://bazar-pk-sellerside.vercel.app/">
+                    Become a Seller
+                  </a>
+                </button>
+              </div>
             </div>
           </Drawer>
         </div>
@@ -161,13 +192,27 @@ const Header = () => {
       <Modal
         footer={null}
         closable={false}
-        open={openModal}
-        onCancel={() => setOpenModal(false)}
+        visible={openModal}
+        onCancel={handleCloseModal}
       >
         {!authCon ? (
-          <Login setauthCon={setauthCon} setOpenModal={setOpenModal} />
+          <>
+            {showForgotPassword ? (
+              <ForgotPassword
+                setauthCon={setauthCon}
+                setOpenModal={setOpenModal}
+                onClose={handleCloseModal}
+              />
+            ) : (
+              <Login
+                setauthCon={setauthCon}
+                setOpenModal={setOpenModal}
+                handleForgotPassword={handleForgotPassword}
+              />
+            )}
+          </>
         ) : (
-          <Register setauthCon={setauthCon} />
+          <Register setauthCon={setauthCon} setOpenModal={setOpenModal} />
         )}
       </Modal>
     </>

@@ -1,14 +1,28 @@
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Avatar, Space } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Space } from "antd";
+import { Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 const AuthorizedMenu = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const HandleLogout = () => {
+    window.localStorage.removeItem("auth");
+    dispatch({
+      type: "LOGOUT",
+      payload: {},
+    });
+    navigate("/");
+  };
   return (
     <Menu as="div" className="relative inline-block text-left ml-5s">
       <Menu.Button className="flex items-center focus:outline-none">
         <Space wrap size={20}>
-        <img className="w-8" src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg" alt="" />
+          <img
+            className="w-8"
+            src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg"
+            alt=""
+          />
         </Space>
       </Menu.Button>
 
@@ -38,7 +52,7 @@ const AuthorizedMenu = () => {
           <Menu.Item>
             <li className="cursor-pointer border-b border-gray-100 last:border-0">
               <Link
-              to="/profile"
+                to="/profile"
                 className={
                   "block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
                 }
@@ -49,28 +63,29 @@ const AuthorizedMenu = () => {
           </Menu.Item>
           <Menu.Item>
             <li className="cursor-pointer border-b border-gray-100 last:border-0">
-              <a
-                className={
-                  "block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
-                }
+              <Link
+                to="/my-cards"
+                className="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
               >
-              My Orders
-              </a>
+                My Orders
+              </Link>
             </li>
           </Menu.Item>
           <Menu.Item>
             <li className="cursor-pointer border-b border-gray-100 last:border-0">
-              <a
-                className={
-                  "block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
-                }
+              <Link
+                className="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
+                to="/checkout"
               >
-               Checkout
-              </a>
+                Checkout
+              </Link>
             </li>
           </Menu.Item>
           <Menu.Item>
-            <li className="cursor-pointer border-b border-gray-100 last:border-0">
+            <li
+              onClick={HandleLogout}
+              className="cursor-pointer border-b border-gray-100 last:border-0"
+            >
               <a
                 className={
                   "block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"

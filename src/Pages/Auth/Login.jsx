@@ -1,73 +1,112 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-const Login = ({setauthCon,setOpenModal}) => {
+import { useState, useContext,useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { LOGIN } from "./auth";
+import { LoadingOutlined } from "@ant-design/icons";
+import {AiOutlineLoading3Quarters} from "react-icons/ai"
+import { useDispatch } from "react-redux";
+const Login = ({setauthCon, handleForgotPassword}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(email, password)
-  return (
-    <div className="grid place-content-center sm:text-center sm:justify-center">
-      <div className="flex flex-col gap-[2.5rem] items-center px-[3.25rem] py-[1.125rem]  rounded-lg w-fit">
-        {/* Title */}
-        <h3 className="text-2xl font-serif">Login</h3>
+  const [loading, setloading] = useState(false);
+  const {loggedIn}=useSelector((state)=>({...state}));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
 
-        {/* Login With Email */}
 
-        <div className="flex flex-col gap-3">
-          {/* Field */}
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            placeholder="Enter Your Email"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
-          />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Your Password"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-16 w-[18.4375rem] md:w-[23.4375rem] px-5 border rounded-lg border-neutral-300"
-          />
-          <Link
-            to="/forgotpassword"
-            className="-mr-[16rem] relative text-[#248F59] "
-            onClick={()=>setOpenModal(false)}
-          >
-            Forgot Password?
-          </Link>
-          {/* Button */}
-          <button className="h-16 w-[18.4375rem] md:w-[23.4375rem] text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
-            Login
-          </button>
-        </div>
 
-        {/* OR */}
-        <div>
-          <div className="h-0.5 -mb-3.5 w-[18.4375rem] md:w-[23.4375rem] bg-neutral-300"></div>
-          <div className="w-fit px-2 m-auto bg-white">OR</div>
-        </div>
-
-        {/* Google Button */}
-        <button className="h-16 w-[18.4375rem] md:w-[23.4375rem] -mt-5 flex gap-3 items-center justify-center border border-neutral-300 rounded-lg">
-          <img src="Group.jpg" />
-          <div className="font-sans font-semibold text-neutral-800 uppercase">
-            Login with Google
-          </div>
-        </button>
-
-        <p className="font-sans text-base -mt-5">
-          Don't have an Account?
-          <span className="text-[#248F59]">
-            <Link onClick={()=>setauthCon(true)}> Register</Link>
-          </span>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return toast.error("Please fill all fields");
+    }
+    setloading(true);
+    LOGIN(email, password,setloading,navigate,dispatch);
+  };
+  useEffect(()=>{
+    if(loggedIn && loggedIn.token){
+    setTimeout(() => {
+      navigate("/");
+    }, 3000); // 5 seconds
+    }
+},[loggedIn && loggedIn.token]);
+return loggedIn && loggedIn.token ? (
+  <div className="fixed inset-0 flex items-center justify-center">
+    <div className="flex flex-col items-center">
+      <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+      <span className="mt-4 text-gray-500 text-lg font-semibold">
+        Redirecting to Homepage...
+      </span>
+    </div>
+  </div>
+) : (
+  <>
+    <div className="bg-[#f2f2f2] flex flex-wrap h-screen lg:p-4   mx-auto justify-center">
+      <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto border-2 justify-center shadow">
+        {/* LOGO */}
+        <img
+          src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg"
+          className="h-10"
+          alt=""
+        />
+        <h1 className="text-gray-400 font-thin flex justify-center items-center italic mb-6 font-sans">
+          Login
+        </h1>
+        {/* EMAIL */}
+        <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          Email
+        </label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+        />
+        {/* PASSWORD */}
+        <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          Password
+        </label>
+        <p
+          className="text-end cursor-pointer justify-end text-sm flex flex-wrap text-[#248F59] italic mb-2 -mt-6 align-middle"
+          onClick={handleForgotPassword}
+        >
+          Forgot Password?
         </p>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          className="h-12 mb-4 flex flex-wrap  bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+        />
+        {/* LOGIN */}
+        <button
+          onClick={handleSubmit}
+          className="h-12 my-3 flex flex-wrap justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#FFFFFF]"
+        >
+          {loading ? <LoadingOutlined /> : " Login"}
+        </button>
+        {/* OR */}
+        <div className="relative flex my-5 flex-col items-center justify-center text-sm text-heading">
+          <hr className="w-full" />
+          <span className="start-2/4 -ms-4 absolute -top-2.5 bg-light px-2">
+            OR
+          </span>
+        </div>
+        {/* REGISTER */}
+        <span className="font-sans text-base font-normal my-2 text-center">
+          Don't have any account?
+          <p
+            onClick={() => setauthCon(true)}
+            className="text-[#248F59] cursor-pointer"
+          >
+            Register
+          </p>
+        </span>
       </div>
     </div>
-  );
+  </>
+);
 };
 export default Login;
