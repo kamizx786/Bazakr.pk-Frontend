@@ -13,11 +13,11 @@ const Home = () => {
       <PromotionSlider/>
       {/* CITIES */}
       <div className="py-20">
-        <div class="flex flex-col items-center gap-3 pb-10">
-            <h1 class="text-[3rem] md:text-[3rem] font-serif text-center">
-              <span class="text-[#248F59]">Cities</span> Where <br /> We Deliver!
+        <div className="flex flex-col items-center gap-3 pb-10">
+            <h1 className="text-[3rem] md:text-[3rem] font-serif text-center">
+              <span className="text-[#248F59]">Cities</span> Where <br /> We Deliver!
             </h1>
-            <p class="font-sans text-lg font-normal leading-6 tracking-normal text-center">
+            <p className="font-sans text-lg font-normal leading-6 tracking-normal text-center">
               Find us in these cities and many more!
             </p>
           </div>

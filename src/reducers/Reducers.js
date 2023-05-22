@@ -1,4 +1,3 @@
-import axios from "axios";
 let initialUser={};
 if(localStorage.getItem("auth"))
 {
@@ -7,23 +6,6 @@ if(localStorage.getItem("auth"))
 else{
    initialUser={};
 }
-// const PUBLIC_API="http://localhost:10000/api"
-// axios.defaults.baseURL=PUBLIC_API;
-//    //Default setting
-//    axios.defaults.headers.common["Authorization"]=`Bearer ${initialUser.token}`;
-//    //When Token Expire Logout automatically
-//    axios.interceptors.response.use(
-//    function (response){
-//    return response;
-//    },
-//    function(Error){
-//    let res=Error.response;
-//    if(res.status===401&& res.config && !res.config._isRetryREquest){
-//        window.localStorage.removeItem("auth");
-//        window.location.href="/login"
-//    }
-//    }
-//    );
 export const userReducer=(state=initialUser,action)=>{
  switch(action.type){
     case "LOGGED_IN_USER":
@@ -50,14 +32,7 @@ export const CategoryReducer=(state=null,{type,payload})=>{
       return state;
    }
 }
-export const AllUsersReducer=(state=null,{type,payload})=>{
-   switch(type){
-      case "GET_Users":
-      return payload;
-      default:
-      return state;
-   }
-}
+
 export const ShopsReducer=(state=null,{type,payload})=>{
    switch(type){
       case "GET_SHOPS":
@@ -69,6 +44,14 @@ export const ShopsReducer=(state=null,{type,payload})=>{
 export const ProductReducer=(state=null,{type,payload})=>{
    switch(type){
       case "GET_PRODUCTS":
+      return payload;
+      default:
+      return state;
+   }
+}
+export const OrderReducer=(state=null,{type,payload})=>{
+   switch(type){
+      case "Orders":
       return payload;
       default:
       return state;
@@ -91,6 +74,23 @@ export const AddtoCart=(state=initial,{type,payload})=>{
       return state;
    }
 }
+let initialLocation={};
+if(localStorage.getItem("location"))
+{
+   initialLocation=JSON.parse(window.localStorage.getItem("location"));
+
+}
+else{
+   initialLocation={};
+}
+export const Location=(state=initialLocation,{type,payload})=>{
+   switch(type){
+      case "LOCATION":
+      return payload;
+      default:
+      return state;
+   }
+}
 export const SearchReducer=(state={text:""},{type,payload})=>{
    switch(type){
       case "Search":
@@ -99,9 +99,17 @@ export const SearchReducer=(state={text:""},{type,payload})=>{
       return state;
    }
 }
-export const drawer=(state=false,{type,payload})=>{
+export const LoginModal=(state=false,{type,payload})=>{
    switch(type){
       case "Visible":
+      return payload;
+      default:
+      return state;
+   }
+}
+export const cartDrawer=(state=false,{type,payload})=>{
+   switch(type){
+      case "CartDrawer":
       return payload;
       default:
       return state;

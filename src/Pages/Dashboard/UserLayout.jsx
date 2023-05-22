@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+const UserLayout = ({ children }) => {
+  const { loggedIn } = useSelector((state) => ({ ...state }));
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Redirect to login if state is null
+    if (!loggedIn || !loggedIn.token) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [loggedIn]);
+  return !loggedIn || !loggedIn.token ? (
+    <div className="h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center">
+        <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+        <span className="mt-4 text-gray-500 text-lg font-semibold">
+          Loading...
+        </span>
+        <span className="mt-4 text-gray-500 text-lg font-semibold">
+          You are not Authenticated
+        </span>
+      </div>
+    </div>
+  ) : (
+    <>{children}</>
+  );
+};
+
+export default UserLayout;

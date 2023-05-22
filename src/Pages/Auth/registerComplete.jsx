@@ -49,7 +49,7 @@ const RegisterComplete = () => {
     }
   }, [loggedIn && loggedIn.token]);
   return loggedIn && loggedIn.token ? (
-    <div className="fixed inset-0 flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
         <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
         <span className="mt-4 text-gray-500 text-lg font-semibold">
@@ -59,11 +59,10 @@ const RegisterComplete = () => {
     </div>
   ) : (
     <>
-      <div className="bg-gray-200 flex flex-wrap h-screen lg:p-4   mx-auto justify-center">
-        <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto border-2 justify-center shadow">
+      <div >
+        <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto h-screen justify-center ">
           {/* LOGO */}
-          <img src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg" className="h-10" alt="" />
-          <h1 className="text-gray-400 font-thin flex justify-center items-center italic mb-6 font-sans">
+          <h1 className="text-[#248F59]  flex justify-center items-center italic mb-6 font-sans">
             Complete Registration
           </h1>
           {/* EMAIL */}

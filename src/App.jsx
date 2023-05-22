@@ -1,8 +1,8 @@
 import "@ant-design/icons";
 import "antd";
 import axios from "axios";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,9 +24,12 @@ import Refund from "./Pages/UserDashboard/refund";
 import Order from "./Pages/order/order";
 import "./index.css";
 import NotFound from "./Pages/404";
+import ForgotPassword from "./Pages/Auth/ForgotPassword";
+import { GetSettings } from "./Pages/site/functions";
+import { AllProducts, AllShops } from "./Pages/Shops/functions";
+import { UserOrders } from "./Pages/Checkout/functions";
 function App() {
 const {loggedIn}=useSelector((state)=>({...state}));
- 
 //Default setting
 axios.defaults.baseURL =import.meta.env.VITE_PUBLIC_API;
 let token=loggedIn?.token
@@ -40,11 +43,20 @@ axios.interceptors.response.use(
     let res = Error.response;
     if (res.status === 401 && res.config && !res.config._isRetryREquest) {
       window.localStorage.removeItem("auth");
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   }
 );
-
+const dispatch=useDispatch();
+useEffect(()=>{
+GetSettings(dispatch);
+AllShops(dispatch);
+AllProducts(dispatch);
+if(loggedIn&&loggedIn.token)
+{
+UserOrders(dispatch);
+}
+},[])
   return (
     <React.Fragment>
       <Header />
@@ -54,11 +66,12 @@ axios.interceptors.response.use(
         <Route  path="*" element={<NotFound />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/my-cards" element={<Cards />} />
-        <Route exact path="/registerComplete" element={<RegisterComplete/>}/>
+        <Route exact path="/register-complete" element={<RegisterComplete/>}/>
+        <Route exact path="/forgot-password" element={<ForgotPassword/>}/>
         <Route exact path="/Shops" element={<Shop />} />
         <Route exact path="/checkout" element={<Checkout />} />
-        <Route exact path="/shop/:name" element={<ShopProfile />} />
-        <Route exact path="/order/payment" element={<Order />} />
+        <Route exact path="/shop/:slug" element={<ShopProfile />} />
+        <Route exact path="/order/:_id" element={<Order />} />
         <Route exact path="/my-orders" element={<MyOrders />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/my-refunds" element={<Refund />} />

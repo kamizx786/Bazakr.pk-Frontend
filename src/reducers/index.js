@@ -6,9 +6,11 @@ import {
   ProductReducer,
   SearchReducer,
   AddtoCart,
-  drawer,
+  LoginModal,
   SiteReducer,
-  AllUsersReducer
+  Location,
+  cartDrawer,
+  OrderReducer
 } from "./Reducers";
 
 
@@ -19,9 +21,11 @@ const rootReducers = combineReducers({
   product: ProductReducer,
   search: SearchReducer,
   cart: AddtoCart,
-  drawer: drawer,
+  LoginModal: LoginModal,
   siteSetting:SiteReducer,
-  allusers:AllUsersReducer
+  userLocation:Location,
+  CartDrawer:cartDrawer,
+  Orders:OrderReducer
 });
 
 export default rootReducers;

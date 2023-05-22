@@ -1,58 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import ProductDetailsSlider from "../../Components/ProductDetailsSlider";
+import { Link } from "react-router-dom";
 import { handleCart } from "./function";
-const ProductDetails = () => {
-  const [Single, setSingle] = useState({});
-  const { allShops, product } = useSelector((state) => ({ ...state }));
-
-  const params = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const LoadProuct = () => {
-    const updated = product?.filter((p) => {
-      return params.slug === p.slug;
-    });
-    setSingle(updated[0]);
-  };
-  useEffect(() => {
-    if (product && product.length) {
-      LoadProuct();
-    }
-  }, [product, params]);
-
-  useEffect(() => {
-    if (!Single) {
-      const timeoutId = setTimeout(() => {
-        navigate("/shops");
-      }, 3000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [Single]);
-  return !Single || product === null ? (
-    <div className="h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 text-lg font-semibold">
-          Loading...
-        </span>
-      </div>
-    </div>
-  ) : (
+import { useDispatch } from "react-redux";
+const Card = ({ ModalProduct,setOpen }) => {
+  const [Single] = useState(ModalProduct);
+const dispatch=useDispatch();
+  return (
     <article className="rounded-lg bg-white">
       <div className="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
         <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
           <div className="mb-8 flex items-center justify-between lg:mb-10">
             {/* {backBtn && <BackButton />} */}
             {/* {Single.discount && (
-            <div className="rounded-full bg-yellow-500 px-3 text-xs font-semibold leading-6 text-light ml-auto ">
-              {Single.discount}
-            </div>
-          )} */}
+                <div className="rounded-full bg-yellow-500 px-3 text-xs font-semibold leading-6 text-light ml-auto ">
+                  {Single.discount}
+                </div>
+              )} */}
           </div>
 
           <div className="product-gallery h-full">
@@ -75,9 +39,9 @@ const ProductDetails = () => {
 
               <span>
                 {/* <FavoriteButton
-                productId={id}
-                className={classNames({ 'mr-1': isModal })}
-              /> */}
+                    productId={id}
+                    className={classNames({ 'mr-1': isModal })}
+                  /> */}
               </span>
             </div>
             <div className="mt-2 flex items-center justify-between">
@@ -86,11 +50,11 @@ const ProductDetails = () => {
               </span>
 
               {/* {isModal && (
-              <div className="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
-                {ratings}
-                <StarIcon className="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1" />
-              </div>
-            )} */}
+                  <div className="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
+                    {ratings}
+                    <StarIcon className="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1" />
+                  </div>
+                )} */}
             </div>
 
             {Single.discription && (
@@ -104,43 +68,43 @@ const ProductDetails = () => {
                 {Single?.salePrice}/Rs
               </ins>
               {/* {basePrice && (
-                <del className="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">
-                  {basePrice}
-                </del>
-              )} */}
+                    <del className="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">
+                      {basePrice}
+                    </del>
+                  )} */}
             </span>
             {/* {hasVariations ? (
-            <>
-              <div className="my-5 flex items-center md:my-10">
-                <VariationPrice
-                  selectedVariation={selectedVariation}
-                  minPrice={product.min_price}
-                  maxPrice={product.max_price}
-                />
-              </div>
-              <div>
-                <VariationGroups variations={variations} />
-              </div>
-            </>
-          ) : (
-            <span className="my-5 flex items-center md:my-10">
-              <ins className="text-2xl font-semibold text-accent no-underline md:text-3xl">
-                {price}
-              </ins>
-              {basePrice && (
-                <del className="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">
-                  {basePrice}
-                </del>
-              )}
-            </span>
-          )} */}
+                <>
+                  <div className="my-5 flex items-center md:my-10">
+                    <VariationPrice
+                      selectedVariation={selectedVariation}
+                      minPrice={product.min_price}
+                      maxPrice={product.max_price}
+                    />
+                  </div>
+                  <div>
+                    <VariationGroups variations={variations} />
+                  </div>
+                </>
+              ) : (
+                <span className="my-5 flex items-center md:my-10">
+                  <ins className="text-2xl font-semibold text-accent no-underline md:text-3xl">
+                    {price}
+                  </ins>
+                  {basePrice && (
+                    <del className="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">
+                      {basePrice}
+                    </del>
+                  )}
+                </span>
+              )} */}
 
             <div className="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
               {Single.quantity > 0 ? (
                 <>
                   <div className="mb-3 mr-2 w-full lg:mb-0 lg:max-w-[400px]">
                     <button
-                      onClick={() => handleCart(Single, dispatch)}
+                      onClick={() => handleCart(Single, dispatch,setOpen)}
                       className="bg-[#248F59] text-white w-full p-3 rounded mr-2"
                     >
                       Add to Cart
@@ -157,39 +121,39 @@ const ProductDetails = () => {
                 </div>
               )}
               {/* 
-            {!hasVariations && (
-              <>
-                {Number(quantity) > 0 ? (
-                  <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
-                    {quantity} {t('text-pieces-available')}
-                  </span>
-                ) : (
-                  <div className="whitespace-nowrap text-base text-red-500 ltr:lg:ml-7 rtl:lg:mr-7">
-                    {t('text-out-stock')}
-                  </div>
-                )}
-              </>
-            )} */}
+                {!hasVariations && (
+                  <>
+                    {Number(quantity) > 0 ? (
+                      <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
+                        {quantity} {t('text-pieces-available')}
+                      </span>
+                    ) : (
+                      <div className="whitespace-nowrap text-base text-red-500 ltr:lg:ml-7 rtl:lg:mr-7">
+                        {t('text-out-stock')}
+                      </div>
+                    )}
+                  </>
+                )} */}
               {/* {!isEmpty(selectedVariation) && (
-              <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
-                {selectedVariation?.is_disable ||
-                selectedVariation.quantity === 0
-                  ? t('text-out-stock')
-                  : `${selectedVariation.quantity} ${t(
-                      'text-pieces-available'
-                    )}`}
-              </span>
-            )} */}
+                  <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
+                    {selectedVariation?.is_disable ||
+                    selectedVariation.quantity === 0
+                      ? t('text-out-stock')
+                      : `${selectedVariation.quantity} ${t(
+                          'text-pieces-available'
+                        )}`}
+                  </span>
+                )} */}
             </div>
           </div>
 
           {/* {!!categories?.length && (
-          <CategoryBadges
-            categories={categories}
-            basePath={`/${type?.slug}`}
-            onClose={closeModal}
-          />
-        )} */}
+              <CategoryBadges
+                categories={categories}
+                basePath={`/${type?.slug}`}
+                onClose={closeModal}
+              />
+            )} */}
 
           {Single?.category && (
             <div className="mt-2 flex items-center">
@@ -230,4 +194,5 @@ const ProductDetails = () => {
     </article>
   );
 };
-export default ProductDetails;
+
+export default Card;

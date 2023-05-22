@@ -2,7 +2,7 @@ import React from "react";
 
 import { Headings, OrderData } from "./tabledata";
 
-export const OrderTable = () => {
+export const OrderTable = ({singleOrder}) => {
   return (
     <>
       <div className="my-6  flex border bg-white shadow">
@@ -14,23 +14,42 @@ export const OrderTable = () => {
             <table className="mx-2 my-2 font-sans shadow">
               <thead>
                 <tr className="bg-[#F2F2F2]">
-                  {Headings.map((heading, index) => (
-                    <th className="px-4 whitespace-nowrap py-2" key={index}>
-                      {heading}
+                 
+                    <th className="px-4 whitespace-nowrap py-2">
+                      Item
                     </th>
-                  ))}
+                    <th className="px-4 whitespace-nowrap py-2">
+                      Image
+                    </th>
+                    <th className="px-4 whitespace-nowrap py-2">
+                      Ordered_Quantity
+                    </th>
+                    <th className="px-4 whitespace-nowrap py-2">
+                     Price
+                    </th>
+                    <th className="px-4 whitespace-nowrap py-2">
+                    Total
+                    </th>
                 </tr>
               </thead>
 
               <tbody>
-                {OrderData.map((item, index) => (
+                {singleOrder?.Products?.map((item, index) => (
                   <tr
                     className="bg-white cursor-default hover:!bg-gray-100 border-b-2 font-sans"
                     key={index}
                   >
-                    <td className="px-4 py-2">{item.Item}</td>
-                    <td className="px-4 py-2">{item.Quantity}</td>
-                    <td className="px-4 py-2">{item.Price}</td>
+                    <td className="px-4 py-2">{item?.Product?.name}</td>
+                    <td className="px-4 py-2">
+                <img src={item?.Product?.feature_pic?.url} 
+                className="h-8 w-8"
+                /></td>
+                    <td className="px-4 py-2">{item?.order_quantity}</td>
+                    <td className="px-4 py-2">Rs:{item?.Product?.salePrice}</td>
+                    <td className="px-4 py-2">
+                     Rs:{item?.Product?.salePrice*
+                      item?.order_quantity
+                    }</td>
                   </tr>
                 ))}
               </tbody>

@@ -26,11 +26,6 @@ export const siteSettings = {
       label: "My Refunds",
     },
     {
-        id:"5",
-      to: "/my-reports",
-      label: "My Reports",
-    },
-    {
         id:"6",
       to: "/my-cards",
       label: "My Cards",

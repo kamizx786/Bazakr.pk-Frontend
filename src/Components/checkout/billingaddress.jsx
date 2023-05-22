@@ -1,20 +1,13 @@
 import React, { useState,useEffect } from "react";
 import { Bs2CircleFill } from "react-icons/bs";
 import AddressModal from "../User Dashboard/profile/addressModel";
-const BillingAddress = () => {
+const BillingAddress = ({savedAddress}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [street, setStreet] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [savedAddress, setSavedAddress] = useState("");
 
-  useEffect(() => {
-    const storedAddress = localStorage.getItem("billingAddress");
-    if (storedAddress) {
-      setSavedAddress(storedAddress);
-    }
-  }, []);
 
   const openModal = () => {
     setIsOpen(true);
@@ -44,12 +37,12 @@ const BillingAddress = () => {
               Billing and Shipping Address
             </p>
           </div>
-          <p
+          {/* <p
             className="text-[#248F59] cursor-pointer font-normal py-2 px-4 "
             onClick={openModal}
           >
             + ADD
-          </p>
+          </p> */}
          
           <AddressModal
             isOpen={isOpen}

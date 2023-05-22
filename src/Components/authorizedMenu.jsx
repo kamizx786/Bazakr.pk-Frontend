@@ -15,7 +15,7 @@ const AuthorizedMenu = () => {
     navigate("/");
   };
   return (
-    <Menu as="div" className="relative inline-block text-left ml-5s">
+    <Menu as="div" className="relative inline-block text-left ml-5s z-10">
       <Menu.Button className="flex items-center focus:outline-none">
         <Space wrap size={20}>
           <img

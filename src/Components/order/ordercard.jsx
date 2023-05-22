@@ -1,6 +1,8 @@
 import React from "react";
-
-const OrderCard = () => {
+const OrderCard = ({singleOrder,GrandTotal}) => {
+  const dateStr = singleOrder?.createdAt;
+  const dateObj = new Date(dateStr);
+  const formattedDate = dateObj.toLocaleDateString();
   return (
     <>
       <div className="mb-6 grid gap-4 sm:grid-cols-2 md:mb-12 lg:grid-cols-4">
@@ -8,30 +10,29 @@ const OrderCard = () => {
           <h3 className="mb-2 text-sm font-semibold text-heading">
             Tracking Number
           </h3>
-          <p className="text-sm text-body-dark">
-            {/* {order?.tracking_number} */}112233445566
+          <p className="text-xs  text-body-dark">
+            {singleOrder?._id}
           </p>
         </div>
         <div className="rounded border border-border-200 py-4 px-5 shadow-sm">
           <h3 className="mb-2 text-sm font-semibold text-heading">
-            {/* {t('text-date')} */} Date
+            Date
           </h3>
           <p className="text-sm text-body-dark">
-            {/* {dayjs(order?.created_at).format('MMMM D, YYYY')} */}
-            12/12/12
+            {formattedDate}
           </p>
         </div>
         <div className="rounded border border-border-200 py-4 px-5 shadow-sm">
           <h3 className="mb-2 text-sm font-semibold text-heading">
-            {/* {t('text-total')} */}Total
+            {/* {t('text-total')} */}Order Status
           </h3>
-          <p className="text-sm text-body-dark">{/*total*/}2456890PKR</p>
+          <p className="text-sm text-body-dark">{singleOrder?.orderStatus}</p>
         </div>
         <div className="rounded border border-border-200 py-4 px-5 shadow-sm">
           <h3 className="mb-2 text-sm font-semibold text-heading">
             {/* {t('text-payment-method')} */} Payment Method
           </h3>
-          <p className="text-sm text-body-dark">Stripe/COD</p>
+          <p className="text-sm uppercase text-body-dark">{singleOrder?.paymentType}</p>
         </div>
       </div>
     </>

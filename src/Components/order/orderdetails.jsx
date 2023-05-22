@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderDetail = () => {
+const OrderDetail = ({singleOrder,GrandTotal}) => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:flex-row">
@@ -15,7 +15,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-7/12 text-sm ltr:pl-4 rtl:pr-4 sm:w-8/12 ">
-                {/* {sub_total} */} 22450PKR
+               {GrandTotal}/PKR
               </span>
             </p>
             <p className="mt-5 flex text-body-dark">
@@ -24,7 +24,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-7/12 text-sm ltr:pl-4 rtl:pr-4 sm:w-8/12 ">
-                {/* {shipping_charge} */} 50 PKR
+                {/* {shipping_charge} */} 0.00
               </span>
             </p>
 
@@ -34,7 +34,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-7/12 text-sm ltr:pl-4 rtl:pr-4 sm:w-8/12 ">
-                {/* {discount} */} 0.000001%
+                {/* {discount} */} 0.00
               </span>
             </p>
             <p className="mt-5 flex text-body-dark">
@@ -43,7 +43,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-7/12 text-sm ltr:pl-4 rtl:pr-4 sm:w-8/12">
-                {/* {total} */} 12987.0987 PKR
+                {GrandTotal}/PKR
               </span>
             </p>
           </div>
@@ -61,7 +61,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">
-                {/* {order?.customer_name} */} Kami
+                {singleOrder?.orderBy?.name}
               </span>
             </p>
 
@@ -71,17 +71,20 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">
-                {/* {formatString(order?.products?.length, t('text-item'))} */}{" "}
-                10
+                {
+                  singleOrder?.Products?.length
+                }
               </span>
             </p>
 
             <p className="mt-5 flex text-body-dark">
               <strong className="w-4/12 text-sm font-semibold text-heading">
-                Delivery Time<span className="ml-2">:</span>
+               Store Name<span className="ml-2">:</span>
               </strong>
 
-              <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">Normal</span>
+              <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">
+                {singleOrder?.store?.Storename}
+              </span>
             </p>
 
             <p className="mt-5 flex text-body-dark">
@@ -90,7 +93,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">
-                {/* {formatAddress(order?.shipping_address!)} */} Gujranwala
+               {singleOrder?.order_address}
               </span>
             </p>
 
@@ -100,7 +103,7 @@ const OrderDetail = () => {
               </strong>
 
               <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4">
-                Gujranwala
+              {singleOrder?.order_address}
               </span>
             </p>
           </div>

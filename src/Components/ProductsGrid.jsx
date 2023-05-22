@@ -4,16 +4,16 @@ import jsxRangeMap from "./range-map";
 import Product from "./Product";
 import ProductCard from "./ProductCard";
 import { Button } from "antd";
-const ProductsGrid = () => {
+const ProductsGrid = ({products}) => {
   const limit = 10;
   return (
     <div className="w-full mt-5 mb-5">
       <div className="mb-5 grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
-        {!Product?.length
+        {!products?.length
           ? jsxRangeMap(limit, (i) => (
               <ProductLoader key={i} uniqueKey={`product-${i}`} />
             ))
-          : Product?.map((product) => (
+          : products?.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
       </div>

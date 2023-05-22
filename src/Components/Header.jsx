@@ -1,59 +1,56 @@
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { Button, Drawer, Modal } from "antd";
 import React, { useState } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ForgotPassword from "../Pages/Auth/ForgotPassword";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import AuthorizedMenu from "./authorizedMenu";
 import CartSidebarView from "./cart_sidebar_viewer";
+import Logo from "./logo";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpencart] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
   const [authCon, setauthCon] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const { loggedIn } = useSelector((state) => ({ ...state }));
-
+  const { loggedIn, LoginModal,CartDrawer, userLocation } = useSelector((state) => ({
+    ...state,
+  }));
+  const dispatch = useDispatch();
   //handle Drawer
   const showDrawer = () => {
     setOpen(true);
   };
-
-  const handleForgotPassword = () => {
-    setShowForgotPassword(true);
-    setOpenModal(true);
-  };
-
   const handleCloseModal = () => {
-    setOpenModal(false);
-    setShowForgotPassword(false);
+    dispatch({
+      type: "Visible",
+      payload: false,
+    });
   };
 
   const onClose = () => {
     setOpen(false);
-    setOpencart(false);
   };
   //Handle Modal
   const handleModal = () => {
-    setOpenModal(true);
+    dispatch({
+      type: "Visible",
+      payload: true,
+    });
     setOpen(false);
   };
   const handleCart = () => {
-    setOpencart(true);
+    dispatch({
+      type: "CartDrawer",
+      payload: true,
+    });
     setOpen(false);
   };
   return (
     <>
       <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
         <Link to="/">
-          <img
-            className="h-30 w-[10rem] "
-            src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg"
-            alto=""
-          />
+          <Logo />
         </Link>
 
         <div
@@ -62,20 +59,25 @@ const Header = () => {
           mode="horizontal"
           className="menu h-fit sm:hidden hidden md:flex gap-4 flex-wrap items-center py-3  justify-evenly"
         >
-          <div>
-            {/* Search */}
+          
+            <>
+              <div>
+                {/* Search */}
 
-            <input
-              className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
-              type="search"
-              placeholder="Search..."
-            />
-          </div>
-          <div>
-            <Link to="/shops" className="text-muted text-lg">
-              Shop
-            </Link>
-          </div>
+                <input
+                  className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
+                  type="search"
+                  placeholder="Search..."
+                  autoComplete="off"
+                />
+              </div>
+              <div>
+                <Link to="/shops" className="text-muted text-lg">
+                  Shop
+                </Link>
+              </div>
+            </>
+          
 
           <div>
             <Link to="/contact" className="text-muted text-lg">
@@ -84,7 +86,7 @@ const Header = () => {
           </div>
           <div>
             <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-              <a href="https://bazar-pk-sellerside.vercel.app/">
+              <a href="https://bazar-pk-sellerside.vercel.app/" target="_blank">
                 Become a Seller
               </a>
             </button>
@@ -141,10 +143,7 @@ const Header = () => {
                   onClick={onClose}
                   className="flex gap-3 items-center text-base text-muted "
                 >
-                  <img
-                    src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Subtract_mulomt.svg"
-                    alt=""
-                  />
+                  <ShoppingBagIcon size={25} className="w-8 text-[#248F59]" />
                   <div className="font-sans text-[#00000080]">Shop</div>
                 </Link>
               </div>
@@ -185,34 +184,23 @@ const Header = () => {
         </div>
       </header>
       {/* Handlecart Drawer */}
-      <Drawer title={null} onClose={onClose} open={openCart} placement="right">
-        <CartSidebarView setOpencart={setOpencart} />
+      <Drawer title={null} onClose={()=> dispatch({
+      type: "CartDrawer",
+      payload: false,
+    })} open={CartDrawer} placement="right">
+        <CartSidebarView  />
       </Drawer>
       {/* Modal For login and Signup */}
       <Modal
         footer={null}
         closable={false}
-        visible={openModal}
+        open={LoginModal}
         onCancel={handleCloseModal}
       >
         {!authCon ? (
-          <>
-            {showForgotPassword ? (
-              <ForgotPassword
-                setauthCon={setauthCon}
-                setOpenModal={setOpenModal}
-                onClose={handleCloseModal}
-              />
-            ) : (
-              <Login
-                setauthCon={setauthCon}
-                setOpenModal={setOpenModal}
-                handleForgotPassword={handleForgotPassword}
-              />
-            )}
-          </>
+          <Login setauthCon={setauthCon} />
         ) : (
-          <Register setauthCon={setauthCon} setOpenModal={setOpenModal} />
+          <Register setauthCon={setauthCon} />
         )}
       </Modal>
     </>

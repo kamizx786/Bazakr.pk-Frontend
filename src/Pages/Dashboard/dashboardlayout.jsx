@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { AiOutlineMenuUnfold } from 'react-icons/ai';
+import React, { useEffect,useState } from "react";
 import { Drawer } from "antd";
+import { AiOutlineMenuUnfold } from 'react-icons/ai';
 import DashboardSidebar from "./sidebar";
-
+import Logo from "../../Components/logo"
+import UserLayout from "./UserLayout";
 const DashboardLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
 
+ 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
@@ -27,18 +29,17 @@ const DashboardLayout = ({ children }) => {
     );
   };
 
-  return (
+  return  (
+    <UserLayout>
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors">
       <div className="m-3 p-3 overflow-hidden lg:!hidden">
         {renderButton()}
       </div>
       <Drawer
         title={
-          <img
-            src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg"
-            alt="logo"
-            className="object-cover"
-          />
+          <>
+          <Logo/>
+          </>
         }
         placement="left"
         onClose={handleDrawerToggle}
@@ -58,6 +59,7 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
     </div>
+    </UserLayout>
   );
 };
 

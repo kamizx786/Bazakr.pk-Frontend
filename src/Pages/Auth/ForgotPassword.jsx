@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useSelector } from "react-redux";
 import { LoadingOutlined } from "@ant-design/icons";
 import { ForgotEmail, Reset } from "./auth";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 const ForgotPassword = ({}) => {
+  const { loggedIn } = useSelector((state) => ({ ...state }));
+
   const [email, setEmail] = useState("");
   const [Newpassword, setNewPassword] = useState("");
   const [secret, setSecret] = useState("");
   const [loading, setloading] = useState(false);
   const [ok, setOK] = useState(false);
   const navigate = useNavigate();
-  const { loggedIn } = useSelector((state) => ({ ...state }));
   const sendResetEmail = (e) => {
     e.preventDefault();
     try {
@@ -61,7 +63,6 @@ const ForgotPassword = ({}) => {
       setloading(false);
     }
   };
-
   useEffect(() => {
     if (loggedIn && loggedIn.token) {
       setTimeout(() => {
@@ -70,7 +71,7 @@ const ForgotPassword = ({}) => {
     }
   }, [loggedIn && loggedIn.token]);
   return loggedIn && loggedIn.token ? (
-    <div className="fixed inset-0 flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center">
         <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
         <span className="mt-4 text-gray-500 text-lg font-semibold">
@@ -78,12 +79,11 @@ const ForgotPassword = ({}) => {
         </span>
       </div>
     </div>
-  ) : (
+  ) :  (
     <>
-      <div className="bg-gray-200 flex flex-wrap h-screen  lg:p-4 mx-auto justify-center">
-        <div className="bg-white flex flex-col p-4   md:w-fit w-full mx-auto border-2 justify-center shadow">
-          <img src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg" className="h-10" alt="" />
-          <h1 className="text-gray-400 font-thin flex justify-center items-center italic mb-6 font-sans">
+      <div >
+        <div className="bg-white flex flex-col p-4  md:w-fit w-full mx-auto justify-center h-screen">
+          <h1 className="text-[#248F59] italic flex justify-center items-center  mb-6 font-sans">
             Forgot Password
           </h1>
           {/* EMAIL */}

@@ -8,7 +8,7 @@ export const createUser = async (name, email, password) => {
   });
   return data;
 };
-export const LOGIN = async (email, password,setloading,navigate,dispatch) => {
+export const LOGIN = async (email, password,setloading,dispatch,setOpenModal) => {
   try{
     const { data } = await axios.post("/login", { email, password });
     if (data.error) {
@@ -28,7 +28,7 @@ export const LOGIN = async (email, password,setloading,navigate,dispatch) => {
           token:auth.token
         }
       })
-      navigate("/");
+      dispatch({type:"Visible",payload:false})
     }
 }
 catch (err) {
@@ -38,11 +38,11 @@ catch (err) {
   }
 };
 export const registerComplete = async (email, secret) => {
-    const { data } = await axios.put("/registerComplete", { email, secret });
+    const { data } = await axios.put("/register/complete", { email, secret });
     return data;
   };
   export const ForgotEmail = async (email) => {
-    const { data } = await axios.put("/forgot-password", { email});
+    const { data } = await axios.put("/forgot", { email});
     return data;
   };
   export const Reset = async (email,Newpassword,secret) => {

@@ -1,57 +1,32 @@
-import { useState, useContext,useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useState} from "react";
+import {  Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LOGIN } from "./auth";
 import { LoadingOutlined } from "@ant-design/icons";
-import {AiOutlineLoading3Quarters} from "react-icons/ai"
 import { useDispatch } from "react-redux";
-const Login = ({setauthCon, handleForgotPassword}) => {
+const Login = ({setauthCon}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-  const {loggedIn}=useSelector((state)=>({...state}));
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       return toast.error("Please fill all fields");
     }
     setloading(true);
-    LOGIN(email, password,setloading,navigate,dispatch);
+    LOGIN(email, password,setloading,dispatch);
   };
-  useEffect(()=>{
-    if(loggedIn && loggedIn.token){
-    setTimeout(() => {
-      navigate("/");
-    }, 3000); // 5 seconds
-    }
-},[loggedIn && loggedIn.token]);
-return loggedIn && loggedIn.token ? (
-  <div className="fixed inset-0 flex items-center justify-center">
-    <div className="flex flex-col items-center">
-      <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-      <span className="mt-4 text-gray-500 text-lg font-semibold">
-        Redirecting to Homepage...
-      </span>
-    </div>
-  </div>
-) : (
+const handleForgot=()=>{
+  dispatch({type:"Visible",payload:false})
+  navigate("/forgot-password");
+}
+return  (
   <>
-    <div className="bg-[#f2f2f2] flex flex-wrap h-screen lg:p-4   mx-auto justify-center">
-      <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto border-2 justify-center shadow">
-        {/* LOGO */}
-        <img
-          src="https://res.cloudinary.com/dc367rgig/image/upload/v1682767512/Logo_lokccn.svg"
-          className="h-10"
-          alt=""
-        />
-        <h1 className="text-gray-400 font-thin flex justify-center items-center italic mb-6 font-sans">
+    <div>
+      <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto  justify-center ">
+        <h1 className="text-[#248F59]  flex justify-center items-center italic mb-6 font-sans">
           Login
         </h1>
         {/* EMAIL */}
@@ -70,9 +45,9 @@ return loggedIn && loggedIn.token ? (
         </label>
         <p
           className="text-end cursor-pointer justify-end text-sm flex flex-wrap text-[#248F59] italic mb-2 -mt-6 align-middle"
-          onClick={handleForgotPassword}
+          onClick={handleForgot}
         >
-          Forgot Password?
+       Forgot Password?
         </p>
         <input
           value={password}

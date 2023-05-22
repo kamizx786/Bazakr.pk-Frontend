@@ -13,12 +13,12 @@ const [open,setOpen]=useState(false);
         border-b border-gray-300 py-4 px-6  top-[55px] z-10"
       >
         <div className="relative w-16 h-16 mx-auto overflow-hidden bg-gray-200 border border-gray-100 rounded-lg mr-4 ml-4 shrink-0">
-          <img src={shop && shop.image} className="object-cover" />
+          <img src={shop?.main_pic?.url} className="object-cover" />
         </div>
 
         <div className="w-full p-5">
           <h3 className="text-base font-semibold text-heading">
-            {shop && shop.name}
+            {shop?.Storename}
           </h3>
 
           <button

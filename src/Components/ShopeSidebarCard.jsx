@@ -6,16 +6,16 @@ const ShopeSidebarCard = ({shop}) => {
     <div className="w-full">
             <div className="flex flex-col items-center w-full border-b border-gray-200 p-7">
               <div className="relative mx-auto mb-8 overflow-hidden bg-gray-200 border border-gray-100 rounded-lg w-44 h-44">
-                <img src={shop && shop.image} className="object-cover" />
+                <img src={shop?.main_pic?.url} className="object-cover" />
               </div>
 
               <h3 className="mb-2 text-lg font-semibold text-heading">
-                {shop && shop.name}
+                {shop?.Storename}
               </h3>
 
               {shop?.description && (
                 <p className="mb-2 text-sm leading-relaxed text-center text-body">
-                  {shop.description}
+                  {shop?.discription}
                 </p>
               )}
 
@@ -36,7 +36,7 @@ const ShopeSidebarCard = ({shop}) => {
                   Address
                 </span>
                 <span className="text-sm text-body">
-                  {shop && shop.address}
+                  {shop?.mapAddress}
                 </span>
               </div>
 
@@ -44,7 +44,7 @@ const ShopeSidebarCard = ({shop}) => {
                 <span className="mb-2 text-sm font-semibold text-heading">
                   Phone
                 </span>
-                <span className="text-sm text-body">{shop && shop.phone}</span>
+                <span className="text-sm text-body">{shop?.Storewhatsapp}</span>
               </div>
 
               {/* {shop?.settings?.website && (
