@@ -25,11 +25,7 @@ export const siteSettings = {
       to: "/my-refunds",
       label: "My Refunds",
     },
-    {
-        id:"6",
-      to: "/my-cards",
-      label: "My Cards",
-    },
+   
     
   ],
 };

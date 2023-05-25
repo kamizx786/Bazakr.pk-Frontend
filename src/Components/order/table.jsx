@@ -1,7 +1,4 @@
 import React from "react";
-
-import { Headings, OrderData } from "./tabledata";
-
 export const OrderTable = ({singleOrder}) => {
   return (
     <>

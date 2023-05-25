@@ -1,9 +1,10 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Space } from "antd";
 import { Fragment } from "react";
-import { useDispatch } from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 const AuthorizedMenu = () => {
+  const { loggedIn} = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const HandleLogout = () => {
@@ -44,8 +45,8 @@ const AuthorizedMenu = () => {
               className="flex w-full flex-col space-y-1 rounded-t
              bg-[#248F59] px-4 py-3 text-sm text-white"
             >
-              <span className="font-semibold capitalize">kamran</span>
-              <span className="text-xs">Kamran@gmail.com</span>
+              <span className="font-semibold capitalize">{loggedIn?.user?.name}</span>
+              <span className="text-xs">{loggedIn?.user?.email}</span>
             </li>
           </Menu.Item>
 
@@ -64,7 +65,7 @@ const AuthorizedMenu = () => {
           <Menu.Item>
             <li className="cursor-pointer border-b border-gray-100 last:border-0">
               <Link
-                to="/my-cards"
+                to="/my-orders"
                 className="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent"
               >
                 My Orders

@@ -47,6 +47,9 @@ const Checkout = () => {
     if (!values.orderContact) {
       return toast.error("Please Add Your Contact Number");
     }
+    if (!savedAddress) {
+      return toast.error("Please Add Your Address");
+    }
     if (values.paymentType == "cod") {
       hanldeCod();
     } else {
@@ -85,7 +88,7 @@ const Checkout = () => {
         } else {
           const stripe= await loadStripe(import.meta.env.VITE_PUBLIC_KEY)
           stripe.redirectToCheckout({sessionId:res.sessionId});
-          // console.log(res.order);
+          localStorage.setItem("values",JSON.stringify(values));
           // toast.success("Order Placed SuccessFully");
           // setLoading(false);
           // localStorage.removeItem("cart");

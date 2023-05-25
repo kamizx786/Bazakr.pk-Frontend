@@ -28,6 +28,8 @@ import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import { GetSettings } from "./Pages/site/functions";
 import { AllProducts, AllShops } from "./Pages/Shops/functions";
 import { UserOrders } from "./Pages/Checkout/functions";
+import Success from "./Pages/Checkout/Success";
+import Cancel from "./Pages/Checkout/Cancel";
 function App() {
 const {loggedIn}=useSelector((state)=>({...state}));
 //Default setting
@@ -49,13 +51,15 @@ axios.interceptors.response.use(
 );
 const dispatch=useDispatch();
 useEffect(()=>{
-GetSettings(dispatch);
-AllShops(dispatch);
-AllProducts(dispatch);
-if(loggedIn&&loggedIn.token)
+  if(loggedIn&&loggedIn.token)
 {
 UserOrders(dispatch);
 }
+},[loggedIn])
+useEffect(()=>{
+GetSettings(dispatch);
+AllShops(dispatch);
+AllProducts(dispatch);
 },[])
   return (
     <React.Fragment>
@@ -63,6 +67,8 @@ UserOrders(dispatch);
       <ToastContainer />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/success" element={<Success />} />
+        <Route exact path="/cancel" element={<Cancel />} />
         <Route  path="*" element={<NotFound />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/my-cards" element={<Cards />} />

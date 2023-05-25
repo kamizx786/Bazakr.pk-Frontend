@@ -3,7 +3,6 @@ import { GoHome } from "react-icons/go";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import OrderCard from "../../Components/order/ordercard";
 import OrderDetail from "../../Components/order/orderdetails";
-import StripePay from "../../Components/order/stripePay";
 import { OrderTable } from "../../Components/order/table";
 import { useSelector } from "react-redux";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";

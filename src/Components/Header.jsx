@@ -1,5 +1,5 @@
 import { Bars3Icon, ShoppingBagIcon } from "@heroicons/react/24/solid";
-import { Button, Drawer, Modal } from "antd";
+import { Badge, Button, Drawer, Modal } from "antd";
 import React, { useState } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpencart] = useState(false);
   const [authCon, setauthCon] = useState(false);
-  const { loggedIn, LoginModal,CartDrawer, userLocation } = useSelector((state) => ({
+  const { loggedIn, LoginModal,CartDrawer,cart } = useSelector((state) => ({
     ...state,
   }));
   const dispatch = useDispatch();
@@ -94,13 +94,13 @@ const Header = () => {
 
           {/* Cart */}
           <div onClick={handleCart}>
-            <Link>
+          <Badge count={cart?.length} color="#248F59" >
               <img
                 className="w-8"
                 src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
                 alt=""
               />
-            </Link>
+         </Badge>
           </div>
         </div>
         {/* Account */}
@@ -164,11 +164,13 @@ const Header = () => {
               {/* Cart */}
               <div onClick={handleCart}>
                 <Link className="flex gap-3 items-center text-base">
-                  <img
-                    className="w-8"
-                    src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
-                    alt=""
-                  />
+                <Badge count={cart?.length} color="#248F59" >
+              <img
+                className="w-8"
+                src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
+                alt=""
+              />
+         </Badge>
                   <div className="font-sans text-[#00000080]">Cart</div>
                 </Link>
               </div>

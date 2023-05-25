@@ -1,5 +1,6 @@
 import axios from "axios"
 import {toast} from "react-toastify"
+import { UserOrders } from "../Checkout/functions";
 export const createUser = async (name, email, password) => {
   const { data } = await axios.post("/register", {
     name,
@@ -29,6 +30,7 @@ export const LOGIN = async (email, password,setloading,dispatch,setOpenModal) =>
         }
       })
       dispatch({type:"Visible",payload:false})
+     
     }
 }
 catch (err) {
@@ -49,7 +51,7 @@ export const registerComplete = async (email, secret) => {
     const { data } = await axios.put("/forgot/complete", { email,Newpassword,secret});
     return data;
   };
-  export const UpdateProfile = async (name,email,password,whatsapp,image) => {
-    const { data } = await axios.put("profile-update", { name,email,password,whatsapp,image});
+  export const UpdateProfile = async (name,email,password,whatsapp,address) => {
+    const { data } = await axios.put("profile-update", { name,email,password,whatsapp,address});
     return data;
   };

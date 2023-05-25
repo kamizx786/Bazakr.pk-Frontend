@@ -58,6 +58,7 @@ const RightSideView = ({
           </div>
 
           <PaymentMethod
+            
             values={values}
             setValues={setValues}
           />

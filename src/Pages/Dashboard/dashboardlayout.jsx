@@ -50,7 +50,7 @@ const DashboardLayout = ({ children }) => {
 
       <div className="flex gap-5" >
         <aside
-          className="xl:w-76 ltr:left-0 ltr:right-auto rtl:right-0 rtl:left-auto bottom-0 hidden h-full w-72 overflow-y-auto mt-20 shadow lg:block"
+          className="xl:w-76 ltr:left-0 ltr:right-auto rtl:right-0 rtl:left-auto bottom-0 hidden h-full w-72  mt-20 shadow lg:block"
         >
           <DashboardSidebar />
         </aside>
