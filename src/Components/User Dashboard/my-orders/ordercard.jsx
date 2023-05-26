@@ -8,7 +8,7 @@ const OrderCard = ({single,handleDetail}) => {
   return (
     <>
       <div onClick={()=>handleDetail(single?._id)} className="over mb-4 flex  shrink-0 font-sans cursor-pointer flex-col overflow-auto rounded border-2 border-[#248F59] bg-white last:mb-0">
-        <div className="flex items-center justify-between border-b border-border-200 py-3 px-5 md:px-3 lg:px-5 ">
+        <div className="flex items-center justify-center border-b py-3 px-2 ">
           <span className="flex shrink-0 text-sm font-bold text-heading ltr:mr-4 rtl:ml-4 lg:text-base">
             Order
             <span className="font-normal">#{single?._id.slice(0,5)}</span>
@@ -21,8 +21,8 @@ const OrderCard = ({single,handleDetail}) => {
           </span> */}
         </div>
 
-        <div className="flex flex-col p-5 md:p-3 lg:px-4 lg:py-5">
-          <p className="mb-4 flex w-full items-center justify-between text-sm text-heading last:mb-0">
+        <div className="flex flex-col p-2 md:p-3 lg:px-2 lg:py-5">
+          <p className="mb-4 flex  items-center justify-between text-sm text-heading last:mb-0">
             <span className="w-24 shrink-0 overflow-auto">
               Order Date<span className="ml-1 ltr:mr-auto rtl:ml-auto">:</span>
             </span>

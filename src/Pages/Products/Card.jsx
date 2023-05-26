@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductDetailsSlider from "../../Components/ProductDetailsSlider";
 import { Link } from "react-router-dom";
 import { handleCart } from "./function";
 import { useDispatch } from "react-redux";
-const Card = ({ ModalProduct,setOpen }) => {
+import { FaCheckCircle, FaStar } from "react-icons/fa";
+const Card = ({ ModalProduct,setOpen, singleOrder }) => {
   const [Single] = useState(ModalProduct);
+  const [averageRating, setAverageRating] = useState(0);
+
+  // Calculate the average rating
+  useEffect(() => {
+    const ratings = singleOrder?.Products?.map(item => item?.Product?.rating) || [];
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    const average = sum / ratings.length;
+    setAverageRating(average);
+  }, [singleOrder]);
 const dispatch=useDispatch();
   return (
     <article className="rounded-lg bg-white">
@@ -28,7 +38,7 @@ const dispatch=useDispatch();
           <div className="w-full">
             <div className="flex w-full items-start justify-between space-x-8 space-x-reverse">
               <h1
-                className="text-lg font-semibold tracking-tight text-heading md:text-xl xl:text-2xl"
+                className="text-lg font-semibold font-sans tracking-tight text-heading md:text-xl xl:text-2xl"
 
                 //   {...(isModal && {
                 //     onClick: () => navigate(Routes.product(slug)),
@@ -44,7 +54,7 @@ const dispatch=useDispatch();
                   /> */}
               </span>
             </div>
-            <div className="mt-2 flex items-center justify-between">
+            <div className="mt-2 flex font-sans items-center justify-between">
               <span className="block text-sm font-normal text-body">
                 {Single?.unit}
               </span>
@@ -58,12 +68,12 @@ const dispatch=useDispatch();
             </div>
 
             {Single.discription && (
-              <div className="mt-3 text-md leading-7  text-body md:mt-4">
+              <div className="mt-3 text-md leading-7 font-sans  text-body md:mt-4">
                 {Single?.discription}
               </div>
             )}
 
-            <span className="my-5 flex items-center md:my-10">
+            <span className="my-5 flex font-sans items-center md:my-10">
               <ins className="text-2xl font-semibold text-[#248F59] no-underline md:text-3xl">
                 {Single?.salePrice}/Rs
               </ins>
@@ -99,12 +109,12 @@ const dispatch=useDispatch();
                 </span>
               )} */}
 
-            <div className="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
+            <div className="mt-6 flex flex-col font-sans items-center md:mt-6 lg:flex-row">
               {Single.quantity > 0 ? (
                 <>
                   <div className="mb-3 mr-2 w-full lg:mb-0 lg:max-w-[400px]">
                     <button
-                      onClick={() => handleCart(Single, dispatch,setOpen)}
+                      onClick={() => handleCart(Single, dispatch, setOpen)}
                       className="bg-[#248F59] text-white w-full p-3 rounded mr-2"
                     >
                       Add to Cart
@@ -156,7 +166,7 @@ const dispatch=useDispatch();
             )} */}
 
           {Single?.category && (
-            <div className="mt-2 flex items-center">
+            <div className="mt-2 flex font-sans items-center">
               <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">
                 category
               </span>
@@ -168,7 +178,7 @@ const dispatch=useDispatch();
             </div>
           )}
           {Single?.store && (
-            <div className="mt-2 flex items-center">
+            <div className="mt-2 flex font-sans items-center">
               <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">
                 Seller
               </span>
@@ -184,12 +194,46 @@ const dispatch=useDispatch();
 
       <div
         name="details"
-        className="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14"
+        className="border-b-2 border-[#f2f2f2] font-sans border-opacity-70 px-5 py-4 lg:px-16 lg:py-14"
       >
         <h2 className="mb-4 text-lg font-semibold tracking-tight text-heading md:mb-6">
           Details
         </h2>
         <p className="text-sm text-body">{Single?.discription}</p>
+      </div>
+
+      <div className="flex flex-col border-y-2 border-[#f2f2f2] border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
+        <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
+          Rating and Review of <span> {Single?.name}</span>
+        </h1>
+        <div className="flex w-full border-b-4 border-opacity-70 border-[#f2f2f2] mb-2  flex-row">
+          <div className=" bg-[#248f59] text-xl flex-row flex mb-2 items-center gap-2 text-[#f2f2f2] p-2 rounded-2xl sm:w-auto sm:pb-0">
+            {averageRating} <FaStar size={25} />
+          </div>
+        </div>
+        <div>
+  <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
+    Product Review(s)
+  </h1>
+  {singleOrder?.Products?.map((item, index) => (
+    <div
+      className="flex w-14 flex-col border-b-4 border-opacity-70 border-[#f2f2f2] mb-2"
+      key={index}
+    >
+      <div className="bg-[#248f59] w-fit text-sm flex-row flex mb-2 items-center gap-2 text-[#f2f2f2] p-2 rounded-2xl sm:w-auto sm:pb-0">
+        {item?.Product?.rating} <FaStar size={15} />
+      </div>
+      <div className="text-sm flex flex-row font-sans">
+        by <span>{item?.Product?.reviewedBy?.name}</span>{" "}
+        {item?.Product?.reviewedBy?.verified && (
+          <FaCheckCircle className="flex items-center align-middle" />
+        )}
+      </div>
+      <div className="text-sm font-sans">{item?.Store?.review}</div>
+    </div>
+  ))}
+</div>
+
       </div>
     </article>
   );

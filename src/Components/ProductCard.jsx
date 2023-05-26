@@ -1,39 +1,31 @@
-import {useState}from 'react'
-import { PlusOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
-import { Modal } from 'antd'
-import Card from '../Pages/Products/Card'
-const ProductCard = ({product}) => {
-const [open,setOpen]=useState(false);
-const handleModal=()=>{
-  setOpen(true);
-}
+import { useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { Modal } from "antd";
+import Card from "../Pages/Products/Card";
+const ProductCard = ({ product }) => {
+  const [open, setOpen] = useState(false);
+  const handleModal = () => {
+    setOpen(true);
+  };
   return (
-  <>
-  
+    <>
+      <article
+        className="h-full transform overflow-hidden rounded bg-white 
+         transition-all duration-200 hover:-translate-y-0.5 hover:shadow-downfall-lg"
+        // onClick={handleProductQuickView}
+        role="button" >
+        <div className="p-5 relative flex md:h-56 h-62 w-auto items-center justify-center">
+          <span className="sr-only"></span>
+          <img src={product?.feature_pic?.url} className="object-contain" />
 
-    <article
-    className='h-full transform overflow-hidden 
-    rounded bg-white 
-    transition-all duration-200 hover:-translate-y-0.5 hover:shadow-downfall-lg'
-    // onClick={handleProductQuickView}
-    role="button"
-  >
-     
-    <div className="p-5 relative flex md:h-56 h-62 w-auto items-center justify-center">
-      <span className="sr-only"></span>
-      <img
-        src={product?.feature_pic?.url}
-        className="object-contain"
-      />
+          {product?.totalSold > 9 && (
+            <div className="absolute top-3 rounded bg-accent px-1.5 text-xs font-semibold leading-6 text-white bg-[#248F59] left-3  sm:px-2 md:top-[22px] md:px-2.5 md:left-4 ">
+              Best Selling
+            </div>
+          )}
 
-      {product?.totalSold>9&& 
-        (<div className="absolute top-3 rounded bg-accent px-1.5 text-xs font-semibold leading-6 text-white bg-[#248F59] left-3  sm:px-2 md:top-[22px] md:px-2.5 md:left-4 ">
-          Best Selling
-        </div>)
-      }
-
-      {/* <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4">
+          {/* <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4">
         {product_type.toLowerCase() === 'variable' ? (
           <>
             {Number(quantity) > 0 && (
@@ -59,24 +51,20 @@ const handleModal=()=>{
           </div>
         )}
       </div> */}
-      
-      <div className="absolute top-3 right-3  md:top-4 md:right-4">
-         
-           
-              <button
+
+          <div className="absolute top-3 right-3  md:top-4 md:right-4">
+            <button
               onClick={handleModal}
-              
-                className="flex h-7 w-7 items-center justify-center rounded border border-border-200 bg-light text-sm text-heading transition-colors hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-none md:h-9 md:w-9"
-              >
-                <PlusOutlined  className="h-5 w-5 stroke-2" />
-              </button>
-  
-      </div>
-    </div>
-    {/* End of product image */}
-    <Link to={`/product/${product.slug}`}>
-    <header className="p-6 mt-5 md:p-6">
-      {/* {product_type.toLowerCase() === 'variable' ? (
+              className="flex h-7 w-7 items-center justify-center rounded border border-border-200 bg-light text-sm text-heading transition-colors hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-none md:h-9 md:w-9"
+            >
+              <PlusOutlined className="h-5 w-5 stroke-2" />
+            </button>
+          </div>
+        </div>
+        {/* End of product image */}
+        <Link to={`/product/${product.slug}`}>
+          <header className="p-6 mt-5 md:p-6">
+            {/* {product_type.toLowerCase() === 'variable' ? (
         <div className="mb-2">
           <span className="text-sm font-semibold text-heading md:text-base">
             {minPrice}
@@ -98,32 +86,36 @@ const handleModal=()=>{
           )}
         </div>
       )} */}
-      {/* End of product price */}
-      <div className="mb-2">
-          <span className="text-sm font-semibold text-heading md:text-base">
-           {product?.salePrice}/Rs
-          </span>
-          {/* <span> - </span>
+            {/* End of product price */}
+            <div className="mb-2">
+              <span className="text-sm font-semibold text-heading md:text-base">
+                {product?.salePrice}/Rs
+              </span>
+              {/* <span> - </span>
           <span className="text-sm font-semibold text-heading md:text-base">
            120$
           </span> */}
-        </div>
-      <h3 className="text-sm text-gray-500 md:text-sm">{product?.name}</h3>
-      
-      {/* End of product title */}
-    </header>
-    </Link>
-  </article>
+            </div>
+            <h3 className="text-sm text-gray-500 md:text-sm">
+              {product?.name}
+            </h3>
 
-  <Modal
-  width={1000}
-  footer={null}
-  open={open} onCancel={()=>setOpen(false)} closable="false" >
-   <Card ModalProduct={product} setOpen={setOpen} />
-  </Modal>  
-</>
+            {/* End of product title */}
+          </header>
+        </Link>
+      </article>
 
-  )
-}
+      <Modal
+        width={1000}
+        footer={null}
+        open={open}
+        onCancel={() => setOpen(false)}
+        closable="false"
+      >
+        <Card ModalProduct={product} setOpen={setOpen} />
+      </Modal>
+    </>
+  );
+};
 
-export default ProductCard
+export default ProductCard;

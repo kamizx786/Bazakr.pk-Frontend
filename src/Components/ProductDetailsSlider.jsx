@@ -33,19 +33,18 @@ const swiperParams= {
     <div>
       <div className="relative">
         <Swiper
-          
           id="productGallery"
-          modules={[Navigation, Thumbs,FreeMode]}
-        //   thumbs={{ swiper: thumbsSwiper }}
+          modules={[Navigation, Thumbs, FreeMode]}
+          //   thumbs={{ swiper: thumbsSwiper }}
           navigation={{
-            prevEl: '.prev',
-            nextEl: '.next'
+            prevEl: ".prev",
+            nextEl: ".next",
           }}
           {...swiperParams}
         >
           {gallery?.map((item) => (
             <SwiperSlide
-            //   key={`product-gallery-${item.id}`}
+              //   key={`product-gallery-${item.id}`}
               className="flex items-center justify-center selection:bg-transparent"
             >
               <img
@@ -57,14 +56,15 @@ const swiperParams= {
             </SwiperSlide>
           ))}
         </Swiper>
-       
+
         <div
           className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 transition-all duration-200 
           border rounded-full shadow-xl cursor-pointer prev top-2/4
            -left-4 -right-4 md:-left-5 md:-right-5 md:-mt-5 md:w-9 md:h-9 
            bg-light border-border-200 border-opacity-70 text-heading 
            hover:bg-accent hover:text-light hover:border-accent"
-          role="button">
+          role="button"
+        >
           <span className="sr-only">Prev</span>
           <ChevronLeftIcon width={18} height={18} />
         </div>
@@ -79,10 +79,7 @@ const swiperParams= {
         </div>
       </div>
       {/* End of product main slider */}
-
-      <div
-        className='relative mx-auto mt-5 max-w-md lg:mt-8 lg:pb-2'
-      >
+      <div className="relative mx-auto mt-5 max-w-md lg:mt-8 lg:pb-2">
         <Swiper
           id="productGalleryThumbs"
           onSwiper={setThumbsSwiper}
@@ -96,18 +93,15 @@ const swiperParams= {
         >
           {gallery?.map((item) => (
             <SwiperSlide
-            //   key={`product-thumb-gallery-${item.id}`}
+              //   key={`product-thumb-gallery-${item.id}`}
               className="flex cursor-pointer items-center justify-center overflow-hidden rounded border border-border-200 border-opacity-75 hover:opacity-75"
             >
-              <img
-                src={item.url}
-                width={80}
-                height={80}
-              />
+              <img src={item.url} width={80} height={80} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+  
     </div>
   );
 }

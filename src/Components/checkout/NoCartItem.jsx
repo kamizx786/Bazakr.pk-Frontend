@@ -1,5 +1,5 @@
 import React from 'react'
-import {LinkIcon, ShoppingBagIcon} from "@heroicons/react/24/outline"
+import {ShoppingBagIcon} from "@heroicons/react/24/outline"
 import { Link } from 'react-router-dom'
 
 const NoCartItem = () => {
@@ -8,7 +8,7 @@ const NoCartItem = () => {
     <div className="flex flex-col border-b border-dashed pb-7 border-border-400">
         <div className="flex flex-col items-center justify-center h-full mb-4">
           <ShoppingBagIcon color='#248F59' width={140} height={176} />
-          <h4 className="mt-6 text-base font-semibold">
+          <h4 className="mt-6 font-serif  font-normal text-3xl">
             No Products
           </h4>
         </div>

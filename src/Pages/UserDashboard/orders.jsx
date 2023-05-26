@@ -21,16 +21,14 @@ setSingleOrder(updated[0]);
 }
   return (
     <DashboardLayout className="flex w-full gap-2 max-w-[1920] flex-col items-start  ">
-      <div className="flex flex-col md:!flex-row gap-3 border-3 border-yellow-400 my-2 w-full items-center justify-center">
-      <div className="flex flex-col overflow-y-scroll h-96"> 
-       {order?.map((o)=>{
-        return (
-          
-          <OrderCard handleDetail={handleDetail} single={o} key={o._id} />
-          ) 
-       })
-      }
- </div>
+      <div className="flex flex-col lg:!flex-row gap-3 border-3 border-yellow-400 my-2 w-full items-center justify-center">
+        <div className="flex flex-col overflow-y-scroll h-96">
+          {order?.map((o) => {
+            return (
+              <OrderCard handleDetail={handleDetail} single={o} key={o._id} />
+            );
+          })}
+        </div>
         <OrderDetail singleOrder={singleOrder} />
       </div>
     </DashboardLayout>

@@ -66,11 +66,11 @@ const OrderDetail = ({singleOrder}) => {
       </div>
 
         {/* Order Table */}
-        <div>
-          <div className="flex w-full items-center justify-center px-6">
+      
+          <div className="overflow-x-auto flex flex-col justify-center">
             <OrderTable singleOrder={singleOrder} />
           </div>
-        </div>
+        
         {showRefundModal && (
           <RefundModal closeModal={() => setShowRefundModal(false)} />
         )}

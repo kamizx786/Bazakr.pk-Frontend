@@ -30,6 +30,10 @@ import { AllProducts, AllShops } from "./Pages/Shops/functions";
 import { UserOrders } from "./Pages/Checkout/functions";
 import Success from "./Pages/Checkout/Success";
 import Cancel from "./Pages/Checkout/Cancel";
+import PrivacynPolicy from "./Pages/FooterPages/privacynpolicy";
+import TermsnCodition from "./Pages/FooterPages/termsncodition";
+import Security from "./Pages/FooterPages/security";
+import RefundPolicy from "./Pages/FooterPages/refund";
 function App() {
 const {loggedIn}=useSelector((state)=>({...state}));
 //Default setting
@@ -84,6 +88,10 @@ AllProducts(dispatch);
         <Route exact path="/my-reports" element={<Reports />} />
         <Route exact path="/my-wishlist" element={<WishList />} />
         <Route exact path="/product/:slug" element={<ProductDetails />} />
+        <Route exact path="/privacy-policy" element={<PrivacynPolicy/>}/>
+        <Route exact path="/terms-n-codition" element={<TermsnCodition/>}/>
+        <Route exact path="/security" element={<Security/>}/>
+        <Route exact path="/refund-policy" element={<RefundPolicy/>}/>
       </Routes>
       <Footer />
       <ToastContainer/>
