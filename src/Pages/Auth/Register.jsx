@@ -8,16 +8,18 @@ const Register = ({ setauthCon }) => {
   const [loading, setloading] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(email)
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (!name || !email || !password) {
         return toast.error("Please Fill all Fields");
       }
-      if (password.length < 6) {
-        return toast.error("Please Enter Strong Password");
+      if (emailError || passwordError) {
+        return toast.error("Please Add Valid Email and Password");
       }
+      
       setloading(true);
       createUser(name, email, password).then((res) => {
         if (res.error) {
@@ -38,6 +40,35 @@ const Register = ({ setauthCon }) => {
       setloading(false);
     }
   };
+  const validateEmail = (email) => {
+    // Regular expression pattern for email validation
+    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    
+    return emailPattern.test(email);
+  };
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+  
+    if (enteredEmail && !validateEmail(enteredEmail)) {
+      setEmailError('Invalid email');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const input = e.target.value;
+    setPassword(input);
+  
+    // Validate password
+    const regex = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+    if (!regex.test(input)) {
+      setPasswordError("Password must be at least 8 characters long and contain at least one special character and number.");
+    } else {
+      setPasswordError("");
+    }
+  };
   return  (
     // Register Card
     <>
@@ -54,7 +85,13 @@ const Register = ({ setauthCon }) => {
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              const input = e.target.value;
+              const regex = /^[a-zA-Z\s]*$/; // Regex to match alphabetic characters and spaces
+              if (regex.test(input)) {
+                setName(input);
+              }
+            }}
             className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
           {/* EMAIL */}
@@ -64,9 +101,10 @@ const Register = ({ setauthCon }) => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
+         {emailError && <p className="text-red-500">{emailError}</p>}
           {/* PASSWORD */}
           <label className="font-semibold flex flex-wrap mb-3  text-sm leading-none text-body-dark">
             Password
@@ -74,9 +112,10 @@ const Register = ({ setauthCon }) => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             className="h-12 mb-4 flex flex-wrap  bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
+          {passwordError && <p className="text-red-500">{passwordError}</p>}
           {/* BUTTON */}
           <button
             onClick={handleSubmit}

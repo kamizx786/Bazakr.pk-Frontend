@@ -14,6 +14,7 @@ const Checkout = () => {
   const { cart } = useSelector((state) => ({ ...state }));
   const [savedAddress, setSavedAddress] = useState("");
   const [loading, setLoading] = useState(false);
+  const [whatsappError, setWhatsappError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -44,8 +45,8 @@ const Checkout = () => {
     if (!values.paymentType) {
       return toast.error("Please Select Payment method first");
     }
-    if (!values.orderContact) {
-      return toast.error("Please Add Your Contact Number");
+    if (!values.orderContact || whatsappError) {
+      return toast.error("Please Add Valid Contact Number");
     }
     if (!savedAddress) {
       return toast.error("Please Add Your Address");
@@ -125,6 +126,8 @@ const Checkout = () => {
               <ContactGrid
                 values={values}
                 setValues={setValues}
+                whatsappError={whatsappError}
+                setWhatsappError={setWhatsappError}
                 className="p-5 bg-light shadow-700 md:p-8"
               />
               <BillingAddress

@@ -1,9 +1,19 @@
 import React from "react";
 import { siteSettings } from "./site";
 
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const DashboardSidebar = () => {
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+  const HandleLogout = () => {
+    window.localStorage.removeItem("auth");
+    dispatch({
+      type: "LOGOUT",
+      payload: {},
+    });
+    navigate("/");
+  };
   return (
     
       <aside>
@@ -26,7 +36,7 @@ const DashboardSidebar = () => {
 
           <ul className="border-t border-border-200 bg-light py-4">
             <li className="block py-2 px-11  ">
-              <button className="font-semibold text-heading transition-colors hover:text-accent focus:text-accent">
+              <button onClick={HandleLogout} className="font-semibold text-heading transition-colors hover:text-accent focus:text-accent">
                 Logout
               </button>
             </li>

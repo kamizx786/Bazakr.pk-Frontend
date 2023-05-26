@@ -13,6 +13,8 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [Conpassword, setConPassword] = useState("");
   const [loading, setloading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [whatsappError, setWhatsappError] = useState("");
   const dispatch=useDispatch();
   useEffect(() => {
     const storedAddress = JSON.parse(localStorage.getItem("location"));
@@ -31,8 +33,11 @@ const Profile = () => {
       if (!name) {
         return toast.error("Please Enter Your Name");
       }
-      if (password&&password.length < 6) {
-        return toast.error("Please Enter Password atleast 6 characters");
+      if (passwordError) {
+        return toast.error("Please Enter valid Password");
+      }
+      if (whatsappError) {
+        return toast.error("Please Enter valid Contact Number");
       }
       if (password !== Conpassword) {
         return toast.error("Password Does't match");
@@ -83,6 +88,10 @@ const Profile = () => {
         setConPassword={setConPassword}
         setaddress={setaddress}
         handleSubmit={handleSubmit}
+        passwordError={passwordError}
+        whatsappError={whatsappError}
+        setPasswordError={setPasswordError}
+        setWhatsappError={setWhatsappError}
         />
       </div>
     </DashboardLayout>

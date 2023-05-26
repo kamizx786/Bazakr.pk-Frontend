@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactForm from '../Components/ContactForm'
+import ContactForm from '../Components/Contact/ContactForm'
 const Contact = () => {
   return (
     <div className="w-full bg-gray-50">
@@ -19,7 +19,7 @@ const Contact = () => {
             Address
           </span>
           <span className="text-sm text-body">
-          NY, United States
+         Gujranwala,Pakistan
           </span>
         </div>
 

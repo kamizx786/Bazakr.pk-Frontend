@@ -12,11 +12,14 @@ const ProfileForm = ({
   setName,
   setEmail,
   setWhatsapp,
-  setloading,
   setPassword,
   setConPassword,
   setaddress,
+  passwordError, 
+  setPasswordError,
   handleSubmit,
+  whatsappError, 
+  setWhatsappError
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
@@ -27,6 +30,40 @@ const ProfileForm = ({
     setIsOpen(false);
   };
 
+  const handlePasswordChange = (e) => {
+    const input = e.target.value;
+    setPassword(input);
+  
+    // Validate password
+    const regex = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+    if (!regex.test(input)) {
+      setPasswordError("Password must be at least 8 characters long and contain at least one special character and number.");
+    } else {
+      setPasswordError("");
+    }
+  };
+  
+
+  const handleWhatsappChange = (e) => {
+    const input = e.target.value;
+  
+    // Remove any non-digit characters
+    const digitsOnly = input.replace(/\D/g, '');
+  
+    // Limit the input to a maximum of 11 digits
+    const limitedInput = digitsOnly.slice(0, 11);
+  
+    setWhatsapp(limitedInput);
+  
+    // Validate Pakistan phone number
+    const regex = /^(\+92|0)?[0-9]{10}$/;
+    if (!regex.test(limitedInput)) {
+      setWhatsappError("Please enter a valid Pakistan phone number.");
+    } else {
+      setWhatsappError("");
+    }
+  };
+  
   const handleAddressSubmit = (event) => {
     // event.preventDefault();
     // const address = `${country}, ${city}, ${street}, ${zipCode}`;
@@ -46,7 +83,13 @@ const ProfileForm = ({
         <div className="w-full">
           <input
             value={name}
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e) => {
+              const input = e.target.value;
+              const regex = /^[a-zA-Z\s]*$/; // Regex to match alphabetic characters and spaces
+              if (regex.test(input)) {
+                setName(input);
+              }
+            }}
             type="text"
             className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent !h-12"
           />
@@ -74,10 +117,12 @@ const ProfileForm = ({
         <div className="w-full  ">
           <input
            value={whatsapp}
-           onChange={(e)=>setWhatsapp(e.target.value)}
+           onChange={handleWhatsappChange}
             type="number"
             className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent !h-12"
           />
+              {whatsappError && <p className="text-red-500">{whatsappError}</p>}
+
         </div>
       </div>
       {/* CHANGE PASSWORD */}
@@ -93,10 +138,11 @@ const ProfileForm = ({
         <div className="w-full my-2 ">
           <input
  value={password}
- onChange={(e)=>setPassword(e.target.value)}
+ onChange={handlePasswordChange}
             type="password"
             className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent !h-12"
           />
+          {passwordError && <p className="text-red-500">{passwordError}</p>}
         </div>
         <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
           Confirm Password

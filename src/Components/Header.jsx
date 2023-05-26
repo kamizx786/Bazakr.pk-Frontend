@@ -93,7 +93,7 @@ const Header = () => {
           </div>
 
           {/* Cart */}
-          <div onClick={handleCart}>
+          <div className='cursor-pointer' onClick={handleCart}>
           <Badge count={cart?.length} color="#248F59" >
               <img
                 className="w-8"
