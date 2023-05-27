@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment"
 const OrderCard = ({single,handleDetail}) => {
   let GrandTotal =single?.Products?.reduce((acc, p) => {
-    return acc + (p?.Product.salePrice * p.order_quantity);
+    return acc + (p?.Product?.salePrice * p.order_quantity);
   }, 0);
   
   return (
