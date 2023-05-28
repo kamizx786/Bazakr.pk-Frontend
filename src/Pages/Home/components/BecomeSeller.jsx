@@ -13,7 +13,7 @@ const BecomeSeller = () => {
             Become a seller, and join the online era with millions of other
             businesses using bazar.pk to sell online.
           </p>
-          <button className="my-2 transition-transform hover:scale-95 h-16 w-[18.4375rem]  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+          <button className="my-2 transition-transform hover:scale-95 h-16 w-[18.4375rem]  md:w-[23.4375rem] text-[#f2f2f2]  hover:text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
             <a href="https://bazar-pk-sellerside.vercel.app/" target="_blank">
               Become a Seller
             </a>{" "}

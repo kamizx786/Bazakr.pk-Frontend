@@ -53,7 +53,7 @@ let location={};
             <input
                 type="text"
                 placeholder="Enter Location From Map"
-                className="my-2 focus:outline-none focus:ring-2 font-sans focus:ring-green-600 h-16 w-[18.4375rem]  md:w-[23.4375rem] px-3 border rounded-lg border-neutral-300"
+                className="my-2 focus:outline-none focus:ring-2 font-sans focus:ring-green-600 h-16 w-[18.4375rem]  md:w-[23.4375rem] px-3 border rounded-lg border-[#f2f2f2]"
                 
             />
         </Autocomplete>

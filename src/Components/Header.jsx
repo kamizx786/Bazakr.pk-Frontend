@@ -59,33 +59,31 @@ const Header = () => {
           mode="horizontal"
           className="menu h-fit sm:hidden hidden md:flex gap-4 flex-wrap items-center py-3  justify-evenly"
         >
-          
-            <>
-              <div>
-                {/* Search */}
+          <>
+            <div>
+              {/* Search */}
 
-                <input
-                  className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
-                  type="search"
-                  placeholder="Search..."
-                  autoComplete="off"
-                />
-              </div>
-              <div>
-                <Link to="/shops" className="text-muted text-lg">
-                  Shop
-                </Link>
-              </div>
-            </>
-          
+              <input
+                className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
+                type="search"
+                placeholder="Search..."
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <Link to="/shops" className="text-muted font-sans text-lg">
+                Shop
+              </Link>
+            </div>
+          </>
 
           <div>
-            <Link to="/contact" className="text-muted text-lg">
+            <Link to="/contact" className="text-muted font-sans text-lg">
               Contact
             </Link>
           </div>
           <div>
-            <button className="bg-[#248F59] text-white py-3 px-3 rounded">
+            <button className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded">
               <a href="https://bazar-pk-sellerside.vercel.app/" target="_blank">
                 Become a Seller
               </a>
@@ -93,14 +91,14 @@ const Header = () => {
           </div>
 
           {/* Cart */}
-          <div className='cursor-pointer' onClick={handleCart}>
-          <Badge count={cart?.length} color="#248F59" >
+          <div className="cursor-pointer" onClick={handleCart}>
+            <Badge count={cart?.length} color="#248F59">
               <img
                 className="w-8"
                 src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
                 alt=""
               />
-         </Badge>
+            </Badge>
           </div>
         </div>
         {/* Account */}
@@ -164,13 +162,13 @@ const Header = () => {
               {/* Cart */}
               <div onClick={handleCart}>
                 <Link className="flex gap-3 items-center text-base">
-                <Badge count={cart?.length} color="#248F59" >
-              <img
-                className="w-8"
-                src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
-                alt=""
-              />
-         </Badge>
+                  <Badge count={cart?.length} color="#248F59">
+                    <img
+                      className="w-8"
+                      src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
+                      alt=""
+                    />
+                  </Badge>
                   <div className="font-sans text-[#00000080]">Cart</div>
                 </Link>
               </div>
@@ -186,11 +184,18 @@ const Header = () => {
         </div>
       </header>
       {/* Handlecart Drawer */}
-      <Drawer title={null} onClose={()=> dispatch({
-      type: "CartDrawer",
-      payload: false,
-    })} open={CartDrawer} placement="right">
-        <CartSidebarView  />
+      <Drawer
+        title={null}
+        onClose={() =>
+          dispatch({
+            type: "CartDrawer",
+            payload: false,
+          })
+        }
+        open={CartDrawer}
+        placement="right"
+      >
+        <CartSidebarView />
       </Drawer>
       {/* Modal For login and Signup */}
       <Modal

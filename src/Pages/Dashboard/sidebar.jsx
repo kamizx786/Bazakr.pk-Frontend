@@ -24,7 +24,7 @@ const DashboardSidebar = () => {
                 <li className="py-1" key={item.id}>
                   <Link
                     to={`${item.to}`}
-                    className="block border-l-4 border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent"
+                    className="block border-l-4 font-sans  border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent"
                   >
                     {item.label}
                   </Link>
