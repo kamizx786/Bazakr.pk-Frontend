@@ -59,7 +59,7 @@ useEffect(() => {
             </div>
           </Link>
             <div className="flex flex-row gap-2 w-fit">
-             <InvoicePDF singleOrder={singleOrder} />
+             <InvoicePDF singleOrder={singleOrder} GrandTotal={GrandTotal} />
             </div>
           
           {/* STRIPE */}

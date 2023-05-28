@@ -2,9 +2,9 @@ import React from "react";
 import { BsPrinter } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
-const InvoicePDF = ({singleOrder}) => {
-  const { siteSetting } = useSelector((state) => ({ ...state }));
-
+const InvoicePDF = ({ singleOrder, GrandTotal }) => {
+  const { loggedIn, siteSetting } = useSelector((state) => ({ ...state }));
+  const role = loggedIn && loggedIn.user && loggedIn.user.role;
   const printInvoice = () => {
     const printWindow = window.open("", "_blank");
     printWindow.document.write(`
@@ -82,10 +82,7 @@ const InvoicePDF = ({singleOrder}) => {
               <span style="font-size: 0.875rem; font-weight: bold; color: #000;">Total<span style="margin-left: 1px; margin-right: auto;" class="ltr:mr-auto rtl:ml-auto">:</span></span>
               <span style="font-size: 0.875rem; font-weight: bold; color: #000;">${GrandTotal}/PKR</span>
             </div>
-            <div style="display: flex; justify-content: space-between;">
-              <span style="font-size: 0.875rem; font-weight: bold; color: #000;">${singleOrder?.orderType==="Sales"?"Amount After 10% Platform Commission":"Total Amount"}<span style="margin-left: 1px; margin-right: auto;" class="ltr:mr-auto rtl:ml-auto">:</span></span>
-              <span style="font-size: 0.875rem; font-weight: bold; color: #000;">${GrandTotal*(singleOrder?.orderType==="Sales"?0.9:1)}/PKR</span>
-            </div>
+          
           </div>
         </div>
       </div>
