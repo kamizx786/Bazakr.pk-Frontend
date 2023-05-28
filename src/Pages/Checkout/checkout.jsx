@@ -41,7 +41,17 @@ const Checkout = () => {
       store: cart[0]?.store?._id,
     }));
   }, [cart]);
+  let GrandTotal =
+  cart &&
+  cart.length &&
+  cart.reduce((acc, product) => {
+    return acc + product.salePrice * product.order_quantity;
+  }, 0);
+
   const handleOrder = () => {
+    if(GrandTotal<500){
+      return toast.error("Minimum Order Value Should be 500");
+    }
     if (!values.paymentType) {
       return toast.error("Please Select Payment method first");
     }
