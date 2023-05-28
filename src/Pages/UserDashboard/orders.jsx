@@ -9,8 +9,11 @@ const [order,setOrder]=useState([]);
 const [singleOrder,setSingleOrder]=useState({});
 useEffect(()=>{
 if(Orders&&Orders.length){
-setOrder(Orders);
-setSingleOrder(Orders[0]);
+const filter=Orders?.filter((o)=>{
+  return o.orderType==="Sales";
+})
+filter&&setOrder(filter);
+setSingleOrder(filter[0]);
 }
 },[Orders])
 const handleDetail=(_id)=>{

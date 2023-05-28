@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const OrderDetail = ({singleOrder}) => {
   const [showRefundModal, setShowRefundModal] = React.useState(false);
   let GrandTotal =singleOrder?.Products?.reduce((acc, p) => {
-    return acc + (p?.Product.salePrice * p.order_quantity);
+    return acc + (p?.Product?.salePrice * p.order_quantity);
   }, 0);
   return (
     <>
