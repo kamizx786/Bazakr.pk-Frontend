@@ -1,5 +1,8 @@
-import React from "react";
+import {useEffect} from "react";
 const PrivacynPolicy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div class="container mx-auto py-8">

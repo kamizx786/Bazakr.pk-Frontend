@@ -41,6 +41,9 @@ const shopProfile = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [Single]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return !Single || allShops===null? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">

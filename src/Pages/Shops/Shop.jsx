@@ -8,7 +8,9 @@ const Shop = () => {
 const {allShops,userLocation}=useSelector((state)=>({...state}));
 const [shops,setShops]=useState([]);
 const limit = 10;
-
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const earthRadius = 6371; // Radius of the Earth in kilometers
 
