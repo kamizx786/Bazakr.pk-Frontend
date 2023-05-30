@@ -51,27 +51,43 @@ const Footer = () => {
               </li>
             </Link>
           </ul>
-
+          
           <div className="flex flex-row md:flex-col gap-3 align-middle justify-around">
-            <Link to="https://www.instagram.com">
+            <Link
+              to="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <InstagramOutlined
                 style={{ fontSize: "1.5375rem" }}
                 className="hover:cursor-pointer hover:text-[#1E1E1E]"
               />
             </Link>
-            <Link to="https://www.youtube.com">
+            <Link
+              to="https://www.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <YoutubeOutlined
                 style={{ fontSize: "1.5375rem" }}
                 className="hover:cursor-pointer hover:text-[#1E1E1E]"
               />
             </Link>
-            <Link to="https://www.twitter.com">
+            <Link
+              to="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <TwitterOutlined
                 style={{ fontSize: "1.5375rem" }}
                 className="hover:cursor-pointer hover:text-[#1E1E1E]"
               />
             </Link>
-            <Link to="https://www.facebook.com">
+            <Link
+              to="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FacebookOutlined
                 style={{ fontSize: "1.5375rem" }}
                 className="hover:cursor-pointer hover:text-[#1E1E1E]"
