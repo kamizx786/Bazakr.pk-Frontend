@@ -68,11 +68,7 @@ useEffect(() => {
               ))
             :shops?.map((shop) => <ShopCard shop={shop} key={shop.id} />)}
         </div>
-        <div className="flex items-center justify-center mt-8 lg:mt-12">
-          <button className="bg-[#248F59] text-white py-3 px-3 rounded">
-            LoadMore
-          </button>
-        </div>
+       
       </div>
     </div>
     </>
