@@ -6,9 +6,8 @@ import {
   TwitterOutlined,
   FacebookOutlined,
 } from "@ant-design/icons";
-import { Menu } from "antd";
 import { Link } from "react-router-dom";
-const { SubMenu, Item } = Menu;
+
 
 const Footer = () => {
 
@@ -17,7 +16,7 @@ const Footer = () => {
       {/* COPY RIGHTS & LOGO */}
       <div className="flex flex-col">
         <Link to="/">
-            <img
+          <img
             src="LogoF.svg"
             alt=""
             className="w-[9.375rem] hover:cursor-pointer"
@@ -54,22 +53,30 @@ const Footer = () => {
           </ul>
 
           <div className="flex flex-row md:flex-col gap-3 align-middle justify-around">
-            <InstagramOutlined
-              style={{ fontSize: "1.5375rem" }}
-              className="hover:cursor-pointer hover:text-[#1E1E1E]"
-            />
-            <YoutubeOutlined
-              style={{ fontSize: "1.5375rem" }}
-              className="hover:cursor-pointer hover:text-[#1E1E1E]"
-            />
-            <TwitterOutlined
-              style={{ fontSize: "1.5375rem" }}
-              className="hover:cursor-pointer hover:text-[#1E1E1E]"
-            />
-            <FacebookOutlined
-              style={{ fontSize: "1.5375rem" }}
-              className="hover:cursor-pointer hover:text-[#1E1E1E]"
-            />
+            <Link to="https://www.instagram.com">
+              <InstagramOutlined
+                style={{ fontSize: "1.5375rem" }}
+                className="hover:cursor-pointer hover:text-[#1E1E1E]"
+              />
+            </Link>
+            <Link to="https://www.youtube.com">
+              <YoutubeOutlined
+                style={{ fontSize: "1.5375rem" }}
+                className="hover:cursor-pointer hover:text-[#1E1E1E]"
+              />
+            </Link>
+            <Link to="https://www.twitter.com">
+              <TwitterOutlined
+                style={{ fontSize: "1.5375rem" }}
+                className="hover:cursor-pointer hover:text-[#1E1E1E]"
+              />
+            </Link>
+            <Link to="https://www.facebook.com">
+              <FacebookOutlined
+                style={{ fontSize: "1.5375rem" }}
+                className="hover:cursor-pointer hover:text-[#1E1E1E]"
+              />
+            </Link>
           </div>
         </div>
       </div>
