@@ -15,7 +15,7 @@ const OrderDetail = ({singleOrder}) => {
             Detail <span className="px-2">-</span>{" "}
             #{singleOrder?._id}
           </h2>
-        {singleOrder?.orderStatus==="Delivered"&& <div
+        {singleOrder?.orderStatus==="delivered"&& <div
             className="flex items-center border border-[#248F59] rounded p-2 cursor-pointer text-[#248F59]"
             onClick={() => setShowRefundModal(true)}
           >
