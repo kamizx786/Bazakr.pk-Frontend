@@ -10,6 +10,7 @@ const RegisterComplete = () => {
   const [email, setEmail] = useState("");
   const [secret, setSecret] = useState("");
   const [loading, setloading] = useState(false);
+  const [emailError, setEmailError] = useState('');
   //state
   const { loggedIn } = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ const RegisterComplete = () => {
     try {
       if (!email || !secret) {
         return toast.error("Please Fill all Fields");
+      }
+      if (emailError) {
+        return toast.error("Please Add Valid Email");
       }
       setloading(true);
       registerComplete(email, secret).then((res) => {
@@ -39,6 +43,21 @@ const RegisterComplete = () => {
     } catch (err) {
       toast.error(err.response.data);
       setloading(false);
+    }
+  };
+  const validateEmail = (email) => {
+    // Regular expression pattern for email validation
+    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailPattern.test(email);
+  };
+  const handleEmailChange = (e) => {
+    const enteredEmail = e.target.value;
+    setEmail(enteredEmail);
+  
+    if (enteredEmail && !validateEmail(enteredEmail)) {
+      setEmailError('Invalid email');
+    } else {
+      setEmailError('');
     }
   };
   useEffect(() => {
@@ -71,11 +90,13 @@ const RegisterComplete = () => {
           </label>
           <input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled
+            onChange={handleEmailChange}
+
             type="email"
             className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
+                   {emailError && <p className="text-red-500">{emailError}</p>}
+
           {/* SECRET */}
           <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
             Secret
