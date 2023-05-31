@@ -20,11 +20,7 @@ export const siteSettings = {
       label: "My Wishlist",
     },
 
-    {
-        id:"4",
-      to: "/my-refunds",
-      label: "My Refunds",
-    },
+   
    
     
   ],

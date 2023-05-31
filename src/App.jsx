@@ -20,7 +20,6 @@ import WishList from "./Pages/UserDashboard/Wishlist";
 import Cards from "./Pages/UserDashboard/cards";
 import MyOrders from "./Pages/UserDashboard/orders";
 import Profile from "./Pages/UserDashboard/profile";
-import Refund from "./Pages/UserDashboard/refund";
 import Order from "./Pages/order/order";
 import "./index.css";
 import NotFound from "./Pages/404";
@@ -75,7 +74,6 @@ AllProducts(dispatch);
         <Route exact path="/cancel" element={<Cancel />} />
         <Route  path="*" element={<NotFound />} />
         <Route exact path="/contact" element={<Contact />} />
-        <Route exact path="/my-cards" element={<Cards />} />
         <Route exact path="/register-complete" element={<RegisterComplete/>}/>
         <Route exact path="/forgot-password" element={<ForgotPassword/>}/>
         <Route exact path="/Shops" element={<Shop />} />
@@ -84,7 +82,6 @@ AllProducts(dispatch);
         <Route exact path="/order/:_id" element={<Order />} />
         <Route exact path="/my-orders" element={<MyOrders />} />
         <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/my-refunds" element={<Refund />} />
         <Route exact path="/my-reports" element={<Reports />} />
         <Route exact path="/my-wishlist" element={<WishList />} />
         <Route exact path="/product/:slug" element={<ProductDetails />} />
