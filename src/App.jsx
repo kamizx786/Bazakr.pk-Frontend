@@ -17,7 +17,6 @@ import Shop from "./Pages/Shops/Shop";
 import ShopProfile from "./Pages/Shops/ShopProfile";
 import Reports from "./Pages/UserDashboard/Reports";
 import WishList from "./Pages/UserDashboard/Wishlist";
-import Cards from "./Pages/UserDashboard/cards";
 import MyOrders from "./Pages/UserDashboard/orders";
 import Profile from "./Pages/UserDashboard/profile";
 import Order from "./Pages/order/order";
