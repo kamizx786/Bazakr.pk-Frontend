@@ -37,7 +37,7 @@ const RegisterComplete = () => {
           setEmail("");
           setSecret("");
           window.localStorage.removeItem("Email", email);
-          navigate("/login");
+          navigate("/");
         }
       });
     } catch (err) {
