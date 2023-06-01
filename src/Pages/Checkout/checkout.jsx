@@ -58,7 +58,7 @@ const Checkout = () => {
     if (!values.orderContact || whatsappError) {
       return toast.error("Please Add Valid Contact Number");
     }
-    if (!savedAddress) {
+    if (!savedAddress || !values.order_address) {
       return toast.error("Please Add Your Address");
     }
     if (values.paymentType == "cod") {
@@ -142,6 +142,8 @@ const Checkout = () => {
               />
               <BillingAddress
                 savedAddress={savedAddress}
+                setValues={setValues}
+                values={values}
                 className="p-5 bg-light shadow-700 md:p-8"
               />
             </div>

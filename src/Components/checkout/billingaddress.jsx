@@ -1,31 +1,32 @@
 import React, { useState,useEffect } from "react";
 import { Bs2CircleFill } from "react-icons/bs";
 import AddressModal from "../User Dashboard/profile/addressModel";
-const BillingAddress = ({savedAddress}) => {
+const BillingAddress = ({values,setValues}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [street, setStreet] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [city, setCity] = useState("");
+  // const [street, setStreet] = useState("");
+  // const [zipCode, setZipCode] = useState("");
 
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsOpen(true);
+  // };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsOpen(false);
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    const address = `${country}, ${city}, ${street}, ${zipCode}`;
-    setSavedAddress(address);
-    localStorage.setItem("billingAddress", address);
+  //   const address = `${country}, ${city}, ${street}, ${zipCode}`;
+  //   setSavedAddress(address);
+  //   localStorage.setItem("billingAddress", address);
 
-    closeModal();
-  };
+  //   closeModal();
+  // };
+
 
   return (
     <>
@@ -44,7 +45,7 @@ const BillingAddress = ({savedAddress}) => {
             + ADD
           </p> */}
          
-          <AddressModal
+          {/* <AddressModal
             isOpen={isOpen}
             closeModal={closeModal}
             handleSubmit={handleSubmit}
@@ -56,13 +57,18 @@ const BillingAddress = ({savedAddress}) => {
             setStreet={setStreet}
             zipCode={zipCode}
             setZipCode={setZipCode}
-          />
+          /> */}
         </div>
 
         {/* SHOW ADDRESS */}
-        <div className=" focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent">
-          {savedAddress}
-        </div>
+        <input 
+        value={values.order_address}
+        onChange={(e)=>setValues((prevValues) => ({
+          ...prevValues,
+          order_address:e.target.value,
+        }))}
+        className=" focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent"/>
+        
       </div>
     </>
   );
