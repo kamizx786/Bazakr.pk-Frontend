@@ -1,5 +1,6 @@
 import React from 'react'
 import { FacebookFilled, InstagramFilled } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 const ShopeSidebarCard = ({shop}) => {
   return (
     <>
@@ -20,14 +21,14 @@ const ShopeSidebarCard = ({shop}) => {
               )}
 
               <div className="flex items-center justify-start mt-3">
-                <a
-                 href={shop?.facebook}
+                <Link
+                to={shop?.facebook}
                   target="_blank"
                   className={`cursor-pointer text-muted focus:outline-none ltr:mr-6 rtl:ml-6 ltr:last:mr-0 rtl:last:ml-0 transition-colors duration-300`}
                   rel="noreferrer"
                 >
                  <FacebookFilled/>
-                </a>
+                </Link>
                 <a
                   href={`${shop?.insta}`}
                   target="_blank"

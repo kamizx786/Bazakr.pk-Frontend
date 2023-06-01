@@ -63,7 +63,7 @@ const shopProfile = () => {
             src={Single?.cover_pic?.url}
             width={2340}
             height={870}
-            className="h-[350px] w-[2340px] object-cover"
+            
           />
         </div>
         {/* {shop && ( */}
