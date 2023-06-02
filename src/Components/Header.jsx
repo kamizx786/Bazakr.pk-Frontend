@@ -57,10 +57,7 @@ const Header = () => {
 }
 const handleclick = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "CartDrawer",
-      payload: false,
-    })
+   setOpen(false);
     navigate(`/shops?${text}`)
 }
   return (
