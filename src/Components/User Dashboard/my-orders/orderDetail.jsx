@@ -1,10 +1,45 @@
 import React from "react";
 import { OrderTable } from "../../order/table";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
+import {toast} from "react-toastify"
+import { cancelOrder } from "./function";
+import { UserOrders } from "../../../Pages/Checkout/functions";
+import { useDispatch } from "react-redux";
 const OrderDetail = ({singleOrder}) => {
   let GrandTotal = singleOrder?.Products?.reduce((acc, p) => {
     return acc + p?.Product?.salePrice * p.order_quantity;
   }, 0);
+  const dispatch=useDispatch()
+  const CancelOrder = () => {
+  let  status="cancelled";
+    try {
+      swal({
+        title: "Are you sure?",
+        icon: "warning",
+        buttons: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+         cancelOrder(singleOrder?._id,status)
+            .then((res) => {
+              if (res.error) {
+                toast.error(res.error);
+              } else {
+                swal("Your Order Has Been Cancelled", {
+                  icon: "success",
+                });
+                UserOrders(dispatch)
+              }
+            })
+            .catch((error) => {
+              toast.error(error);
+            });
+        }
+      });
+    } catch (error) {
+      toast.error(error);
+    }
+  };
   return (
     <>
       <div className="flex w-full flex-col font-sans border border-border-200 bg-white lg:w-2/3">
@@ -12,7 +47,10 @@ const OrderDetail = ({singleOrder}) => {
           <h2 className="mb-2 flex text-sm font-semibold text-heading md:text-lg">
             Detail <span className="px-2">-</span> #{singleOrder?._id}
           </h2>
-
+   {singleOrder?.orderStatus==="processing" ||singleOrder?.orderStatus==="Not Processed"?
+         <div onClick={CancelOrder} className="flex items-center border border-[#248F59] rounded p-2 cursor-pointer text-[#248F59]">
+             Cancel
+          </div>:""}
           <div className="flex items-center border border-[#248F59] rounded p-2 cursor-pointer text-[#248F59]">
             <Link to={`/order/${singleOrder?._id}`}> View Invoice</Link>
           </div>

@@ -3,7 +3,7 @@ import { Badge, Button, Drawer, Modal } from "antd";
 import React, { useState } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import AuthorizedMenu from "./authorizedMenu";
@@ -13,9 +13,10 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [openCart, setOpencart] = useState(false);
   const [authCon, setauthCon] = useState(false);
-  const { loggedIn, LoginModal,CartDrawer,cart } = useSelector((state) => ({
+  const { loggedIn, LoginModal,CartDrawer,cart,search } = useSelector((state) => ({
     ...state,
   }));
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   //handle Drawer
   const showDrawer = () => {
@@ -46,6 +47,18 @@ const Header = () => {
     });
     setOpen(false);
   };
+  const { text } = search
+
+  const handlechange = (e) => {
+    dispatch({
+        type: "Search",
+        payload: { text: e },
+    })
+}
+const handleclick = (e) => {
+    e.preventDefault();
+    navigate(`/shops?${text}`)
+}
   return (
     <>
       <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
@@ -62,13 +75,16 @@ const Header = () => {
           <>
             <div>
               {/* Search */}
-
+              <form onSubmit={handleclick} >
               <input
                 className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
                 type="search"
+                onChange={(e)=>handlechange(e.target.value)}
+                value={text}
                 placeholder="Search..."
                 autoComplete="off"
               />
+              </form>
             </div>
             <div>
               <Link to="/shops" className="text-muted font-sans text-lg">

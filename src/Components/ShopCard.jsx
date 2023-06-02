@@ -13,6 +13,7 @@ const ShopCard = ({shop}) => {
   };
   const isNewShop = isShopNew(shop?.createdAt);
   return (
+    
     <Link to={`/shop/${shop.slug}`} >
     <div className="relative flex cursor-pointer items-center rounded border border-gray-200 p-5">
       {isNewShop?
