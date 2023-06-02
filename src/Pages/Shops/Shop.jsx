@@ -55,7 +55,9 @@ const Shop = () => {
     nearbyShops && setShops(nearbyShops);
   }, [allShops]);
 
-  const Searched = (text) => (c) => c.Storename.toLowerCase().includes(text);
+  const Searched = (text) => (c) =>
+  c.Storename.toLowerCase().includes(text.toLowerCase());
+
   const filteredShops = shops?.filter(Searched(text));
 
   return (
