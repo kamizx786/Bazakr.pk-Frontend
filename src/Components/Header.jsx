@@ -145,11 +145,16 @@ const handleclick = (e) => {
             <div className="flex flex-col gap-3">
               {/* Search */}
               <div>
-                <input
-                  className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] px-3 rounded-lg text-[#248F59]"
-                  type="search"
-                  placeholder="Search..."
-                />
+              <form onSubmit={handleclick} >
+              <input
+                className=" border border-[#D9D9D9] font-sans  text-base outline-none h-[3.4375rem] w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
+                type="search"
+                onChange={(e)=>handlechange(e.target.value)}
+                value={text}
+                placeholder="Search..."
+                autoComplete="off"
+              />
+              </form>
               </div>
               <div>
                 <Link
