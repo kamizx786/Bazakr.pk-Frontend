@@ -71,9 +71,7 @@ export const OrderTable = ({ singleOrder }) => {
               </div>
             </div>
             <div className="flex flex-col border-b-2 my-2">
-            <p className="font-sans font-semibold text-[#248F59]">
-                Review
-              </p>
+              <p className="font-sans font-semibold text-[#248F59]">Review</p>
               <textarea
                 className="font-sans text-base focus:outline-none focus:ring-2 border w-full rounded-md border-[#f2f2f2] focus:ring-green-600"
                 placeholder="write a review"
@@ -94,13 +92,13 @@ export const OrderTable = ({ singleOrder }) => {
         </div>
       )}
 
-      <div className="my-6 flex border bg-white shadow">
+      <div className="my-6 flex border bg-white rounded">
         <div className="mx-auto mt-2 h-fit w-full">
           <div className="flex flex-row justify-center items-center mx-2 my-2">
             <p className="flex font-sans font-semibold text-lg">Order</p>
           </div>
           <div className="overflow-x-auto flex flex-col justify-center">
-            <table className="mx-2 my-2 font-sans shadow">
+            <table className="mx-2 my-2 font-sans ">
               <thead>
                 <tr className="bg-[#F2F2F2]">
                   <th className="px-4 whitespace-nowrap py-2">Item</th>
@@ -117,7 +115,7 @@ export const OrderTable = ({ singleOrder }) => {
               <tbody>
                 {singleOrder?.Products?.map((item, index) => (
                   <tr
-                    className="bg-white cursor-default hover:!bg-gray-100 border-b-2 font-sans"
+                    className="bg-white cursor-default hover:!bg-gray-100 border-t font-sans"
                     key={index}
                   >
                     <td className="px-4 py-2">{item?.Product?.name}</td>

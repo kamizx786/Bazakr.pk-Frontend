@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import ContactGrid from "../../Components/checkout/contactgrid";
-import BillingAddress from "../../Components/checkout/billingaddress";
-import RightSideView from "../../Components/checkout/rightside/rightside";
-import UserLayout from "../Dashboard/UserLayout";
-import NoCartItem from "../../Components/checkout/NoCartItem";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { CreateOrder, StripeOrder, UserOrders } from "./functions";
-import { AllProducts } from "../../Pages/Shops/functions";
-import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import NoCartItem from "../../Components/checkout/NoCartItem";
+import BillingAddress from "../../Components/checkout/billingaddress";
+import ContactGrid from "../../Components/checkout/contactgrid";
+import RightSideView from "../../Components/checkout/rightside/rightside";
+import { AllProducts } from "../../Pages/Shops/functions";
+import UserLayout from "../Dashboard/UserLayout";
+import { CreateOrder, StripeOrder, UserOrders } from "./functions";
 const Checkout = () => {
   const { cart } = useSelector((state) => ({ ...state }));
   const [savedAddress, setSavedAddress] = useState("");
@@ -42,14 +42,14 @@ const Checkout = () => {
     }));
   }, [cart]);
   let GrandTotal =
-  cart &&
-  cart.length &&
-  cart.reduce((acc, product) => {
-    return acc + product.salePrice * product.order_quantity;
-  }, 0);
+    cart &&
+    cart.length &&
+    cart.reduce((acc, product) => {
+      return acc + product.salePrice * product.order_quantity;
+    }, 0);
 
   const handleOrder = () => {
-    if(GrandTotal<500){
+    if (GrandTotal < 500) {
       return toast.error("Minimum Order Value Should be 500");
     }
     if (!values.paymentType) {
@@ -89,17 +89,17 @@ const Checkout = () => {
       toast.error(error);
     }
   };
-  const handleStripeOrder =() => {
+  const handleStripeOrder = () => {
     try {
       setLoading(true);
-      StripeOrder(values).then(async(res) => {
+      StripeOrder(values).then(async (res) => {
         if (res.error) {
           toast.error(res.error);
           setLoading(false);
         } else {
-          const stripe= await loadStripe(import.meta.env.VITE_PUBLIC_KEY)
-          stripe.redirectToCheckout({sessionId:res.sessionId});
-          localStorage.setItem("values",JSON.stringify(values));
+          const stripe = await loadStripe(import.meta.env.VITE_PUBLIC_KEY);
+          stripe.redirectToCheckout({ sessionId: res.sessionId });
+          localStorage.setItem("values", JSON.stringify(values));
           // toast.success("Order Placed SuccessFully");
           // setLoading(false);
           // localStorage.removeItem("cart");
@@ -138,17 +138,17 @@ const Checkout = () => {
                 setValues={setValues}
                 whatsappError={whatsappError}
                 setWhatsappError={setWhatsappError}
-                className="p-5 bg-light shadow-700 md:p-8"
+                className="p-5 bg-light  md:p-8"
               />
               <BillingAddress
                 savedAddress={savedAddress}
                 setValues={setValues}
                 values={values}
-                className="p-5 bg-light shadow-700 md:p-8"
+                className="p-5 bg-light  md:p-8"
               />
             </div>
 
-            <div className="w-full mt-10 mb-10 sm:mb-12 lg:mb-0 lg:w-96">
+            <div className="w-full -mt-3 mb-10 sm:mb-12 lg:mb-0 lg:w-96">
               {cart?.length > 0 ? (
                 <RightSideView
                   cart={cart}

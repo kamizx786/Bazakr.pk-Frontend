@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 import ProductLoader from "./product-loader";
 import jsxRangeMap from "./range-map";
-import Product from "./Product";
-import ProductCard from "./ProductCard";
-import { Button } from "antd";
-const ProductsGrid = ({products}) => {
-const [product,setProducts]=useState([]);
+const ProductsGrid = ({ products }) => {
+  const [product, setProducts] = useState([]);
   const limit = 10;
-  useEffect(()=>{
- setProducts(products.slice(0,10));
-  },[products])
-  const LoadMore=(e)=>{
+  useEffect(() => {
+    setProducts(products.slice(0, 10));
+  }, [products]);
+  const LoadMore = (e) => {
     e.preventDefault();
-    setProducts(products.slice(0,product?.length+5));
-  }
+    setProducts(products.slice(0, product?.length + 5));
+  };
   return (
     <div className="w-full mt-5 mb-5">
       <div className="mb-5 grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
@@ -26,21 +24,15 @@ const [product,setProducts]=useState([]);
             ))}
       </div>
       <div className="flex justify-center">
- {products?.length> 10&& <Button onClick={LoadMore} className="h-12 p-2 text-white bg-[#248F59]  text-sm font-semibold md:text-base">
-        Load More
-      </Button>}
+        {products?.length > 10 && (
+          <button
+            className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded transition-transform hover:scale-95 uppercase font-semibold "
+            onClick={LoadMore}
+          >
+            Load More
+          </button>
+        )}
       </div>
-      {/* {hasMore && (
-      <div className="mt-8 flex justify-center lg:mt-12">
-        <Button
-          loading={isLoadingMore}
-          onClick={loadMore}
-          className="h-11 text-sm font-semibold md:text-base"
-        >
-          {t('text-load-more')}
-        </Button>
-      </div>
-    )} */}
     </div>
   );
 };

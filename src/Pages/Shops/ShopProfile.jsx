@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ShopSidebar from "../../Components/ShopSidebar";
-import ProductsGrid from "../../Components/ProductsGrid";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { BsShop } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import ProductsGrid from "../../Components/ProductsGrid";
+import ShopSidebar from "../../Components/ShopSidebar";
 const shopProfile = () => {
   const [Single, setSingle] = useState({});
   const [products, setProducts] = useState([]);
-  const { allShops,product} = useSelector((state) => ({ ...state }));
+  const { allShops, product } = useSelector((state) => ({ ...state }));
   const params = useParams();
   const navigate = useNavigate();
   const LoadShop = () => {
@@ -18,7 +18,7 @@ const shopProfile = () => {
     setSingle(updated[0]);
   };
   const LoadProducts = () => {
-    const updated =product?.filter((p) => {
+    const updated = product?.filter((p) => {
       return Single?._id === p?.store?._id;
     });
     setProducts(updated);
@@ -27,7 +27,7 @@ const shopProfile = () => {
     if (product && product.length) {
       LoadProducts();
     }
-  }, [Single,product]);
+  }, [Single, product]);
   useEffect(() => {
     if (allShops && allShops.length) {
       LoadShop();
@@ -44,37 +44,44 @@ const shopProfile = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return !Single || allShops===null? (
+  return !Single || allShops === null ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
         <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 text-lg font-semibold">
+        <span className="mt-4 text-gray-500 font-sans text-lg font-semibold">
           Loading...
         </span>
       </div>
     </div>
-  ): (
-    <div className=" flex flex-col bg-gray-100 lg:flex-row lg:items-start lg:p-8">
-      <ShopSidebar shop={Single} className="sticky top-24 lg:top-28" />
-
-      <div className="flex w-full flex-col p-4 lg:p-0 ltr:lg:pl-8 rtl:lg:pr-8">
-        <div className=" h-full w-full overflow-hidden rounded">
-          <img
-            src={Single?.cover_pic?.url}
-            width={2340}
-            height={870}
-            
-          />
+  ) : (
+    <>
+      <div className="mx-auto w-full bg-gray-100">
+        <div className="pt-4 px-5 mb-2 flex justify-between ">
+          <Link to="/shops">
+            <div className="flex flex-row gap-2 w-fit">
+              <BsShop size={20} color="green" />
+              <span className="text-[#248F59] font-sans">Back To Shops</span>
+            </div>
+          </Link>
         </div>
-        {/* {shop && ( */}
-        <ProductsGrid
-        products={products}
-        className="py-8 grid
-        grid-cols-[repeat(auto-fill,minmax(260px,1fr))] 
-        md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3" />
-        {/* )} */}
+        <div className=" flex flex-col gap-2 bg-gray-100 lg:flex-row  lg:items-start  lg:p-8">
+          <ShopSidebar shop={Single} className="sticky" />
+
+          <div className="flex w-full flex-col pt-0 px-4 lg:p-0  ltr:lg:pl-8 rtl:lg:pr-8">
+            <div className=" h-[20.25rem] w-full overflow-hidden rounded">
+              <img src={Single?.cover_pic?.url} width={2340} height={870} />
+            </div>
+            {/* {shop && ( */}
+            <ProductsGrid
+              products={products}
+              className="py-2 grid
+               grid-cols-[repeat(auto-fill,minmax(260px,1fr))] 
+               md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default shopProfile;

@@ -9,7 +9,7 @@ const BecomeSeller = () => {
           <h1 className="flex text-[3rem] md:text-[3rem] font-serif font-normal tracking-tighter leading-tight text-[#FFFFFF] text-center pb-3">
             Become a Seller!
           </h1>
-          <p className="flex font-sans text-lg font-normal text-[#FFFFFF] leading-6 tracking-normal text-center w-[15.4375rem]  md:w-[23.4375rem]  pb-4">
+          <p className="flex font-sans  text-lg font-normal text-[#FFFFFF] leading-6 tracking-normal text-center w-[15.4375rem]  md:w-[23.4375rem]  pb-4">
             Become a seller, and join the online era with millions of other
             businesses using bazar.pk to sell online.
           </p>

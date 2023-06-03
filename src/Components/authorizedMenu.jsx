@@ -16,7 +16,7 @@ const AuthorizedMenu = () => {
     navigate("/");
   };
   return (
-    <Menu as="div" className="relative inline-block text-left ml-5s z-10">
+    <Menu as="div" className="relative inline-block text-left  z-10">
       <Menu.Button className="flex items-center focus:outline-none">
         <Space wrap size={20}>
           <img
@@ -38,14 +38,16 @@ const AuthorizedMenu = () => {
       >
         <Menu.Items
           as="ul"
-          className="end-0 origin-top-end absolute mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
+          className="end-0 font-sans origin-top-end absolute  mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
         >
           <Menu.Item>
             <li
-              className="flex w-full flex-col space-y-1 rounded-t
-             bg-[#248F59] px-4 py-3 text-sm text-white"
+              className="flex w-full flex-col space-y-1  rounded-t
+             bg-[#248F59] p-3 text-sm text-white"
             >
-              <span className="font-semibold capitalize">{loggedIn?.user?.name}</span>
+              <span className="font-semibold capitalize">
+                {loggedIn?.user?.name}
+              </span>
               <span className="text-xs">{loggedIn?.user?.email}</span>
             </li>
           </Menu.Item>

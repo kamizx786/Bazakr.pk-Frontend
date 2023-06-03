@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Shops from "../../Components/Shops";
+import { useSelector } from "react-redux";
 import ShopCard from "../../Components/ShopCard";
 import ProductLoader from "../../Components/product-loader";
 import jsxRangeMap from "../../Components/range-map";
-import { useSelector } from "react-redux";
 const Shop = () => {
   const { allShops, userLocation, search } = useSelector((state) => ({
     ...state,
   }));
   const [shops, setShops] = useState([]);
   const limit = 10;
+
+  const Searched = (text) => (c) =>
+    c.Storename.toLowerCase().includes(text.toLowerCase());
   const { text } = search;
+  const filteredShops = shops?.filter(Searched(text));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,32 +58,29 @@ const Shop = () => {
     nearbyShops && setShops(nearbyShops);
   }, [allShops]);
 
-  const Searched = (text) => (c) =>
-  c.Storename.toLowerCase().includes(text.toLowerCase());
-
-  const filteredShops = shops?.filter(Searched(text));
-
   return (
     <>
       {" "}
       <div className="min-h-screen bg-white relative">
         <div className="flex flex-col w-full max-w-6xl p-8 mx-auto pt-14">
           {shops?.length === 0 ? (
-            <h3 className="mb-8 text-2xl flex justify-center font-bold text-heading">
+            <h3 className="mb-8 text-3xl font-serif  flex justify-center font-normal text-heading">
               There is no Shop in your Area
             </h3>
           ) : (
-            <h3 className="mb-8 text-2xl font-bold text-heading">All Shops</h3>
+            <h3 className="mb-8 text-3xl font-serif text-[#248f59] font-normal text-heading">
+              All Shops
+            </h3>
           )}
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {!shops || shops?.length === 0 ? (
+            {shops?.length === 0 ? (
               jsxRangeMap(limit, (i) => (
                 <ProductLoader key={i} uniqueKey={`product-${i}`} />
               ))
             ) : filteredShops.length === 0 ? (
-              <h3 className="mb-8 text-2xl flex justify-center font-bold text-heading">
-                No Search Result Found
+              <h3 className="mb-8 text-xl flex justify-center text-[#00000080] font-medium font-sans text-heading">
+                No Search Result Found <span className="text-black pl-2">🙂</span>
               </h3>
             ) : (
               filteredShops.map((shop) => (
