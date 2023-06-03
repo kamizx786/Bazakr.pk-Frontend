@@ -152,7 +152,7 @@ export const OrderTable = ({ singleOrder }) => {
                   </th>
                   <th className="px-4 whitespace-nowrap py-2">Price</th>
                   <th className="px-4 whitespace-nowrap py-2">Total</th>
-                  <th className="px-4 whitespace-nowrap py-2">Review</th>
+                  {singleOrder?.orderStatus==="delivered"&& <th className="px-4 whitespace-nowrap py-2">Review</th>}
                 </tr>
               </thead>
 
@@ -175,7 +175,7 @@ export const OrderTable = ({ singleOrder }) => {
                     <td className="px-4 py-2">
                       Rs:{item?.Product?.salePrice * item?.order_quantity}
                     </td>
-                    <td className="px-4 py-2">
+              {singleOrder?.orderStatus==="delivered"&&  <td className="px-4 py-2">
                       <div>
                         <button
                           className="m-auto font-sans text-[#248F59] p-2 font-semibold"
@@ -184,7 +184,7 @@ export const OrderTable = ({ singleOrder }) => {
                           Review
                         </button>
                       </div>
-                    </td>
+                    </td>}
                   </tr>
                 ))}
               </tbody>
