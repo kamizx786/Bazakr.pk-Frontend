@@ -120,13 +120,13 @@ export const OrderTable = ({ singleOrder }) => {
 
             <div className="flex justify-between">
               <button
-                className="bg-[#248F59] uppercase text-[#f2f2f2] font-sans font-semibold px-4 py-2 mt-4 rounded-lg"
+                className="bg-[#248F59] text-sm uppercase text-[#f2f2f2] font-sans font-semibold px-2 py-2 mt-4 rounded-lg"
                 onClick={submitReview}
               >
                {loading? <LoadingOutlined/>:"Save"}
               </button>
               <button
-                className="bg-[#248F59] uppercase text-[#f2f2f2] font-sans font-semibold px-4 py-2 mt-4 rounded-lg"
+                className="bg-[#248F59] text-sm uppercase text-[#f2f2f2] font-sans font-semibold px-2 py-2 mt-4 rounded-lg"
                 onClick={closeModal}
               >
                 Cancel
