@@ -16,8 +16,8 @@ export default [
     },
     {
         key: 4,
-        coverImg: '../home/multan.png',
-        cityName: 'Multan'
+        coverImg: '../home/grw.png',
+        cityName: 'Gujranwala',
     },
     {
         key: 5,

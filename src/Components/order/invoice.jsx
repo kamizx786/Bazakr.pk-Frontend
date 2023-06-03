@@ -20,12 +20,15 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
       <body>
         <div style="display: flex; flex-direction: column; border: 2px dashed #248F59; padding: 2px;">
         <div style="display: flex; justify-content: center; align-items: center;">
-          <img src="${ siteSetting?.image?.url ||
-          "http://res.cloudinary.com/die5mkbau/image/upload/v1683410253/zusdxoommia3lwtkzzk4.svg"}"
+          <img src="${
+            siteSetting?.image?.url ||
+            "http://res.cloudinary.com/die5mkbau/image/upload/v1683410253/zusdxoommia3lwtkzzk4.svg"
+          }"
           alt="logo" style="object-fit: cover;">
         </div>
         <h1 style="font-size: 4xl; font-family: serif; color: #248F59; font-weight: normal; margin-bottom: 4px;">Invoice <span style="font-size:1rem ;"># ${
-          singleOrder?._id}</span>
+          singleOrder?._id
+        }</span>
         </h1>
         <div style="padding: 4px;">
           <div style="display: flex; flex-direction: column; margin-bottom: 3px; font-family: sans-serif;">
@@ -43,7 +46,8 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
               </tr>
             </thead>
             <tbody>
-              ${singleOrder?.Products?.map((item, index) => `
+              ${singleOrder?.Products?.map(
+                (item, index) => `
                 <tr key="${index}"
                   style="background-color: white; cursor: default; white-space: nowrap; justify-content: space-between; display: flex; flex-direction: row; border: 2px solid #248F59; margin-bottom: 2px;"
                 >
@@ -57,7 +61,8 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
                   ${item?.Product?.salePrice}
                   </td>
                 </tr>
-              `).join('')}
+              `
+              ).join("")}
             </tbody>   
           </table>
         </div>
@@ -98,9 +103,9 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
     <div className="flex flex-row justify-end p-2">
       <button
         onClick={printInvoice}
-        className="bg-[#248f58] flex flex-row gap-2 rounded-md shadow hover:text-white text-[#f2f2f2] font-normal font-sans py-2 px-4 mt-4"
+        className="bg-[#248f58] transition-transform hover:scale-95 flex flex-row gap-2 rounded-md  hover:text-white text-[#f2f2f2] font-normal font-sans py-2 px-4 mt-4"
       >
-        <BsPrinter className="align-middle" size={20}/>
+        <BsPrinter className="align-middle" size={20} />
         Print Invoice
       </button>
     </div>

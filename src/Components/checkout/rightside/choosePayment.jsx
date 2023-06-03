@@ -1,28 +1,28 @@
 import { FaStripe } from "react-icons/fa";
 
-const PaymentMethod = ({values,setValues}) => {
+const PaymentMethod = ({ values, setValues }) => {
   const handleStripeSelect = () => {
     setValues((prevValues) => ({
       ...prevValues,
-      paymentType:"stripe"
+      paymentType: "stripe",
     }));
   };
   const handleCODSelect = () => {
     setValues((prevValues) => ({
       ...prevValues,
-      paymentType:"cod"
+      paymentType: "cod",
     }));
   };
 
   return (
     <>
-      <div className="flex flex-col font-sans bg-white p-4">
+      <div className="flex flex-col font-sans mt-2.5 bg-white rounded border p-4">
         <h2 className="text-black text-center font-sans font-semibold">
           Choose a Payment Method
         </h2>
         <div className="my-4 flex flex-row gap-2">
           <div
-            className={`bg-white flex justify-center items-center p-3 h-fit w-full cursor-pointer shadow-2xl  ${
+            className={`bg-white flex justify-center items-center p-3 h-fit w-full cursor-pointer shadow rounded  ${
               values.paymentType === "stripe" ? "border-green-500 border-2" : ""
             }`}
             onClick={handleStripeSelect}
@@ -30,8 +30,8 @@ const PaymentMethod = ({values,setValues}) => {
             <FaStripe color="blue" size={50} />
           </div>
           <div
-            className={`bg-white flex justify-center items-center text-center font-medium p-3  w-full cursor-pointer shadow-2xl ${
-              values.paymentType  === "cod" ? "border-green-500 border-2" : ""
+            className={`bg-white flex justify-center items-center text-center font-medium p-3  w-full cursor-pointer shadow rounded ${
+              values.paymentType === "cod" ? "border-green-500 border-2" : ""
             }`}
             onClick={handleCODSelect}
           >
@@ -40,12 +40,12 @@ const PaymentMethod = ({values,setValues}) => {
         </div>
 
         <div>
-          { values.paymentType  === "stripe" && (
+          {values.paymentType === "stripe" && (
             <p className="text">
               Please click Place order to make order and payment
             </p>
           )}
-          { values.paymentType  === "cod" && (
+          {values.paymentType === "cod" && (
             <p>Please Pay After You Receive Your Goods!</p>
           )}
         </div>

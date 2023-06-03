@@ -1,7 +1,7 @@
 import React from "react";
-import { XCircleIcon } from "@heroicons/react/24/outline";
+import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
+import { RiDeleteBack2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const CartItem = ({ item, index }) => {
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(window.localStorage.getItem("cart"));
     }
-  
+
     const updatedCart = cart.map((cartItem, i) => {
       if (i === index) {
         const newQuantity = cartItem.order_quantity + 1;
@@ -38,100 +38,90 @@ const CartItem = ({ item, index }) => {
       }
       return cartItem;
     });
-  
+
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));
     dispatch({
       type: "Cart",
       payload: updatedCart,
     });
   };
-  
+
   const DecreaseQuan = () => {
     let cart = [];
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(window.localStorage.getItem("cart"));
     }
-  
-    const updatedCart = cart.map((cartItem, i) => {
-      if (i === index) {
-        const newQuantity = cartItem.order_quantity - 1;
-        if (newQuantity < 1) {
-          return null;
+
+    const updatedCart = cart
+      .map((cartItem, i) => {
+        if (i === index) {
+          const newQuantity = cartItem.order_quantity - 1;
+          if (newQuantity < 1) {
+            return null;
+          }
+          return {
+            ...cartItem,
+            order_quantity: newQuantity,
+          };
         }
-        return {
-          ...cartItem,
-          order_quantity: newQuantity,
-        };
-      }
-      return cartItem;
-    }).filter(cartItem => cartItem !== null);
-  
+        return cartItem;
+      })
+      .filter((cartItem) => cartItem !== null);
+
     window.localStorage.setItem("cart", JSON.stringify(updatedCart));
     dispatch({
       type: "Cart",
       payload: updatedCart,
     });
   };
-  
+
   return (
-    <div
-      className="flex items-center
-     border-b border-solid border-border-200
-      border-opacity-75 py-4 text-sm sm:px-6"
-    >
-      <div className="flex-shrink-0">
-        <div className="flex overflow-hidden flex-col    ">
-          <button
-            onClick={DecreaseQuan}
-            className="p-2 
-            duration-200 hover:bg-accent-hover focus:outline-none
-            px-3 py-3 sm:px-2 
-            border border-gray-300  hover:border-accent "
-          >
-            <span className="sr-only">Minus</span>
-            <MinusIcon className="h-3 w-3 stroke-2.5" />
-          </button>
-          <div
-            className="flex flex-1 items-center justify-center px-3 text-sm font-semibold
-         text-heading"
-          >
-            {item.order_quantity}
+    <div className="flex justify-between items-center border-b border-solid border-opacity-75 py-4 text-sm">
+      <div className="flex gap-3">
+        <div className="flex-shrink-0">
+          <div className="flex overflow-hidden items-center justify-center gap-1 flex-col">
+            <button onClick={DecreaseQuan}>
+              <AiOutlineMinusSquare color="green" size={25} />
+            </button>
+            <div className="flex flex-1 font-sans items-center justify-center px-4 text-sm font-semibold text-heading">
+              {item.order_quantity}
+            </div>
+            <button onClick={IncreaseQuan}>
+              <AiOutlinePlusSquare color="green" size={25} />
+            </button>
           </div>
-          <button
-            onClick={IncreaseQuan}
-            className="p-2 
-        duration-200 hover:bg-accent-hover focus:outline-none
-        px-3 py-3 sm:px-2
-        border border-gray-300  hover:border-accent "
-          >
-            <span className="sr-only">Plus</span>
-            <PlusIcon className="md:w-4.5 h-3.5 w-3.5 stroke-2.5 md:h-4.5" />
-          </button>
+        </div>
+
+        <div className=" flex gap-2.5 justify-evenly items-center">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16">
+            <img
+              src={item?.feature_pic?.url}
+              alt={item.name}
+              className="object-contain"
+            />
+          </div>
+          <br />
+          <div className="flex flex-col items-start justify-center gap-1">
+            <h3 className="font-semibold flex font-sans text-heading">
+              {item.name}{" "}
+            </h3>
+            <span className="text-xs flex whitespace-nowrap font-sans text-body">
+              {item.order_quantity} X {item.salePrice}
+            </span>
+          </div>
+          <div className="flex ml-4">
+            <span className="font-bold font-sans text-heading">
+              {item.order_quantity * item.salePrice}/Rs
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="relative mx-4 flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16">
-        <img
-          src={item?.feature_pic?.url}
-          alt={item.name}
-          className="object-contain"
-        />
-      </div>
-      <br />
-      <div>
-        <h3 className="font-bold text-heading">{item.name} </h3>
-        <span className="text-xs text-body">
-          {item.order_quantity} X {item.salePrice}
-        </span>
-      </div>
-      <span className="font-bold text-heading">
-        {item.order_quantity * item.salePrice}/Rs
-      </span>
-      <button className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted transition-all duration-200 hover:bg-gray-100 hover:text-red-600 focus:bg-gray-100 focus:text-red-600 focus:outline-none ltr:ml-3 ltr:-mr-2 rtl:mr-3 rtl:-ml-2">
-        <span className="sr-only">Close</span>
-        <XCircleIcon
+      <button className="flex h-7 w-7 shrink-0 items-center justify-center transition-all duration-200 ">
+        <RiDeleteBack2Line
           onClick={() => removeCartItem(item._id)}
-          className="h-3 w-3"
+          color="red"
+          size={17}
         />
       </button>
     </div>

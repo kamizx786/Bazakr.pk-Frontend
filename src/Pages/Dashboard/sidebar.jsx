@@ -4,8 +4,8 @@ import { siteSettings } from "./site";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const DashboardSidebar = () => {
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const HandleLogout = () => {
     window.localStorage.removeItem("auth");
     dispatch({
@@ -15,36 +15,37 @@ const DashboardSidebar = () => {
     navigate("/");
   };
   return (
-    
-      <aside>
-        <div className="rounded border border-border-200 bg-white ml-5">
-          <ul className="py-7">
-            {siteSettings.dashboardSidebarMenu?.map((item) => {
-              return (
-                <li className="py-1" key={item.id}>
-                  <Link
-                    to={`${item.to}`}
-                    className="block border-l-4 font-sans  border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-accent focus:text-accent"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          {/* End of top part menu */}
+    <aside>
+      <div className="rounded border bg-white ml-4">
+        <ul className="py-7 font-sans whitespace-nowrap ">
+          {siteSettings.dashboardSidebarMenu?.map((item) => {
+            return (
+              <li key={item.id}>
+                <Link
+                  to={`${item.to}`}
+                  className="block font-sans  border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-[#248f59] "
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        {/* End of top part menu */}
 
-          <ul className="border-t border-border-200 bg-light py-4">
-            <li className="block py-2 px-11  ">
-              <button onClick={HandleLogout} className="font-semibold text-heading transition-colors hover:text-accent focus:text-accent">
-                Logout
-              </button>
-            </li>
-          </ul>
-          {/* End of bottom part menu */}
-        </div>
-      </aside>
-    
+        <ul className="border-t border-border-200 bg-light py-4">
+          <li className="block py-2 px-11  ">
+            <button
+              onClick={HandleLogout}
+              className="font-semibold font-sans text-heading hover:text-[#248f59] transition-colors"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+        {/* End of bottom part menu */}
+      </div>
+    </aside>
   );
 };
 

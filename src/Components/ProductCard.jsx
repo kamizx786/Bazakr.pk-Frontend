@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { Modal } from "antd";
+import { useState } from "react";
+import { AiOutlineEye } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import Card from "../Pages/Products/Card";
 const ProductCard = ({ product }) => {
   const [open, setOpen] = useState(false);
@@ -10,14 +10,15 @@ const ProductCard = ({ product }) => {
   };
   return (
     <>
-      <article
-        className="h-full transform overflow-hidden rounded bg-white 
-         transition-all duration-200 hover:-translate-y-0.5 hover:shadow-downfall-lg"
+      <div
+        className="flex flex-col gap-3 h-full transform overflow-hidden rounded bg-white  p-4
+         transition-all duration-200 hover:-translate-y-0.5 hover:shadow-downfall-lg border-[#f2f2f2]"
         // onClick={handleProductQuickView}
-        role="button" >
-        <div className="p-5 relative flex md:h-56 h-62 w-auto items-center justify-center">
+        role="button"
+      >
+        <div className="relative flex md:h-72 h-60 w-auto items-center justify-center">
           <span className="sr-only"></span>
-          <img src={product?.feature_pic?.url} className="object-contain" />
+          <img src={product?.feature_pic?.url} className="object-cover h-full w-full rounded" />
 
           {product?.totalSold > 9 && (
             <div className="absolute top-3 rounded bg-accent px-1.5 text-xs font-semibold leading-6 text-white bg-[#248F59] left-3  sm:px-2 md:top-[22px] md:px-2.5 md:left-4 ">
@@ -25,45 +26,18 @@ const ProductCard = ({ product }) => {
             </div>
           )}
 
-          {/* <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4">
-        {product_type.toLowerCase() === 'variable' ? (
-          <>
-            {Number(quantity) > 0 && (
-              <button
-                onClick={handleProductQuickView}
-                className="flex h-7 w-7 items-center justify-center rounded border border-border-200 bg-light text-sm text-heading transition-colors hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-none md:h-9 md:w-9"
-              >
-                <PlusIcon className="h-5 w-5 stroke-2" />
-              </button>
-            )}
-          </>
-        ) : (
-          <>
-            {Number(quantity) > 0 && (
-              <AddToCart variant="argon" data={product} />
-            )}
-          </>
-        )}
-
-        {Number(quantity) <= 0 && (
-          <div className="rounded bg-red-500 px-2 py-1 text-xs text-light">
-            {t('text-out-stock')}
-          </div>
-        )}
-      </div> */}
-
-          <div className="absolute top-3 right-3  md:top-4 md:right-4">
+          <div className="absolute top-3 right-3  md:top-4 md:right-4 bg-gray-100 p-1 rounded">
             <button
               onClick={handleModal}
-              className="flex h-7 w-7 items-center justify-center rounded border border-border-200 bg-light text-sm text-heading transition-colors hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-none md:h-9 md:w-9"
+              className="flex  items-center justify-center rounded  text-sm text-heading transition-colors"
             >
-              <PlusOutlined className="h-5 w-5 stroke-2" />
+              <AiOutlineEye className="stroke-2" color="green" size={25}/>
             </button>
           </div>
         </div>
         {/* End of product image */}
         <Link to={`/product/${product.slug}`}>
-          <header className="p-6 mt-5 md:p-6">
+          <header className="p-1 md:p-6">
             {/* {product_type.toLowerCase() === 'variable' ? (
         <div className="mb-2">
           <span className="text-sm font-semibold text-heading md:text-base">
@@ -87,23 +61,19 @@ const ProductCard = ({ product }) => {
         </div>
       )} */}
             {/* End of product price */}
-            <div className="mb-2">
-              <span className="text-sm font-semibold text-heading md:text-base">
-                {product?.salePrice}/Rs
+            <div className="flex flex-col gap-2">
+              <h3 className="text-2xl font-serif font-normal w-contain truncate">
+                {product?.name}
+              </h3>
+              <span className="text-lg font-medium font-sans text-[#248f59] text-heading md:text-base">
+                {product?.salePrice}/<span className="text-xs font-semibold">Rs</span>
               </span>
-              {/* <span> - </span>
-          <span className="text-sm font-semibold text-heading md:text-base">
-           120$
-          </span> */}
             </div>
-            <h3 className="text-sm text-gray-500 md:text-sm">
-              {product?.name}
-            </h3>
 
             {/* End of product title */}
           </header>
         </Link>
-      </article>
+      </div>
 
       <Modal
         width={1000}

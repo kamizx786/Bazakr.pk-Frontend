@@ -1,6 +1,6 @@
+import { Modal } from "antd";
 import React, { useState } from "react";
 import ShopeSidebarCard from "./ShopeSidebarCard";
-import { Modal } from "antd";
 const ShopSidebar = ({ shop }) => {
 const [open,setOpen]=useState(false);
     const handleMoreInfoModal=()=>{
@@ -16,7 +16,7 @@ const [open,setOpen]=useState(false);
           <img src={shop?.main_pic?.url} className="object-cover" />
         </div>
 
-        <div className="w-full p-5">
+        <div className="w-full p-5 font-sans">
           <h3 className="text-base font-semibold text-heading">
             {shop?.Storename}
           </h3>
@@ -35,10 +35,10 @@ const [open,setOpen]=useState(false);
           <ShopeSidebarCard shop={shop} />
         </div>
       </aside>
-      <Modal  open={open} footer={null} onCancel={()=>setOpen(false)}>
-      <div className="h-full w-full overflow-hidden">
+      <Modal open={open} footer={null} onCancel={() => setOpen(false)}>
+        <div className="h-full w-full overflow-hidden">
           <ShopeSidebarCard shop={shop} />
-    </div>
+        </div>
       </Modal>
     </>
   );

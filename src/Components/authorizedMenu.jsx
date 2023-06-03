@@ -26,10 +26,7 @@ const AuthorizedMenu = () => {
   };
   return (
     <Menu as="div" className="relative inline-block text-left ml-5s z-10">
-      <Menu.Button
-        onClick={handleMenuToggle}
-        className="flex items-center focus:outline-none"
-      >
+      <Menu.Button className="flex items-center focus:outline-none">
         <Space wrap size={20}>
           <img
             className="w-8"
@@ -38,31 +35,29 @@ const AuthorizedMenu = () => {
           />
         </Space>
       </Menu.Button>
-      <Transition show={isOpen}>
-        <Transition.Child
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items
+          as="ul"
+          className="end-0 origin-top-end absolute mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
         >
-          <Menu.Items
-            as="ul"
-            className="end-0 origin-top-end absolute mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
-          >
-            <Menu.Item>
-              <li
-                className="flex w-full flex-col space-y-1 rounded-t
+          <Menu.Item>
+            <li
+              className="flex w-full flex-col space-y-1 rounded-t
              bg-[#248F59] px-4 py-3 text-sm text-white"
-              >
-                <span className="font-semibold capitalize">
-                  {loggedIn?.user?.name}
-                </span>
-                <span className="text-xs">{loggedIn?.user?.email}</span>
-              </li>
-            </Menu.Item>
+            >
+              <span className="font-semibold capitalize">{loggedIn?.user?.name}</span>
+              <span className="text-xs">{loggedIn?.user?.email}</span>
+            </li>
+          </Menu.Item>
 
             <Menu.Item>
               <li className="cursor-pointer border-b border-gray-100 last:border-0">

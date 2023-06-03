@@ -27,9 +27,9 @@ const Footer = () => {
         </p>
       </div>
       {/* LINKS */}
-      <div className=" flex flex-row w-fit">
-        <div className=" flex flex-wrap md:flex-row gap-10 md:gap-20 font-normal font-sans text-[#00000080]">
-          <ul className="text-base">
+      <div className=" flex flex-col md:flex-row w-fit">
+        <div className=" flex flex-col md:flex-row gap-10 md:gap-20 font-normal font-sans text-[#00000080]">
+          <ul className="text-base flex flex-col gap-2.5">
             <Link to="/privacy-policy">
               <li className="hover:cursor-pointer hover:text-[#1E1E1E]">
                 Privacy Policy
@@ -52,7 +52,7 @@ const Footer = () => {
             </Link>
           </ul>
           
-          <div className="flex flex-row md:flex-col gap-3 align-middle justify-around">
+          <div className="flex md:flex-col gap-2 align-middle justify-around">
             <Link
               to="https://www.instagram.com"
               target="_blank"

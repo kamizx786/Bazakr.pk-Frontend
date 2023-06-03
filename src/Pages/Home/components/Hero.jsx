@@ -40,7 +40,7 @@ const handleClick=()=>{
           <div className="flex flex-col">
             <SearchField values={values} setValues={setValues} />
             <button disabled={Object.keys(values).length === 0}
-             onClick={handleClick} className="my-2 h-16 w-[18.4375rem]  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+             onClick={handleClick} className="my-2 h-16 w-[18.4375rem] transition-transform hover:scale-95 cursor-pointer  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
               Find My Bazar
             </button>
           </div>
