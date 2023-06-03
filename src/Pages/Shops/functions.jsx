@@ -22,3 +22,7 @@ export const AllShops = async (dispatch) => {
       })
     }
   };
+  export const CreateandUpateRatings = async (slug,star,review) => {
+    const { data } = await axios.put(`/product/rating/${slug}`,{star,review});
+    return data;
+  };

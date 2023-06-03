@@ -51,7 +51,7 @@ show={isOpen}
       >
         <Menu.Items
           as="ul"
-          className="end-0 origin-top-end absolute mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
+          className="origin-top-end absolute mt-4 w-48 rounded bg-white shadow-md focus:outline-none"
         >
           <Menu.Item>
             <li

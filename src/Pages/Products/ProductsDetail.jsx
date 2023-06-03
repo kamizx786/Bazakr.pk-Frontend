@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters, AiTwotoneShop } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductDetailsSlider from "../../Components/ProductDetailsSlider";
 import { handleCart } from "./function";
+import StarRatings from "react-star-ratings";
 const ProductDetails = ({ singleOrder, shop }) => {
   const [Single, setSingle] = useState({});
   const { allShops, product } = useSelector((state) => ({ ...state }));
   const [averageRating, setAverageRating] = useState(0);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
   // Calculate the average rating
   useEffect(() => {
-    const ratings =
-      singleOrder?.Products?.map((item) => item?.Product?.rating) || [];
-    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    const ratings = Single?.rating || [];
+    const sum = ratings.reduce((total, r) => total + r?.star, 0);
     const average = sum / ratings.length;
     setAverageRating(average);
-  }, [singleOrder]);
+  }, [Single]);
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
       return params.slug === p.slug;
     });
     setSingle(updated[0]);
+    console.log("Single", Single);
   };
   useEffect(() => {
     if (product && product.length) {
@@ -179,31 +181,66 @@ const ProductDetails = ({ singleOrder, shop }) => {
           Rating and Review of <span> {Single?.name}</span>
         </h1>
         <div className="flex w-full border-b-4 border-opacity-70 border-[#f2f2f2] mb-2  flex-row">
-          <div className=" bg-[#248f59] text-xl flex-row flex mb-2 items-center gap-2 text-[#f2f2f2] p-2 rounded-2xl sm:w-auto sm:pb-0">
-            {averageRating} <FaStar size={25} />
+          <div className="text-xl flex-row flex mb-2 items-center gap-2  p-2 rounded-2xl sm:w-auto sm:pb-0">
+            {averageRating ? (
+              <>
+                <StarRatings
+                  rating={averageRating}
+                  starHoverColor="#248F59"
+                  starRatedColor="#248F59"
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="20px"
+                  starSpacing="5px"
+                />
+                ({Single?.rating?.length})
+              </>
+            ) : (
+              <>
+              <StarRatings
+              rating={0}
+              starHoverColor="#248F59"
+              starRatedColor="#248F59"
+              numberOfStars={5}
+              name="rating"
+              starDimension="20px"
+              starSpacing="5px"
+            />
+            (0)
+            </>
+            )}
           </div>
         </div>
         <div>
           <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
             Product Review(s)
           </h1>
-          {singleOrder?.Products?.map((item, index) => (
-            <div
-              className="flex w-14 flex-col border-b-4 border-opacity-70 border-[#f2f2f2] mb-2"
-              key={index}
-            >
-              <div className="bg-[#248f59] w-fit text-sm flex-row flex mb-2 items-center gap-2 text-[#f2f2f2] p-2 rounded-2xl sm:w-auto sm:pb-0">
-                {item?.Product?.rating} <FaStar size={15} />
-              </div>
-              <div className="text-sm flex flex-row font-sans">
-                by <span>{item?.Product?.reviewedBy?.name}</span>{" "}
-                {item?.Product?.reviewedBy?.verified && (
-                  <FaCheckCircle className="flex items-center align-middle" />
-                )}
-              </div>
-              <div className="text-sm font-sans">{item?.Store?.review}</div>
-            </div>
-          ))}
+          <div className="flex  flex-col border-b-4 border-opacity-70 border-[#f2f2f2] mb-2">
+            {Single?.rating?.map((item, index) => (
+              <>
+                <div className="text-md font-bold flex flex-row font-sans">
+                  <span>{item.postedBy?.name}</span>{" "}
+                  <FaCheckCircle
+                    size={15}
+                    className="flex text-[#248f59] items-center align-middle ml-2"
+                  />
+                </div>
+                <div className="text-sm flex-row flex mb-2 items-center gap-2 p-1 rounded-2xl sm:w-auto sm:pb-0">
+                <StarRatings
+                  rating={item.star}
+                  starHoverColor="#248F59"
+                  starRatedColor="#248F59"
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="20px"
+                  starSpacing="5px"
+                />
+                </div>
+              
+                <div className="text-sm font-sans">{item.review}</div>
+              </>
+            ))}
+          </div>
         </div>
       </div>
     </article>

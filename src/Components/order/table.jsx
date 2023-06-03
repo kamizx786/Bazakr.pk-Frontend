@@ -1,14 +1,32 @@
-import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
-
+import React, { useEffect, useState } from "react";
+import {LoadingOutlined} from "@ant-design/icons"
+import { useDispatch, useSelector } from "react-redux";
+import StarRatings from "react-star-ratings";
+import { toast } from "react-toastify";
+import { AllProducts, CreateandUpateRatings } from "../../Pages/Shops/functions";
+import { UserOrders } from "../../Pages/Checkout/functions";
 export const OrderTable = ({ singleOrder }) => {
   const [showModal, setShowModal] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [star, setStar] = useState(0);
   const [review, setReview] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const [loading, setLoading] = useState(null);
+  const { loggedIn } = useSelector((state) => ({ ...state }));
+  const dispatch=useDispatch();
+  useEffect(() => {
+    const filter = selectedProduct?.Product?.rating?.filter((r) => {
+      return r.postedBy === loggedIn?.user?._id;
+    });
+    if (filter?.length) {
+      setStar(filter[0].star);
+      setReview(filter[0].review);
+    } else {
+      setStar(0);
+      setReview("");
+    }
+  }, [selectedProduct]);
   const handleRating = (value) => {
-    setRating(value);
+    setStar(value);
   };
 
   const handleReviewChange = (event) => {
@@ -26,13 +44,22 @@ export const OrderTable = ({ singleOrder }) => {
   };
 
   const submitReview = () => {
-    // Here you can implement the logic to save the review and rating to the database
-    // You can use APIs or any other method to send the data to the server
-    // For simplicity, let's just log the review and rating to the console
-    console.log("Review:", review);
-    console.log("Rating:", rating);
-
-    closeModal();
+    if (!star || !review) {
+      return toast.error("Please Add rating and review");
+    }
+    setLoading(true);
+    CreateandUpateRatings(selectedProduct?.Product?.slug, star, review).then((res) => {
+      if (res.error) {
+        setLoading(false);
+        toast.error(res.error);
+      } else {
+        toast.success("Thanks It will Update Soon");
+        AllProducts(dispatch)
+        UserOrders(dispatch)
+        setLoading(false)
+        closeModal();
+      }
+    });
   };
 
   return (
@@ -58,7 +85,18 @@ export const OrderTable = ({ singleOrder }) => {
                 Give Rating
               </p>
               <div className="flex items-center gap-1 my-2">
-                {[1, 2, 3, 4, 5].map((value) => (
+                <StarRatings
+                  rating={star}
+                  starHoverColor="#248F59"
+                  starRatedColor="#248F59"
+                  numberOfStars={5}
+                  name="rating"
+                  changeRating={(rating) => handleRating(rating)}
+                  starDimension="20px"
+                  starSpacing="5px"
+                  className={` ${"text-[#248F59]"} cursor-pointer`}
+                />
+                {/* {[1, 2, 3, 4, 5].map((value) => (
                   <FaStar
                     key={value}
                     size={25}
@@ -67,7 +105,7 @@ export const OrderTable = ({ singleOrder }) => {
                     } cursor-pointer`}
                     onClick={() => handleRating(value)}
                   />
-                ))}
+                ))} */}
               </div>
             </div>
             <div className="flex flex-col border-b-2 my-2">
@@ -80,12 +118,18 @@ export const OrderTable = ({ singleOrder }) => {
               />
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-between">
               <button
                 className="bg-[#248F59] uppercase text-[#f2f2f2] font-sans font-semibold px-4 py-2 mt-4 rounded-lg"
                 onClick={submitReview}
               >
-                Submit
+               {loading? <LoadingOutlined/>:"Save"}
+              </button>
+              <button
+                className="bg-[#248F59] uppercase text-[#f2f2f2] font-sans font-semibold px-4 py-2 mt-4 rounded-lg"
+                onClick={closeModal}
+              >
+                Cancel
               </button>
             </div>
           </div>
