@@ -26,7 +26,9 @@ const AuthorizedMenu = () => {
   };
   return (
     <Menu as="div" className="relative inline-block text-left ml-5s z-10">
-      <Menu.Button className="flex items-center focus:outline-none">
+      <Menu.Button
+      onClick={handleMenuToggle}
+      className="flex items-center focus:outline-none">
         <Space wrap size={20}>
           <img
             className="w-8"
@@ -35,8 +37,10 @@ const AuthorizedMenu = () => {
           />
         </Space>
       </Menu.Button>
-
-      <Transition
+<Transition
+show={isOpen}
+>
+      <Transition.Child
         as={Fragment}
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
