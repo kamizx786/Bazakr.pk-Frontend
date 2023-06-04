@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductLoader from "./product-loader";
 import jsxRangeMap from "./range-map";
-const ProductsGrid = ({ products }) => {
+const ProductsGrid = ({ products , keyword,
+  Searched, }) => {
   const [product, setProducts] = useState([]);
   const limit = 10;
   useEffect(() => {
@@ -19,19 +20,19 @@ const ProductsGrid = ({ products }) => {
           ? jsxRangeMap(limit, (i) => (
               <ProductLoader key={i} uniqueKey={`product-${i}`} />
             ))
-          : product?.map((product) => (
+          :  product?.filter(Searched(keyword)).map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
       </div>
       <div className="flex justify-center">
-        {products?.length > 10 && (
+        {products?.length > 10 && product?.length<products?.length? (
           <button
             className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded transition-transform hover:scale-95 uppercase font-semibold "
             onClick={LoadMore}
           >
             Load More
           </button>
-        )}
+        ):""}
       </div>
     </div>
   );

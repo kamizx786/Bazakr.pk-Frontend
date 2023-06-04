@@ -10,6 +10,8 @@ import ShopSidebar from "../../Components/ShopSidebar";
 const shopProfile = () => {
   const [Single, setSingle] = useState({});
   const [products, setProducts] = useState([]);
+  const [keyword, setKeyword] = useState("");
+
   const { allShops, product } = useSelector((state) => ({ ...state }));
   const params = useParams();
   const navigate = useNavigate();
@@ -26,7 +28,11 @@ const shopProfile = () => {
     setIsHidden(!isHidden);
   };
 
-  const handleSearchInputChange = () => {};
+  const handleSearchInputChange = (e) => {
+    e.preventDefault();
+    setKeyword(e.target.value.toLowerCase());
+  };
+  const Searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
   const LoadProducts = () => {
     const updated = product?.filter((p) => {
       return Single?._id === p?.store?._id;
@@ -51,6 +57,26 @@ const shopProfile = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [Single]);
+
+    const handlePriceFilter = (e) => {
+      const value = e.target.value;
+      let sortedProducts = [];
+
+      if (value === "lowest") {
+        sortedProducts = product?.filter((p) => {
+          return Single?._id === p?.store?._id;
+        }).sort((a, b) => a.salePrice - b.salePrice);
+        setProducts(sortedProducts);
+      } else if (value === "highest") {
+        sortedProducts = product?.filter((p) => {
+          return Single?._id === p?.store?._id;
+        }).sort((a, b) => b.salePrice - a.salePrice);
+        setProducts(sortedProducts);
+      }else if(value ==="select"){
+        LoadProducts()
+      }
+    };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -85,13 +111,12 @@ const shopProfile = () => {
             {/* Filter By Bar */}
             <div className="flex gap-3 items-center mt-3">
               <p className="font-sans font-medium opacity-80">Filters: </p>
-            <div className="bg-white p-2 rounded border grid w-fit">
-              <button onClick={toggleVisibility}>
-                <BsFilterSquare color="green" size={25} />
-              </button>
+              <div className="bg-white p-2 rounded border grid w-fit">
+                <button onClick={toggleVisibility}>
+                  <BsFilterSquare color="green" size={25} />
+                </button>
+              </div>
             </div>
-            </div>
-            
 
             {isHidden ? null : (
               <div className="mt-3 p-3 md:p-6 flex gap-3 border rounded border-[#f2f2f2] flex-col sm:flex-row items-center justify-between bg-white ">
@@ -105,10 +130,11 @@ const shopProfile = () => {
                     type="text"
                     name="store"
                     id="priceFilter"
-                    className="h-12 w-fit text-md bg-white border-gray-300 rounded-lg pl-3 pr-8 py-2  font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+                    onChange={handlePriceFilter}
+                    className="h-12 cursor-pointer w-fit text-md bg-white border-gray-300 rounded-lg pl-3 pr-8 py-2  font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
                   >
                     <option value="select">--Select--</option>
-                    <option value="lowest">Lowest to Highest</option>
+                    <option className="cursor-pointer" value="lowest">Lowest to Highest</option>
                     <option value="highest">Highest to Lowest</option>
                   </select>
                 </div>
@@ -133,6 +159,8 @@ const shopProfile = () => {
             {/* {shop && ( */}
             <ProductsGrid
               products={products}
+              keyword={keyword}
+              Searched={Searched}
               className="py-2 grid
                grid-cols-[repeat(auto-fill,minmax(260px,1fr))] 
                md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3"
