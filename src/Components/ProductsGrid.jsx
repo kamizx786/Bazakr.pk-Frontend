@@ -13,7 +13,7 @@ const ProductsGrid = ({ products }) => {
     setProducts(products.slice(0, product?.length + 5));
   };
   return (
-    <div className="w-full mt-5 mb-5">
+    <div className="w-full my-3">
       <div className="mb-5 grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
         {!product?.length
           ? jsxRangeMap(limit, (i) => (

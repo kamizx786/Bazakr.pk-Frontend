@@ -1,7 +1,7 @@
 const City = (props) => {
     return (
         <>
-          <div className="relative w-[180px] md:w-[280px] transition-transform hover:scale-95">
+          <div className="relative w-[180px] md:w-[280px] transition-transform hover:scale-95 hover:cursor-pointer">
             <img
               src={props.coverImg}
               alt=""
