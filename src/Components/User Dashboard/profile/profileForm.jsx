@@ -77,7 +77,7 @@ const ProfileForm = ({
     <>
       <div className="border border-[#f2f2f2] rounded bg-white w-full  flex flex-col p-5 mb-3 font-sans justify-between">
         {/* NAME */}
-        <div className=" flex items-center my-3 space-x-3 rtl:space-x-reverse md:space-x-4">
+        <div className=" flex items-center my-2 space-x-3 rtl:space-x-reverse md:space-x-4">
           <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
             Name
           </p>
@@ -93,11 +93,11 @@ const ProfileForm = ({
               }
             }}
             type="text"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2  focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
           />
         </div>
         {/* BIO */}
-        <div className=" rounded flex  items-center mb-3 space-x-3 rtl:space-x-reverse md:space-x-4">
+        <div className=" rounded flex  items-center mb-2 space-x-3 rtl:space-x-reverse md:space-x-4">
           <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
             Email
           </p>
@@ -107,11 +107,11 @@ const ProfileForm = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border !rounded focus:!border-accent !h-12"
             disabled
           />
         </div>
-        <div className="flex   items-center mb-3 space-x-3 rtl:space-x-reverse md:space-x-4">
+        <div className="flex   items-center mb-2 space-x-3 rtl:space-x-reverse md:space-x-4">
           <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
             Contact Number
           </p>
@@ -121,19 +121,19 @@ const ProfileForm = ({
             value={whatsapp}
             onChange={handleWhatsappChange}
             type="number"
-            className="focus:outline-none outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-3 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
           />
           {whatsappError && <p className="text-red-500">{whatsappError}</p>}
         </div>
       </div>
       {/* CHANGE PASSWORD */}
       <div className="border border-[#f2f2f2] rounded bg-white w-full  flex flex-col  p-5 mb-3 font-sans justify-between">
-        <div className="flex   items-center mb-3 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <div className="flex   items-center my-3 space-x-3 rtl:space-x-reverse md:space-x-4">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-2xl">
             Change Password
           </p>
         </div>
-        <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <p className="text-lg  mb-2 font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
           New Password
         </p>
         <div className="w-full my-2 ">
@@ -141,11 +141,11 @@ const ProfileForm = ({
             value={password}
             onChange={handlePasswordChange}
             type="password"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
           />
           {passwordError && <p className="text-red-500">{passwordError}</p>}
         </div>
-        <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <p className="text-lg font-serif mb-2 font-medium text-[#248F59] capitalize text-heading lg:text-xl">
           Confirm Password
         </p>
         <div className="w-full my-2 ">
@@ -153,15 +153,15 @@ const ProfileForm = ({
             value={Conpassword}
             onChange={(e) => setConPassword(e.target.value)}
             type="password"
-            className="focus:outline-none outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
           />
         </div>
       </div>
 
       {/* ADDRESS */}
-      <div className="border border-[#f2f2f2] rounded bg-white flex flex-col w-full p-3 mb-3  font-sans justify-between">
-        <div className="flex justify-between flex-row mb-3 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <div className="gap-2 flex flex-row">
+      <div className="border border-[#f2f2f2] rounded bg-white flex flex-col w-full p-5 mb-3  font-sans justify-between">
+        <div className="flex justify-between flex-row my-3 space-x-3 rtl:space-x-reverse md:space-x-4">
+          <div className="gap-2 mb-2 flex flex-row">
             <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
               Billing and Shipping Address
             </p>

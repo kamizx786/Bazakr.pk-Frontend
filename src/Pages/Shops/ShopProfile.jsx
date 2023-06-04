@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { BsShop } from "react-icons/bs";
+import { BsShop, BsFilterSquare } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductsGrid from "../../Components/ProductsGrid";
 import ShopSidebar from "../../Components/ShopSidebar";
+
 const shopProfile = () => {
   const [Single, setSingle] = useState({});
   const [products, setProducts] = useState([]);
@@ -17,6 +19,14 @@ const shopProfile = () => {
     });
     setSingle(updated[0]);
   };
+  const [isHidden, setIsHidden] = useState(true); // State to control visibility
+
+  // Function to toggle visibility
+  const toggleVisibility = () => {
+    setIsHidden(!isHidden);
+  };
+
+  const handleSearchInputChange = () => {};
   const LoadProducts = () => {
     const updated = product?.filter((p) => {
       return Single?._id === p?.store?._id;
@@ -44,6 +54,7 @@ const shopProfile = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return !Single || allShops === null ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
@@ -71,6 +82,54 @@ const shopProfile = () => {
             <div className=" h-[20.25rem] w-full overflow-hidden rounded">
               <img src={Single?.cover_pic?.url} width={2340} height={870} />
             </div>
+            {/* Filter By Bar */}
+            <div className="flex gap-3 items-center mt-3">
+              <p className="font-sans font-medium opacity-80">Filters: </p>
+            <div className="bg-white p-2 rounded border grid w-fit">
+              <button onClick={toggleVisibility}>
+                <BsFilterSquare color="green" size={25} />
+              </button>
+            </div>
+            </div>
+            
+
+            {isHidden ? null : (
+              <div className="mt-3 p-3 md:p-6 flex gap-3 border rounded border-[#f2f2f2] flex-col sm:flex-row items-center justify-between bg-white ">
+                {/* Highest to Lowest */}
+                <div className="flex px-2 py-2 flex-row gap-2 justify-center  items-center">
+                  <label className="font-sans font-medium mr-2 opacity-80">
+                    Filter by:
+                  </label>
+
+                  <select
+                    type="text"
+                    name="store"
+                    id="priceFilter"
+                    className="h-12 w-fit text-md bg-white border-gray-300 rounded-lg pl-3 pr-8 py-2  font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+                  >
+                    <option value="select">--Select--</option>
+                    <option value="lowest">Lowest to Highest</option>
+                    <option value="highest">Highest to Lowest</option>
+                  </select>
+                </div>
+
+                {/* Search */}
+                <div className="relative">
+                  <input
+                    onChange={handleSearchInputChange}
+                    type="search"
+                    placeholder="Type queries"
+                    className=" sm:py-3 h-12 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 w-full"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute top-0 right-0 px-3 sm:px-4 whitespace-pre-wrap  my-2 text-gray-400 outline-none focus:outline-none active:outline-none"
+                  >
+                    <BiSearch size={25} className="inline-block align-middle" />
+                  </button>
+                </div>
+              </div>
+            )}
             {/* {shop && ( */}
             <ProductsGrid
               products={products}
