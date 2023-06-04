@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import { UserOrders } from "../../../Pages/Checkout/functions";
 import { OrderTable } from "../../order/table";
 import { cancelOrder } from "./function";
+import { AllProducts } from "../../../Pages/Shops/functions";
 const OrderDetail = ({ singleOrder }) => {
   let GrandTotal = singleOrder?.Products?.reduce((acc, p) => {
     return acc + p?.Product?.salePrice * p.order_quantity;
@@ -29,6 +30,7 @@ const OrderDetail = ({ singleOrder }) => {
                   icon: "success",
                 });
                 UserOrders(dispatch);
+                AllProducts(dispatch);
               }
             })
             .catch((error) => {
