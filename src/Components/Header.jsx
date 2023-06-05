@@ -143,7 +143,7 @@ const Header = () => {
         {/* Account */}
 
         <div className="lg:hidden menu h-fit flex gap-4 items-center py-3 justify-evenly">
-          <div className="lg:hidden mt-1">
+          <div className="lg:hidden mt-1 mr-12">
             {!loggedIn || !loggedIn.token ? (
               <Link onClick={handleModal}>
                 <img
