@@ -115,7 +115,7 @@ const Shop = () => {
               There is no Shop in your Area
             </h3>
           ) : (
-            <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start font-normal text-heading">
+            <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start  text-heading">
               {shops?.length} shops found in {userLocation.mapAddress}
             </h3>
           )}
