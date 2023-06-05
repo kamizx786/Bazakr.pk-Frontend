@@ -166,12 +166,12 @@ const ProfileForm = ({
               Billing and Shipping Address
             </p>
           </div>
-          <p
+          {/* <p
             className="text-[#248F59] cursor-pointer font-normal py-2 px-4 "
             onClick={openModal}
           >
             + UPDATE
-          </p>
+          </p> */}
           {/* MODAL */}
           <AddressModal
             isOpen={isOpen}
