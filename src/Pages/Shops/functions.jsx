@@ -11,6 +11,18 @@ export const AllShops = async (dispatch) => {
       })
     }
   };
+  
+  export const AllCategories = async (dispatch) => {
+    const { data } = await axios.get("/category/AllCategories");
+    if(data.error){
+      toast.error(data.error);
+    }else{
+      dispatch({
+        type:"GET_CATEGORIES",
+        payload:data.category
+      })
+    }
+  };
   export const AllProducts = async (dispatch) => {
     const { data } = await axios.get("/allProducts");
     if(data.error){

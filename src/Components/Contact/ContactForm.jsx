@@ -74,10 +74,10 @@ const ContactForm = () => {
   };
   return (
     <form>
-      <div className="flex flex-col gap-2 ">
+      <div className="flex flex-col gap-3 ">
         {/* Field */}
-        <div className='"grid grid-cols-2 mb-2'>
-          <div className="flex flex-col mb-2">
+        <div className='"grid grid-cols-2'>
+          <div className="flex flex-col gap-1 mb-4">
             <h4 className="font-sans mb-2">Email</h4>
             <input
               type="text"
@@ -90,7 +90,7 @@ const ContactForm = () => {
             />
             {emailError && <p className="text-red-500">{emailError}</p>}
           </div>
-          <div className="flex flex-col mb-2">
+          <div className="flex flex-col gap-1 mb-2">
             <h4 className="font-sans mb-2">Name</h4>
             <input
               type="text"
@@ -132,7 +132,7 @@ const ContactForm = () => {
         {/* Button */}
         <button
           onClick={handleSubmit}
-          className="h-12 mt-5 text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold"
+          className="h-12 mt-5 text-[#f2f2f2] hover:text-white transition-transform hover:scale-95 bg-[#248F59] rounded-lg font-sans uppercase font-semibold"
         >
           {loading ? <LoadingOutlined /> : "Save"}
         </button>

@@ -12,16 +12,6 @@ export const siteSettings = {
         id:"2",
       to: "/my-orders",
       label: "My Orders",
-    },
-
-    {
-        id:"3",
-      to: "/my-wishlist",
-      label: "My Wishlist",
-    },
-
-   
-   
-    
+    }    
   ],
 };

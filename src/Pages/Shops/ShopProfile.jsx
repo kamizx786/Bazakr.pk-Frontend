@@ -144,15 +144,9 @@ const shopProfile = () => {
                   <input
                     onChange={handleSearchInputChange}
                     type="search"
-                    placeholder="Type queries"
+                    placeholder="Search Product"
                     className=" sm:py-3 h-12 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 w-full"
                   />
-                  <button
-                    type="submit"
-                    className="absolute top-0 right-0 px-3 sm:px-4 whitespace-pre-wrap  my-2 text-gray-400 outline-none focus:outline-none active:outline-none"
-                  >
-                    <BiSearch size={25} className="inline-block align-middle" />
-                  </button>
                 </div>
               </div>
             )}

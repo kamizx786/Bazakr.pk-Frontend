@@ -5,7 +5,7 @@ const Contact = () => {
     <div className="w-full bg-gray-50">
     <div className="mx-auto flex w-full max-w-7xl flex-col py-10 px-5 md:flex-row xl:py-14 xl:px-8 2xl:px-14">
       {/* sidebar */}
-      <div className="order-2 md:order-1 w-full shrink-0 bg-white p-5  md:w-72 lg:w-96">
+      <div className="border border-[#f2f2f2] rounded order-2 md:order-1 w-full shrink-0 bg-white p-5  md:w-72 lg:w-96">
         <div className="mb-8 flex w-full items-center justify-center overflow-hidden">
           <img
             src="https://res.cloudinary.com/die5mkbau/image/upload/v1682706349/contact-illustration.2f6adc05_qrno6i.svg"
@@ -80,8 +80,8 @@ const Contact = () => {
       </div>
 
       {/* Contact form */}
-      <div className="order-1 md:order-2 mb-8 w-full bg-white p-5 md:mb-0 md:p-8 md:ml-7 md:mr-7 lg:ml-9 lg:mr-9">
-        <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">
+      <div className="border border-[#f2f2f2]  rounded order-1 md:order-2 mb-8 w-full bg-white p-5 md:mb-0 md:p-8 md:ml-7 md:mr-7 lg:ml-9 lg:mr-9">
+        <h1 className="mb-7 font-body text-xl text-[#248f59] font-serif text-heading md:text-3xl">
         Questions, Comments, Or Concerns?
         </h1>
         <ContactForm />

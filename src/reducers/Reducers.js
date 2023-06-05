@@ -26,7 +26,7 @@ export const SiteReducer=(state=null,{type,payload})=>{
 }
 export const CategoryReducer=(state=null,{type,payload})=>{
    switch(type){
-      case "GET_CATEGORY":
+      case "GET_CATEGORIES":
       return payload;
       default:
       return state;

@@ -24,9 +24,8 @@ import Home from "./Pages/Home/Home";
 import ProductDetails from "./Pages/Products/ProductsDetail";
 import Shop from "./Pages/Shops/Shop";
 import ShopProfile from "./Pages/Shops/ShopProfile";
-import { AllProducts, AllShops } from "./Pages/Shops/functions";
+import { AllCategories, AllProducts, AllShops } from "./Pages/Shops/functions";
 import Reports from "./Pages/UserDashboard/Reports";
-import WishList from "./Pages/UserDashboard/Wishlist";
 import MyOrders from "./Pages/UserDashboard/orders";
 import Profile from "./Pages/UserDashboard/profile";
 import Order from "./Pages/order/order";
@@ -61,6 +60,7 @@ function App() {
     GetSettings(dispatch);
     AllShops(dispatch);
     AllProducts(dispatch);
+    AllCategories(dispatch);
   }, []);
   return (
     <React.Fragment>
@@ -81,7 +81,6 @@ function App() {
         <Route exact path="/my-orders" element={<MyOrders />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/my-reports" element={<Reports />} />
-        <Route exact path="/my-wishlist" element={<WishList />} />
         <Route exact path="/product/:slug" element={<ProductDetails />} />
         <Route exact path="/privacy-policy" element={<PrivacynPolicy />} />
         <Route exact path="/terms-n-codition" element={<TermsnCodition />} />
