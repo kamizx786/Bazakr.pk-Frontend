@@ -25,7 +25,10 @@ const ShopeSidebarCard = ({ shop }) => {
               className={`cursor-pointer text-muted focus:outline-none ltr:mr-6 rtl:ml-6 ltr:last:mr-0 rtl:last:ml-0 transition-colors duration-300`}
               rel="noreferrer"
             >
-              <AiFillFacebook size={25} className="opacity-60 hover:text-[#248f59]" />
+              <AiFillFacebook
+                size={25}
+                className="opacity-60 hover:text-[#248f59]"
+              />
             </Link>
             <a
               href={`https://${shop?.insta}`}
@@ -33,7 +36,10 @@ const ShopeSidebarCard = ({ shop }) => {
               className={`cursor-pointer text-muted focus:outline-none ltr:mr-6 rtl:ml-6 ltr:last:mr-0 rtl:last:ml-0 transition-colors duration-300`}
               rel="noreferrer"
             >
-              <AiOutlineInstagram size={27} className="opacity-60 hover:text-[#248f59]" />
+              <AiOutlineInstagram
+                size={27}
+                className="opacity-60 hover:text-[#248f59]"
+              />
             </a>
           </div>
         </div>

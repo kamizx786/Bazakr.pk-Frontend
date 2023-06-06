@@ -2,15 +2,15 @@ import { Modal } from "antd";
 import React, { useState } from "react";
 import ShopeSidebarCard from "./ShopeSidebarCard";
 const ShopSidebar = ({ shop }) => {
-const [open,setOpen]=useState(false);
-    const handleMoreInfoModal=()=>{
-        setOpen(true);
-    }
+  const [open, setOpen] = useState(false);
+  const handleMoreInfoModal = () => {
+    setOpen(true);
+  };
   return (
     <>
       <div
         className="flex items-center lg:hidden w-full bg-white 
-        border-b border-gray-300 py-4 px-6  top-[55px] z-10"
+        border-b border-gray-300 py-4 px-6  top-[55px]"
       >
         <div className="relative w-16 h-16 mx-auto overflow-hidden bg-gray-200 border border-gray-100 rounded-lg mr-4 ml-4 shrink-0">
           <img src={shop?.main_pic?.url} className="object-cover" />
