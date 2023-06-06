@@ -58,7 +58,7 @@ const Checkout = () => {
     if (!values.orderContact || whatsappError) {
       return toast.error("Please Add Valid Contact Number");
     }
-    if (!savedAddress || !values.order_address) {
+    if (!savedAddress && !values.order_address) {
       return toast.error("Please Add Your Address");
     }
     if (values.paymentType == "cod") {
