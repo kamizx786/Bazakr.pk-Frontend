@@ -17,6 +17,9 @@ const Checkout = () => {
   const [whatsappError, setWhatsappError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [values, setValues] = useState({
     Products: [
       {

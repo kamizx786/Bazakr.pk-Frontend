@@ -1,21 +1,23 @@
 import { useState } from "react";
 import SearchField from "./SearchField";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-const [values,setValues]=useState({});
-const dispatch=useDispatch();
-const navigate=useNavigate();
-const handleClick=()=>{
+  const [values, setValues] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
     dispatch({
-        type:"LOCATION",
-        payload:values
-    })
-    localStorage.setItem("location",JSON.stringify(values));
-    navigate("/shops")
+      type: "LOCATION",
+      payload: values,
+    });
+    localStorage.removeItem("cart");
+    dispatch({ type: "Cart", payload: [] });
+    localStorage.setItem("location", JSON.stringify(values));
+    navigate("/shops");
     setValues({});
-}
+  };
   return (
     <>
       {/* HERO SECTION */}
@@ -39,8 +41,11 @@ const handleClick=()=>{
           </div>
           <div className="flex flex-col">
             <SearchField values={values} setValues={setValues} />
-            <button disabled={Object.keys(values).length === 0}
-             onClick={handleClick} className="my-2 h-16 w-[18.4375rem] transition-transform hover:scale-95 cursor-pointer  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold">
+            <button
+              disabled={Object.keys(values).length === 0}
+              onClick={handleClick}
+              className="my-2 h-16 w-[18.4375rem] transition-transform hover:scale-95 cursor-pointer  md:w-[23.4375rem]  text-white bg-[#248F59] rounded-lg font-sans uppercase font-semibold"
+            >
               Find My Bazar
             </button>
           </div>

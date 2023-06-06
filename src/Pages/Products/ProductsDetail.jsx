@@ -9,7 +9,7 @@ import { handleCart } from "./function";
 import StarRatings from "react-star-ratings";
 const ProductDetails = ({ singleOrder, shop }) => {
   const [Single, setSingle] = useState({});
-  const { allShops, product } = useSelector((state) => ({ ...state }));
+  const { product, LocationShops } = useSelector((state) => ({ ...state }));
   const [averageRating, setAverageRating] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,23 +28,32 @@ const ProductDetails = ({ singleOrder, shop }) => {
     const updated = product?.filter((p) => {
       return params.slug === p.slug;
     });
-    setSingle(updated[0]);
+    const filter = LocationShops?.filter((s) => {
+      return s._id === updated[0]?.store?._id;
+    });
+    if (filter?.length > 0) {
+      setSingle(updated[0]);
+    }else{
+      const timeoutId = setTimeout(() => {
+        navigate("/shops");
+      }, 3000);
+      return () => clearTimeout(timeoutId);
+    }
   };
   useEffect(() => {
-    if (product && product.length) {
+    if (product?.length && LocationShops?.length) {
       LoadProuct();
     }
   }, [product, params]);
-
   useEffect(() => {
-    if (!Single) {
+    if (!Single || !LocationShops?.length) {
       const timeoutId = setTimeout(() => {
         navigate("/shops");
       }, 3000);
       return () => clearTimeout(timeoutId);
     }
   }, [Single]);
-  return !Single || product === null ? (
+  return Object.keys(Single).length===0 || product === null || LocationShops?.length < 1 ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
         <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
@@ -196,17 +205,17 @@ const ProductDetails = ({ singleOrder, shop }) => {
               </>
             ) : (
               <>
-              <StarRatings
-              rating={0}
-              starHoverColor="#248F59"
-              starRatedColor="#248F59"
-              numberOfStars={5}
-              name="rating"
-              starDimension="20px"
-              starSpacing="5px"
-            />
-            (0)
-            </>
+                <StarRatings
+                  rating={0}
+                  starHoverColor="#248F59"
+                  starRatedColor="#248F59"
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="20px"
+                  starSpacing="5px"
+                />
+                (0)
+              </>
             )}
           </div>
         </div>
@@ -225,17 +234,17 @@ const ProductDetails = ({ singleOrder, shop }) => {
                   />
                 </div>
                 <div className="text-sm flex-row flex mb-2 items-center gap-2 p-1 rounded-2xl sm:w-auto sm:pb-0">
-                <StarRatings
-                  rating={item.star}
-                  starHoverColor="#248F59"
-                  starRatedColor="#248F59"
-                  numberOfStars={5}
-                  name="rating"
-                  starDimension="20px"
-                  starSpacing="5px"
-                />
+                  <StarRatings
+                    rating={item.star}
+                    starHoverColor="#248F59"
+                    starRatedColor="#248F59"
+                    numberOfStars={5}
+                    name="rating"
+                    starDimension="20px"
+                    starSpacing="5px"
+                  />
                 </div>
-              
+
                 <div className="text-sm font-sans">{item.review}</div>
               </>
             ))}

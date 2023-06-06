@@ -17,7 +17,9 @@ const Order = () => {
   let GrandTotal = singleOrder?.Products?.reduce((acc, p) => {
     return acc + p?.Product.salePrice * p.order_quantity;
   }, 0);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const LoadOrder = () => {
     const updated = Orders?.filter((o) => {
       return params._id === o._id;
@@ -33,7 +35,7 @@ const Order = () => {
     if (!singleOrder || !loggedIn?.token) {
       const timeoutId = setTimeout(() => {
         navigate("/");
-      }, 3000);
+      }, 5000);
       return () => clearTimeout(timeoutId);
     }
   }, [singleOrder, loggedIn]);
