@@ -29,7 +29,6 @@ const ProductDetails = ({ singleOrder, shop }) => {
       return params.slug === p.slug;
     });
     setSingle(updated[0]);
-    console.log("Single", Single);
   };
   useEffect(() => {
     if (product && product.length) {

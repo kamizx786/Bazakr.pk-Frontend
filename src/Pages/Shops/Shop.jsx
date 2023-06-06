@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsShop, BsFilterSquare } from "react-icons/bs";
 import ShopCard from "../../Components/ShopCard";
 import ProductLoader from "../../Components/product-loader";
@@ -10,8 +10,9 @@ const Shop = () => {
     ...state,
   }));
   const [shops, setShops] = useState([]);
+  const [ok, setOk] = useState(true);
   const limit = 10;
-
+const dispatch=useDispatch()
   useEffect(() => {
     if (category) {
       setCategories(category);
@@ -70,6 +71,11 @@ const Shop = () => {
       return s.category._id === e.target.value;
     })
     filter && setShops(filter)
+    if(filter?.length<1){
+      setTimeout(()=>{
+      setOk(false)
+      },5000)
+    }
   };
 
 
@@ -77,7 +83,18 @@ const Shop = () => {
   useEffect(() => {
     const nearbyShops = getNearbyShops(allShops, userLocation);
     nearbyShops && setShops(nearbyShops);
+    nearbyShops && dispatch({
+      type:"Location_Shops",
+      payload:nearbyShops
+    })
+    nearbyShops&&localStorage.setItem("shops",JSON.stringify(nearbyShops));
+    if(nearbyShops?.length<1){
+      setTimeout(()=>{
+      setOk(false)
+      },4000)
+    }
   }, [allShops]);
+
 
   return (
     <>
@@ -110,24 +127,20 @@ const Shop = () => {
                 </select>
               </div>
             </div>
-          {shops?.length === 0 ? (
-            <h3 className="mb-8 text-3xl font-serif  flex justify-center font-normal text-heading">
-              There is no Shop in your Area
-            </h3>
-          ) : (
+          {shops?.length === 0 ? "" : (
             <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start  text-heading">
               {shops?.length} shops found in {userLocation.mapAddress}
             </h3>
           )}
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {shops?.length === 0 ? (
+            {shops?.length === 0 && ok ? (
               jsxRangeMap(limit, (i) => (
                 <ProductLoader key={i} uniqueKey={`product-${i}`} />
               ))
             ) : filteredShops.length === 0 ? (
               <h3 className="mb-8 text-xl flex justify-center text-[#00000080] font-medium font-sans text-heading">
-                No Search Result Found{" "}
+                No Shops Found{" "}
                 <span className="text-black pl-2">🙂</span>
               </h3>
             ) : (

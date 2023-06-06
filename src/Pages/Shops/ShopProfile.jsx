@@ -6,17 +6,18 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductsGrid from "../../Components/ProductsGrid";
 import ShopSidebar from "../../Components/ShopSidebar";
-
+import { toast } from "react-toastify";
 const shopProfile = () => {
   const [Single, setSingle] = useState({});
   const [products, setProducts] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [ok, setOk] = useState(true);
 
-  const { allShops, product } = useSelector((state) => ({ ...state }));
+  const { product, LocationShops } = useSelector((state) => ({ ...state }));
   const params = useParams();
   const navigate = useNavigate();
   const LoadShop = () => {
-    const updated = allShops?.filter((p) => {
+    const updated = LocationShops?.filter((p) => {
       return params.slug === p.slug;
     });
     setSingle(updated[0]);
@@ -45,48 +46,61 @@ const shopProfile = () => {
     }
   }, [Single, product]);
   useEffect(() => {
-    if (allShops && allShops.length) {
+    if (LocationShops && LocationShops.length) {
       LoadShop();
     }
-  }, [allShops, params]);
+  }, [LocationShops, params]);
   useEffect(() => {
     if (!Single) {
+      toast.error("Shop Doesn't Exist");
       const timeoutId = setTimeout(() => {
         navigate("/shops");
       }, 3000);
       return () => clearTimeout(timeoutId);
     }
-  }, [Single]);
+    if (LocationShops?.length < 1) {
+      const timeoutId = setTimeout(() => {
+        navigate("/");
+      }, 5000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [Single, LocationShops]);
 
-    const handlePriceFilter = (e) => {
-      const value = e.target.value;
-      let sortedProducts = [];
+  const handlePriceFilter = (e) => {
+    const value = e.target.value;
+    let sortedProducts = [];
 
-      if (value === "lowest") {
-        sortedProducts = product?.filter((p) => {
+    if (value === "lowest") {
+      sortedProducts = product
+        ?.filter((p) => {
           return Single?._id === p?.store?._id;
-        }).sort((a, b) => a.salePrice - b.salePrice);
-        setProducts(sortedProducts);
-      } else if (value === "highest") {
-        sortedProducts = product?.filter((p) => {
+        })
+        .sort((a, b) => a.salePrice - b.salePrice);
+      setProducts(sortedProducts);
+    } else if (value === "highest") {
+      sortedProducts = product
+        ?.filter((p) => {
           return Single?._id === p?.store?._id;
-        }).sort((a, b) => b.salePrice - a.salePrice);
-        setProducts(sortedProducts);
-      }else if(value ==="select"){
-        LoadProducts()
-      }
-    };
+        })
+        .sort((a, b) => b.salePrice - a.salePrice);
+      setProducts(sortedProducts);
+    } else if (value === "select") {
+      LoadProducts();
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  return !Single || allShops === null ? (
+  return !Single || LocationShops?.length < 1 ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
         <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
         <span className="mt-4 text-gray-500 font-sans text-lg font-semibold">
-          Loading...
+          {LocationShops?.length < 1
+            ? "No Shop and Location Fount Redirecting To Home Page.Please Add Location"
+            : "Loading..."}
         </span>
       </div>
     </div>
@@ -134,7 +148,9 @@ const shopProfile = () => {
                     className="h-12 cursor-pointer w-fit text-md bg-white border-gray-300 rounded-lg pl-3 pr-8 py-2  font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
                   >
                     <option value="select">--Select--</option>
-                    <option className="cursor-pointer" value="lowest">Lowest to Highest</option>
+                    <option className="cursor-pointer" value="lowest">
+                      Lowest to Highest
+                    </option>
                     <option value="highest">Highest to Lowest</option>
                   </select>
                 </div>
@@ -155,6 +171,8 @@ const shopProfile = () => {
               products={products}
               keyword={keyword}
               Searched={Searched}
+              ok={ok}
+              setOk={setOk}
               className="py-2 grid
                grid-cols-[repeat(auto-fill,minmax(260px,1fr))] 
                md:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3"

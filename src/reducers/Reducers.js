@@ -41,6 +41,22 @@ export const ShopsReducer=(state=null,{type,payload})=>{
       return state;
    }
 }
+let initialShops=[];
+if(localStorage.getItem("shops"))
+{
+   initialShops=JSON.parse(window.localStorage.getItem("shops"));
+}
+else{
+   initialShops=[];
+}
+export const LocationShopsReducer=(state=initialShops,{type,payload})=>{
+   switch(type){
+      case "Location_Shops":
+      return payload;
+      default:
+      return state;
+   }
+}
 export const ProductReducer=(state=null,{type,payload})=>{
    switch(type){
       case "GET_PRODUCTS":

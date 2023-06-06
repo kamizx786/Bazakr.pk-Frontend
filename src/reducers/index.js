@@ -10,7 +10,8 @@ import {
   SiteReducer,
   Location,
   cartDrawer,
-  OrderReducer
+  OrderReducer,
+  LocationShopsReducer
 } from "./Reducers";
 
 
@@ -25,7 +26,8 @@ const rootReducers = combineReducers({
   siteSetting:SiteReducer,
   userLocation:Location,
   CartDrawer:cartDrawer,
-  Orders:OrderReducer
+  Orders:OrderReducer,
+  LocationShops:LocationShopsReducer
 });
 
 export default rootReducers;
