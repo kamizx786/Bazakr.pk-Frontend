@@ -35,7 +35,7 @@ const Order = () => {
     if (!singleOrder || !loggedIn?.token) {
       const timeoutId = setTimeout(() => {
         navigate("/");
-      }, 5000);
+      }, 8000);
       return () => clearTimeout(timeoutId);
     }
   }, [singleOrder, loggedIn]);
