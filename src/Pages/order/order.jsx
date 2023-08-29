@@ -58,6 +58,7 @@ const Order = () => {
               <span className="text-[#248F59] font-sans">Back To Home</span>
             </div>
           </Link>
+
           <div className="flex flex-row gap-2 w-fit">
             <InvoicePDF singleOrder={singleOrder} GrandTotal={GrandTotal} />
           </div>
@@ -78,6 +79,7 @@ const Order = () => {
             {/* ORDER Table */}
             <OrderTable singleOrder={singleOrder} />
           </div>
+          <pre>{JSON.stringify(singleOrder, null, 2)}</pre>
         </div>
       </div>
     </>
