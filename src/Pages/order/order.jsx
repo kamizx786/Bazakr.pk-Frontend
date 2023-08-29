@@ -79,7 +79,6 @@ const Order = () => {
             {/* ORDER Table */}
             <OrderTable singleOrder={singleOrder} />
           </div>
-          <pre>{JSON.stringify(singleOrder, null, 2)}</pre>
         </div>
       </div>
     </>
