@@ -18,7 +18,7 @@ const Profile = () => {
   const dispatch=useDispatch();
   useEffect(() => {
     const storedAddress = JSON.parse(localStorage.getItem("location"));
-      setaddress(storedAddress.mapAddress);
+      setaddress(storedAddress?.mapAddress);
   }, [location]);
   useEffect(() => {
     if (loggedIn && loggedIn.token) {

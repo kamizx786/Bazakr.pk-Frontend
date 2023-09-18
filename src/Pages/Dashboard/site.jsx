@@ -1,17 +1,17 @@
 export const siteSettings = {
-  name: "PickBazar",
+  name: "Bazar.pk",
 
   dashboardSidebarMenu: [
     {
-        id:"1",
+      id: "1",
       to: "/profile",
       label: "Profile",
     },
 
     {
-        id:"2",
+      id: "2",
       to: "/my-orders",
       label: "My Orders",
-    }    
+    },
   ],
 };

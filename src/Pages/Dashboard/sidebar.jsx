@@ -1,8 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { siteSettings } from "./site";
 
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 const DashboardSidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const DashboardSidebar = () => {
               <li key={item.id}>
                 <Link
                   to={`${item.to}`}
-                  className="block font-sans  border-transparent py-2 px-10 font-semibold text-heading transition-colors hover:text-[#248f59] "
+                  className="block font-sans  border-transparent py-2 px-10 font-semibold transition-colors hover:text-[#248f59] "
                 >
                   {item.label}
                 </Link>
@@ -37,7 +37,7 @@ const DashboardSidebar = () => {
           <li className="block py-2 px-11  ">
             <button
               onClick={HandleLogout}
-              className="font-semibold font-sans text-heading hover:text-[#248f59] transition-colors"
+              className="font-semibold font-sans hover:text-[#248f59] transition-colors"
             >
               Logout
             </button>

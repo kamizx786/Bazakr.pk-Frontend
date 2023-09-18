@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { Drawer } from "antd";
+import React, { useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import DashboardSidebar from "./sidebar";
 import Logo from "../../Components/logo";
 import UserLayout from "./UserLayout";
+import DashboardSidebar from "./sidebar";
 const DashboardLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
 
