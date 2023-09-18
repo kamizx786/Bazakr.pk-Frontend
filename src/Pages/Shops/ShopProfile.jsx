@@ -4,8 +4,8 @@ import { BsShop, BsFilterSquare } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ProductsGrid from "../../Components/ProductsGrid";
-import ShopSidebar from "../../Components/ShopSidebar";
+import ProductsGrid from "../../Components/products/ProductsGrid";
+import ShopSidebar from "../../Components/shop/ShopSidebar";
 import { toast } from "react-toastify";
 const shopProfile = () => {
   const [Single, setSingle] = useState({});

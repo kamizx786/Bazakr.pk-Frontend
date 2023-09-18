@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Login from "../Pages/Auth/Login";
-import Register from "../Pages/Auth/Register";
+import Login from "../../Pages/Auth/Login";
+import Register from "../../Pages/Auth/Register";
+import CartSidebarView from "../cart/cart_sidebar_viewer";
 import AuthorizedMenu from "./authorizedMenu";
-import CartSidebarView from "./cart_sidebar_viewer";
 import Logo from "./logo";
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -71,18 +71,18 @@ const Header = () => {
 
         <div
           mode="horizontal"
-          className="menu h-fit md:hidden hidden lg:flex gap-4 flex-wrap items-center py-3  justify-evenly"
+          className="h-fit md:hidden hidden lg:flex gap-4 flex-wrap items-center py-3  justify-evenly"
         >
           <>
             <div>
               {/* Search */}
               <form onSubmit={handleclick}>
                 <input
-                  className=" border border-[#D9D9D9] font-sans  text-base outline-none focus:outline-none focus:ring-2 focus:ring-green-600 h-[3.4375rem] max-w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
-                  type="search"
+                  type="text"
+                  className=" border focus:border-none  border-[#D9D9D9] font-sans  text-base outline-none focus:outline-none focus:ring-2 focus:ring-green-600 h-[3.4375rem] max-w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
                   onChange={(e) => handlechange(e.target.value)}
                   value={text}
-                  placeholder="Search..."
+                  placeholder="Search Shop..."
                   autoComplete="off"
                 />
               </form>
@@ -112,7 +112,7 @@ const Header = () => {
               <img
                 className="w-8 transition-transform hover:scale-95"
                 src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
-                alt=""
+                alt="logo"
               />
             </Badge>
           </div>
@@ -142,7 +142,7 @@ const Header = () => {
         </div>
         {/* Account */}
 
-        <div className="lg:hidden menu h-fit flex gap-4 items-center py-3 justify-evenly">
+        <div className="lg:hidden h-fit flex gap-4 items-center py-3 justify-evenly">
           <div className="lg:hidden mt-1 mr-12">
             {!loggedIn || !loggedIn.token ? (
               <Link onClick={handleModal}>
@@ -156,6 +156,7 @@ const Header = () => {
               <AuthorizedMenu />
             )}
           </div>
+          {/* FOR SMALL SCREEN */}
           <Button onClick={showDrawer} className="pb-2">
             <Bars3Icon className="h-8 pb-2 text-[#248F59]" />
           </Button>

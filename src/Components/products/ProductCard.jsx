@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import Card from "../Pages/Products/Card";
+import Card from "../../Pages/Products/Card";
 const ProductCard = ({ product }) => {
   const [open, setOpen] = useState(false);
   const handleModal = () => {
@@ -38,28 +38,7 @@ const ProductCard = ({ product }) => {
         {/* End of product image */}
         <Link to={`/product/${product.slug}`}>
           <header className="p-1 md:p-6">
-            {/* {product_type.toLowerCase() === 'variable' ? (
-        <div className="mb-2">
-          <span className="text-sm font-semibold text-heading md:text-base">
-            {minPrice}
-          </span>
-          <span> - </span>
-          <span className="text-sm font-semibold text-heading md:text-base">
-            {maxPrice}
-          </span>
-        </div>
-      ) : (
-        <div className="mb-2 flex items-center">
-          <span className="text-sm font-semibold text-heading md:text-base">
-            {price}
-          </span>
-          {basePrice && (
-            <del className="text-xs text-body ltr:ml-2 rtl:mr-2 md:text-sm">
-              {basePrice}
-            </del>
-          )}
-        </div>
-      )} */}
+            
             {/* End of product price */}
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-serif font-normal w-contain truncate">

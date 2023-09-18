@@ -21,17 +21,19 @@ const PaymentMethod = ({ values, setValues }) => {
           Choose a Payment Method
         </h2>
         <div className="my-4 flex flex-row gap-2">
+          {/* STRIPE */}
           <div
             className={`bg-white flex justify-center items-center p-3 h-fit w-full cursor-pointer shadow rounded  ${
-              values.paymentType === "stripe" ? "border-green-500 border-2" : ""
+              values.paymentType === "stripe" ? "border-[#248F59] border-2" : ""
             }`}
             onClick={handleStripeSelect}
           >
             <FaStripe color="blue" size={50} />
           </div>
+          {/* CASH ON DELIEVERY */}
           <div
             className={`bg-white flex justify-center items-center text-center font-medium p-3  w-full cursor-pointer shadow rounded ${
-              values.paymentType === "cod" ? "border-green-500 border-2" : ""
+              values.paymentType === "cod" ? "border-[#248F59] border-2" : ""
             }`}
             onClick={handleCODSelect}
           >
@@ -41,12 +43,14 @@ const PaymentMethod = ({ values, setValues }) => {
 
         <div>
           {values.paymentType === "stripe" && (
-            <p className="text">
-              Please click Place order to make order and payment
+            <p className="font-sans">
+              Please click place order to make order and payment.
             </p>
           )}
           {values.paymentType === "cod" && (
-            <p>Please Pay After You Receive Your Goods!</p>
+            <p className="font-sans">
+              Please pay after you receive your goods!
+            </p>
           )}
         </div>
       </div>

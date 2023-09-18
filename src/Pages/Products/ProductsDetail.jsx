@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineLoading3Quarters, AiTwotoneShop } from "react-icons/ai";
-import { FaStar } from "react-icons/fa";
-import { FaCheckCircle } from "react-icons/fa";
+import { AiTwotoneShop } from "react-icons/ai";
+import { FaCheckCircle, FaSpinner } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ProductDetailsSlider from "../../Components/ProductDetailsSlider";
-import { handleCart } from "./function";
 import StarRatings from "react-star-ratings";
+import ProductDetailsSlider from "../../Components/products/ProductDetailsSlider";
+import { handleCart } from "./function";
 const ProductDetails = ({ singleOrder, shop }) => {
   const [Single, setSingle] = useState({});
   const { product, LocationShops } = useSelector((state) => ({ ...state }));
   const [averageRating, setAverageRating] = useState(0);
-   // Calculate the average rating
+  // Calculate the average rating
   useEffect(() => {
     const ratings = Single?.rating || [];
     const sum = ratings.reduce((total, r) => total + r?.star, 0);
@@ -30,7 +29,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
     });
     if (filter?.length > 0) {
       setSingle(updated[0]);
-    }else{
+    } else {
       const timeoutId = setTimeout(() => {
         navigate("/shops");
       }, 3000);
@@ -50,18 +49,20 @@ const ProductDetails = ({ singleOrder, shop }) => {
       return () => clearTimeout(timeoutId);
     }
   }, [Single]);
-  return Object.keys(Single).length===0 || product === null || LocationShops?.length < 1 ? (
+  return Object.keys(Single).length === 0 ||
+    product === null ||
+    LocationShops?.length < 1 ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">
-        <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 text-lg font-semibold">
+        <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+        <span className="mt-4 font-sans text-gray-500 text-lg font-semibold">
           Loading...
         </span>
       </div>
     </div>
   ) : (
     <article className="rounded-lg bg-white">
-      <div className="flex flex-col border-b border-border-200 border-opacity-70 md:flex-row">
+      <div className="flex flex-col border-b border-opacity-70 md:flex-row">
         <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
           <div className=" flex items-center justify-between lg:mb-10">
             <Link to={`/shop/${Single?.store?.slug}`}>
@@ -71,37 +72,23 @@ const ProductDetails = ({ singleOrder, shop }) => {
               </div>
             </Link>
           </div>
-
+          {/* IAMGES SLIDER */}
           <div className="product-gallery h-full">
             <ProductDetailsSlider gallery={Single?.gallery_pics} />
           </div>
         </div>
-
+        {/* NAME AND DESCRIPTION */}
         <div className="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
           <div className="w-full">
             <div className="flex w-full items-start justify-between space-x-8 space-x-reverse">
               <h1 className="text-lg font-normal font-serif tracking-tight text-heading md:text-2xl xl:text-3xl">
                 {Single?.name}
               </h1>
-
-              <span>
-                {/* <FavoriteButton
-                productId={id}
-                className={classNames({ 'mr-1': isModal })}
-              /> */}
-              </span>
             </div>
             <div className="mt-2 flex items-center justify-between">
               <span className="block text-sm font-normal text-body">
                 {Single?.unit}
               </span>
-
-              {/* {isModal && (
-              <div className="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
-                {ratings}
-                <StarIcon className="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1" />
-              </div>
-            )} */}
             </div>
 
             {Single.discription && (
@@ -115,13 +102,8 @@ const ProductDetails = ({ singleOrder, shop }) => {
                 {Single?.salePrice}/
                 <span className="text-lg font-semibold">Rs</span>
               </ins>
-              {/* {basePrice && (
-                <del className="text-sm font-normal text-muted ltr:ml-2 rtl:mr-2 md:text-base">
-                  {basePrice}
-                </del>
-              )} */}
             </span>
-
+            {/* ADD TO CART */}
             <div className="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
               {Single.quantity > 0 ? (
                 <>
@@ -145,15 +127,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
               )}
             </div>
           </div>
-
-          {/* {!!categories?.length && (
-          <CategoryBadges
-            categories={categories}
-            basePath={`/${type?.slug}`}
-            onClose={closeModal}
-          />
-        )} */}
-
+                {/* CATEGORY AND SELLER DETAILS */}
           {Single?.category && (
             <div className="mt-2 flex items-center">
               <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">
@@ -180,7 +154,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
           )}
         </div>
       </div>
-
+            {/* REVIEW AND RATING */}
       <div className="flex flex-col border-y-2 border-[#f2f2f2] border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
         <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
           Rating and Review of <span> {Single?.name}</span>

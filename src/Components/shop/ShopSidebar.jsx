@@ -8,6 +8,7 @@ const ShopSidebar = ({ shop }) => {
   };
   return (
     <>
+        {/* SHOP SIDE BAR */}
       <div
         className="flex items-center lg:hidden w-full bg-white 
         border-b border-gray-300 py-4 px-6  top-[55px]"
@@ -17,24 +18,25 @@ const ShopSidebar = ({ shop }) => {
         </div>
 
         <div className="w-full p-5 font-sans">
-          <h3 className="text-base font-semibold text-heading">
+          <h3 className="text-base font-sans font-semibold ">
             {shop?.Storename}
           </h3>
-
+            {/* FOR SMALL SCREEN */}
           <button
-            className="text-sm font-semibold transition text-[#248F59] hover:text-accent-hover"
+            className="text-sm font-semibold font-sans transition text-[#248F59] "
             onClick={handleMoreInfoModal}
           >
             More info
           </button>
         </div>
       </div>
-
+      
       <aside className="bg-white md:rounded h-full w-full lg:w-80 2xl:w-96 hidden lg:block">
         <div className="max-h-full overflow-hidden">
           <ShopeSidebarCard shop={shop} />
         </div>
       </aside>
+      {/* FOR SMALL SCREEN */}
       <Modal open={open} footer={null} onCancel={() => setOpen(false)}>
         <div className="h-full w-full overflow-hidden">
           <ShopeSidebarCard shop={shop} />

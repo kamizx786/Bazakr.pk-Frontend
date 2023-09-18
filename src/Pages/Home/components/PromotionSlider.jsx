@@ -1,8 +1,8 @@
-import {ChevronLeftIcon,ChevronRightIcon} from "@heroicons/react/24/solid";
-import {Swiper,SwiperSlide} from "swiper/react"
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 import Sliders from "./Sliders";
 const offerSliderBreakpoints = {
   320: {
@@ -23,23 +23,22 @@ const offerSliderBreakpoints = {
   },
 };
 
-const PromotionSlider=()=>{
+const PromotionSlider = () => {
   return (
-    <div className="px-6 py-5 border-t md:p-8 border-border-200 bg-light">
+    <div className="px-6 py-5 md:p-8">
       <div className="relative">
         <Swiper
           id="offer"
           breakpoints={offerSliderBreakpoints}
           modules={[Navigation]}
           navigation={{
-            nextEl: '.next',
-            prevEl: '.prev',
+            nextEl: ".next",
+            prevEl: ".prev",
           }}
         >
           {Sliders?.map((d) => (
             <SwiperSlide key={d.id}>
               <img
-              
                 className="w-full h-auto"
                 src={d.image}
                 width="580"
@@ -49,19 +48,20 @@ const PromotionSlider=()=>{
           ))}
         </Swiper>
         <div
-          className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 transition-all duration-200 
-          border rounded-full shadow-xl cursor-pointer prev top-2/4
-           -left-4 -right-4 md:-left-5 md:-right-5 md:-mt-5 md:w-9 md:h-9 
-           bg-light border-border-200 border-opacity-70 text-heading 
-           hover:bg-accent hover:text-light hover:border-accent"
-          role="button">
+          className="absolute z-10 flex items-center justify-center w-8 h-8
+          -mt-4 transition-all duration-200 -left-4 -right-4 top-2/4
+          border rounded-full shadow-xl cursor-pointer md:-mt-5 md:w-9 md:h-9
+          md:-left-5 md:-right-5  bg-white border-opacity-70" 
+          role="button"
+        >
           <span className="sr-only">Prev</span>
           <ChevronLeftIcon width={18} height={18} />
         </div>
         <div
-          className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 transition-all duration-200 border rounded-full shadow-xl cursor-pointer next top-2/4
-          -right-4  md:-right-5 md:-mt-5 md:w-9 md:h-9 
-            bg-light border-border-200 border-opacity-70 text-heading hover:bg-accent hover:text-light hover:border-accent"
+          className="absolute z-10 flex items-center justify-center w-8 h-8 
+          -mt-4 transition-all duration-200 border rounded-full shadow-xl 
+          cursor-pointer top-2/4 md:-mt-5 md:w-9 md:h-9 -right-4 md:-right-5 
+          border-opacity-70 bg-white"
           role="button"
         >
           <span className="sr-only">Next</span>
@@ -70,5 +70,5 @@ const PromotionSlider=()=>{
       </div>
     </div>
   );
-}
+};
 export default PromotionSlider;

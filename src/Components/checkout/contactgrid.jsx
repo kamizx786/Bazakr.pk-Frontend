@@ -32,7 +32,7 @@ const ContactGrid = ({
   return (
     <>
       <div className="bg-white flex flex-col rounded border p-4 mb-5 font-sans justify-between">
-        <div className="flex items-center mb-5 space-x-3 rtl:space-x-reverse md:space-x-4">
+        <div className="flex items-center mb-5 gap-2">
           <Bs1CircleFill color="#248F59" size={25} />
           <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
             Contact Number
@@ -40,10 +40,9 @@ const ContactGrid = ({
         </div>
         <div className="w-full">
           <input
-            type="number"
-            className=" focus:outline-none border-[#D9D9D9] focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border !rounded focus:!border-accent"
             value={values.orderContact}
             onChange={handleInputChange}
+            className=" focus:outline-none focus:ring-2 focus:ring-green-600 font-sans  p-3 flex items-center w-full appearance-none transition duration-300 ease-in-out  border rounded"
           />
           {whatsappError && (
             <p className="text-red-500 mt-2">{whatsappError}</p>

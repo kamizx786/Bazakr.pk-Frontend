@@ -12,7 +12,7 @@ const NoCartItem = () => {
         </div>
       </div>
       <Link to="/shops">
-        <button className="w-full text-[#f2f2f2] rounded-md text-lg hover:text-white mt-8 font-semibold h-[50px] bg-[#248F59] transition-transform hover:scale-95">
+        <button className="w-full font-sans text-[#f2f2f2] rounded-md text-lg hover:text-white mt-8 font-semibold h-[50px] bg-[#248F59] transition-transform hover:scale-95">
           Go to Shop
         </button>
       </Link>

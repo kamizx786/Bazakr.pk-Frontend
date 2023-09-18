@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ProductDetailsSlider from "../../Components/ProductDetailsSlider";
+import ProductDetailsSlider from "../../Components/products/ProductDetailsSlider";
 import { handleCart } from "./function";
-const Card = ({ ModalProduct, setOpen, singleOrder }) => {
+const Card = ({ ModalProduct, setOpen}) => {
   const [Single] = useState(ModalProduct);
 
   const dispatch = useDispatch();
@@ -11,11 +11,11 @@ const Card = ({ ModalProduct, setOpen, singleOrder }) => {
     <article className="rounded-lg bg-white">
       <div className="flex flex-col border-opacity-70 md:flex-row">
         <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
-          <div className="product-gallery h-full">
+          <div className=" h-full">
             <ProductDetailsSlider gallery={Single?.gallery_pics} />
           </div>
         </div>
-
+        {/* NAME AND DETAILS */}
         <div className="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
           <div className="w-full">
             <div className="flex w-full items-start justify-between space-x-8 space-x-reverse">
@@ -41,7 +41,7 @@ const Card = ({ ModalProduct, setOpen, singleOrder }) => {
                 <span className="text-lg font-semibold">Rs</span>
               </ins>
             </span>
-
+              {/* ADD TO CART */}
             <div className="mt-6 flex flex-col font-sans items-center md:mt-6 lg:flex-row">
               {Single.quantity > 0 ? (
                 <>
@@ -59,13 +59,13 @@ const Card = ({ ModalProduct, setOpen, singleOrder }) => {
                   </div>
                 </>
               ) : (
-                <div className="whitespace-nowrap text-base text-red-500 lg:ml-7 lg:mr-7">
+                <div className="whitespace-nowrap font-sans text-base text-red-500 lg:ml-7 lg:mr-7">
                   Out of Stock
                 </div>
               )}
             </div>
           </div>
-
+          {/* CATEGORY AND SELLER DETAIL */}
           {Single?.category && (
             <div className="mt-2 flex font-sans items-center">
               <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">

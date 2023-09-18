@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductLoader from "./product-loader";
-import jsxRangeMap from "./range-map";
+import jsxRangeMap from "../range-map";
 const ProductsGrid = ({ products , keyword,
   Searched, ok,setOk}) => {
   const [product, setProducts] = useState([]);

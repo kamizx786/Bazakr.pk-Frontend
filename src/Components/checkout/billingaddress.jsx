@@ -1,29 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Bs2CircleFill } from "react-icons/bs";
 const BillingAddress = ({ values, setValues }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  // const [country, setCountry] = useState("");
-  // const [city, setCity] = useState("");
-  // const [street, setStreet] = useState("");
-  // const [zipCode, setZipCode] = useState("");
-
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   const address = `${country}, ${city}, ${street}, ${zipCode}`;
-  //   setSavedAddress(address);
-  //   localStorage.setItem("billingAddress", address);
-
-  //   closeModal();
-  // };
+  
 
   return (
     <>
@@ -35,26 +13,9 @@ const BillingAddress = ({ values, setValues }) => {
               Billing and Shipping Address
             </p>
           </div>
-          {/* <p
-            className="text-[#248F59] cursor-pointer font-normal py-2 px-4 "
-            onClick={openModal}
-          >
-            + ADD
-          </p> */}
+          
 
-          {/* <AddressModal
-            isOpen={isOpen}
-            closeModal={closeModal}
-            handleSubmit={handleSubmit}
-            country={country}
-            setCountry={setCountry}
-            city={city}
-            setCity={setCity}
-            street={street}
-            setStreet={setStreet}
-            zipCode={zipCode}
-            setZipCode={setZipCode}
-          /> */}
+          
         </div>
 
         {/* SHOW ADDRESS */}
@@ -66,7 +27,7 @@ const BillingAddress = ({ values, setValues }) => {
               order_address: e.target.value,
             }))
           }
-          className=" focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm !border !border-border-base !rounded focus:!border-accent"
+          className=" focus:outline-none focus:ring-2 focus:ring-green-600 font-sans  p-3 flex items-center w-full appearance-none transition duration-300 ease-in-out text-sm border rounded"
         />
       </div>
     </>

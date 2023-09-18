@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import DashboardLayout from "../Dashboard/dashboardlayout";
-import OrderCard from "../../Components/User Dashboard/my-orders/ordercard";
-import OrderDetail from "../../Components/User Dashboard/my-orders/orderDetail";
 import { useSelector } from "react-redux";
+import OrderDetail from "../../Components/User Dashboard/my-orders/orderDetail";
+import OrderCard from "../../Components/User Dashboard/my-orders/ordercard";
+import DashboardLayout from "../Dashboard/dashboardlayout";
 const MyOrders = () => {
   const { Orders } = useSelector((state) => ({ ...state }));
   const [order, setOrder] = useState([]);
@@ -16,12 +16,14 @@ const MyOrders = () => {
       setSingleOrder(filter[0]);
     }
   }, [Orders]);
+
   const handleDetail = (_id) => {
     const updated = Orders?.filter((o) => {
       return o._id === _id;
     });
     setSingleOrder(updated[0]);
   };
+  
   return (
     <DashboardLayout className="flex w-full max-w-[1920] flex-col items-start bg-gray-100  lg:flex-row">
       <div className="flex  flex-col lg:flex-row my-2 w-full items-center">

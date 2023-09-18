@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+import Footer from "./Components/footer/Footer";
+import Header from "./Components/header/Header";
+import ScrollToTop from "./Helper/ScrollToTop";
 import NotFound from "./Pages/404";
 import ForgotPassword from "./Pages/Auth/ForgotPassword";
 import RegisterComplete from "./Pages/Auth/registerComplete";
@@ -15,7 +16,7 @@ import Cancel from "./Pages/Checkout/Cancel";
 import Success from "./Pages/Checkout/Success";
 import Checkout from "./Pages/Checkout/checkout";
 import { UserOrders } from "./Pages/Checkout/functions";
-import Contact from "./Pages/Contact";
+import Contact from "./Pages/Contact/Contact";
 import PrivacynPolicy from "./Pages/FooterPages/privacynpolicy";
 import RefundPolicy from "./Pages/FooterPages/refund";
 import Security from "./Pages/FooterPages/security";
@@ -25,13 +26,11 @@ import ProductDetails from "./Pages/Products/ProductsDetail";
 import Shop from "./Pages/Shops/Shop";
 import ShopProfile from "./Pages/Shops/ShopProfile";
 import { AllCategories, AllProducts, AllShops } from "./Pages/Shops/functions";
-import Reports from "./Pages/UserDashboard/Reports";
 import MyOrders from "./Pages/UserDashboard/orders";
 import Profile from "./Pages/UserDashboard/profile";
 import Order from "./Pages/order/order";
 import { GetSettings } from "./Pages/site/functions";
 import "./index.css";
-import ScrollToTop from "./Helper/ScrollToTop";
 function App() {
   const { loggedIn } = useSelector((state) => ({ ...state }));
   //Default setting
@@ -82,7 +81,6 @@ function App() {
         <Route exact path="/order/:_id" element={<Order />} />
         <Route exact path="/my-orders" element={<MyOrders />} />
         <Route exact path="/profile" element={<Profile />} />
-        <Route exact path="/my-reports" element={<Reports />} />
         <Route exact path="/product/:slug" element={<ProductDetails />} />
         <Route exact path="/privacy-policy" element={<PrivacynPolicy />} />
         <Route exact path="/terms-n-codition" element={<TermsnCodition />} />

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { BsFilterSquare, BsShop } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { BsShop, BsFilterSquare } from "react-icons/bs";
-import ShopCard from "../../Components/ShopCard";
-import ProductLoader from "../../Components/product-loader";
+import ShopCard from "../../Components/shop/ShopCard";
+import ProductLoader from "../../Components/products/product-loader";
 import jsxRangeMap from "../../Components/range-map";
 const Shop = () => {
   const [categories, setCategories] = useState([]);

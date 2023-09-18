@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Headings, ReportData,  } from "./reportData";
+import React from "react";
+import { Headings, } from "./reportData";
 
 export const ReportTable = () => {
 
