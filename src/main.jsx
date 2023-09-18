@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import axios from "axios";
-import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
 import "./index.css";

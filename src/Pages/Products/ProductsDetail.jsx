@@ -11,10 +11,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
   const [Single, setSingle] = useState({});
   const { product, LocationShops } = useSelector((state) => ({ ...state }));
   const [averageRating, setAverageRating] = useState(0);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  // Calculate the average rating
+   // Calculate the average rating
   useEffect(() => {
     const ratings = Single?.rating || [];
     const sum = ratings.reduce((total, r) => total + r?.star, 0);

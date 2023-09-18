@@ -89,10 +89,6 @@ const shopProfile = () => {
     }
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return !Single || LocationShops?.length < 1 ? (
     <div className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center">

@@ -1,8 +1,5 @@
-import {useEffect} from "react";
 const PrivacynPolicy = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  
   return (
     <>
       <div class="container mx-auto py-8">
@@ -124,7 +121,7 @@ const PrivacynPolicy = () => {
           encourage you to review this policy periodically for any updates.
         </p>
 
-        <p class="text-gray-500 text-right font-sans">Last updated: [25/5/3]</p>
+        <p class="text-gray-500 text-sm text-right font-sans">Last updated: [10/9/23]</p>
       </div>
     </>
   );

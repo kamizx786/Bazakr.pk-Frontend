@@ -1,8 +1,5 @@
-import {useEffect} from "react";
 const TermsnCodition = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
   return (
     <>
       <div class="container mx-auto py-8">
@@ -68,8 +65,8 @@ const TermsnCodition = () => {
           conditions, please contact us.
         </p>
 
-        <p class="text-gray-500 text-right font-sans">
-          Last updated: [25/5/23]
+        <p class="text-gray-500 text-sm text-right font-sans">
+          Last updated: [10/9/23]
         </p>
       </div>
     </>

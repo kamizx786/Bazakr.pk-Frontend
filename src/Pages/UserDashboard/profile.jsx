@@ -1,11 +1,11 @@
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "../Dashboard/dashboardlayout";
 import ProfileForm from "../../Components/User Dashboard/profile/profileForm";
-import { useSelector,useDispatch } from "react-redux";
-import {toast} from "react-toastify"
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { UpdateProfile } from "../Auth/auth";
 const Profile = () => {
-  const {loggedIn}=useSelector((state)=>({...state}));
+  const { loggedIn } = useSelector((state) => ({ ...state }));
   const [address, setaddress] = useState("");
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -15,10 +15,10 @@ const Profile = () => {
   const [loading, setloading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [whatsappError, setWhatsappError] = useState("");
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     const storedAddress = JSON.parse(localStorage.getItem("location"));
-      setaddress(storedAddress?.mapAddress);
+    setaddress(storedAddress?.mapAddress);
   }, [location]);
   useEffect(() => {
     if (loggedIn && loggedIn.token) {
@@ -33,7 +33,7 @@ const Profile = () => {
       if (!name) {
         return toast.error("Please Enter Your Name");
       }
-      if (password&&passwordError) {
+      if (password && passwordError) {
         return toast.error("Please Enter valid Password");
       }
       if (whatsappError) {
@@ -54,12 +54,12 @@ const Profile = () => {
           window.localStorage.setItem("auth", JSON.stringify(auth));
           //update in state
           dispatch({
-            type:"LOGGED_IN_USER",
-            payload:{
+            type: "LOGGED_IN_USER",
+            payload: {
               ...loggedIn,
-              user:auth.user,
-            }
-          })
+              user: auth.user,
+            },
+          });
           setloading(false);
           toast.success("User Updated");
         }
@@ -72,26 +72,26 @@ const Profile = () => {
   return (
     <DashboardLayout className="flex w-full max-w-[1920] flex-col items-start bg-gray-100  lg:flex-row xl:py-14 xl:px-8 2xl:px-14">
       <div className="flex flex-col my-2 w-full items-center justify-center">
-        <ProfileForm 
-        address={address}
-        name={name}
-        email={email}
-        whatsapp={whatsapp}
-        loading={loading}
-        password={password}
-        Conpassword={Conpassword}
-        setName={setName}
-        setEmail={setEmail}
-        setWhatsapp={setWhatsapp}
-        setloading={setloading}
-        setPassword={setPassword}
-        setConPassword={setConPassword}
-        setaddress={setaddress}
-        handleSubmit={handleSubmit}
-        passwordError={passwordError}
-        whatsappError={whatsappError}
-        setPasswordError={setPasswordError}
-        setWhatsappError={setWhatsappError}
+        <ProfileForm
+          address={address}
+          name={name}
+          email={email}
+          whatsapp={whatsapp}
+          loading={loading}
+          password={password}
+          Conpassword={Conpassword}
+          setName={setName}
+          setEmail={setEmail}
+          setWhatsapp={setWhatsapp}
+          setloading={setloading}
+          setPassword={setPassword}
+          setConPassword={setConPassword}
+          setaddress={setaddress}
+          handleSubmit={handleSubmit}
+          passwordError={passwordError}
+          whatsappError={whatsappError}
+          setPasswordError={setPasswordError}
+          setWhatsappError={setWhatsappError}
         />
       </div>
     </DashboardLayout>

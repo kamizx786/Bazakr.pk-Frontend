@@ -1,8 +1,5 @@
-import {useEffect} from "react";
 const Security = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+ 
   return (
     <>
       <div class="container mx-auto py-8">
@@ -63,12 +60,12 @@ const Security = () => {
           the security of our platform, please contact us immediately.
         </p>
 
-        <p class="text-gray-500 font-sans text-right">
-          Last updated: [25/5/23]
+        <p class="text-gray-500 text-sm font-sans text-right">
+          Last updated: [10/9/23]
         </p>
       </div>
     </>
   );
 };
 
-export default  Security;
+export default Security;

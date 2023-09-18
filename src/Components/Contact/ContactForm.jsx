@@ -42,16 +42,14 @@ const ContactForm = () => {
       setLoading(false);
       return;
     }
-    if (
-     emailError
-    ) {
+    if (emailError) {
       toast.error("Please Add Valid Email");
       setLoading(false);
       return;
     }
     try {
       setLoading(true);
-     SendMessage(values).then((res) => {
+      SendMessage(values).then((res) => {
         if (res.error) {
           toast.error(res.error);
           setLoading(false);

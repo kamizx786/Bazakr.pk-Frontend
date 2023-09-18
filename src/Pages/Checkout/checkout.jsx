@@ -10,6 +10,7 @@ import RightSideView from "../../Components/checkout/rightside/rightside";
 import { AllProducts } from "../../Pages/Shops/functions";
 import UserLayout from "../Dashboard/UserLayout";
 import { CreateOrder, StripeOrder, UserOrders } from "./functions";
+
 const Checkout = () => {
   const { cart } = useSelector((state) => ({ ...state }));
   const [savedAddress, setSavedAddress] = useState("");
@@ -17,9 +18,6 @@ const Checkout = () => {
   const [whatsappError, setWhatsappError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const [values, setValues] = useState({
     Products: [
       {

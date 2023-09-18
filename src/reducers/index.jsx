@@ -11,23 +11,22 @@ import {
   Location,
   cartDrawer,
   OrderReducer,
-  LocationShopsReducer
+  LocationShopsReducer,
 } from "./Reducers";
-
 
 const rootReducers = combineReducers({
   loggedIn: userReducer,
   category: CategoryReducer,
-  allShops:ShopsReducer,
+  allShops: ShopsReducer,
   product: ProductReducer,
   search: SearchReducer,
   cart: AddtoCart,
   LoginModal: LoginModal,
-  siteSetting:SiteReducer,
-  userLocation:Location,
-  CartDrawer:cartDrawer,
-  Orders:OrderReducer,
-  LocationShops:LocationShopsReducer
+  siteSetting: SiteReducer,
+  userLocation: Location,
+  CartDrawer: cartDrawer,
+  Orders: OrderReducer,
+  LocationShops: LocationShopsReducer,
 });
 
 export default rootReducers;

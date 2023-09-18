@@ -31,6 +31,7 @@ import Profile from "./Pages/UserDashboard/profile";
 import Order from "./Pages/order/order";
 import { GetSettings } from "./Pages/site/functions";
 import "./index.css";
+import ScrollToTop from "./Helper/ScrollToTop";
 function App() {
   const { loggedIn } = useSelector((state) => ({ ...state }));
   //Default setting
@@ -64,6 +65,7 @@ function App() {
   }, []);
   return (
     <React.Fragment>
+      <ScrollToTop/>
       <Header />
       <ToastContainer />
       <Routes>

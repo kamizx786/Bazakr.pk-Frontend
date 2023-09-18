@@ -24,7 +24,7 @@ const MyOrders = () => {
   };
   return (
     <DashboardLayout className="flex w-full max-w-[1920] flex-col items-start bg-gray-100  lg:flex-row">
-     <div className="flex  flex-col lg:flex-row my-2 w-full items-center">
+      <div className="flex  flex-col lg:flex-row my-2 w-full items-center">
         <div className="flex flex-col overflow-y-scroll h-96">
           {order?.map((o) => {
             return (

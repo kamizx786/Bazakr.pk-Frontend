@@ -1,8 +1,5 @@
-import {useEffect} from "react";
 const RefundPolicy = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
   return (
     <>
       <div class="container mx-auto py-8">
@@ -17,7 +14,7 @@ const RefundPolicy = () => {
         <h2 class="text-xl font-bold mb-2 font-sans">Returns</h2>
         <p class="mb-4 font-sans">
           You have{" "}
-          <span className="font-serif text-[#248f59] font-bold"> 2 days </span>{" "}
+          <span className="font-serif text-[#248f59] font-bold"> 1 day </span>{" "}
           to return an item from the date of purchase. To be eligible for a
           return, your item must be unused, in the same condition that you
           received it, and in its original packaging.
@@ -55,12 +52,12 @@ const RefundPolicy = () => {
           <li>Phone: 123-456-7890</li>
         </ul>
 
-        <p class="text-gray-500 text-right font-sans">
-          Last updated: [25/5/23]
+        <p class="text-gray-500 text-sm text-right font-sans">
+          Last updated: [10/9/23]
         </p>
       </div>
     </>
   );
 };
 
-export default RefundPolicy ;
+export default RefundPolicy;

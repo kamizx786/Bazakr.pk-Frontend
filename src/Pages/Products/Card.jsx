@@ -27,13 +27,6 @@ const Card = ({ ModalProduct, setOpen, singleOrder }) => {
               <span className="block text-sm font-normal text-body">
                 {Single?.unit}
               </span>
-
-              {/* {isModal && (
-                  <div className="inline-flex shrink-0 items-center rounded border border-accent bg-accent px-3 py-1 text-sm text-white">
-                    {ratings}
-                    <StarIcon className="h-2.5 w-2.5 ltr:ml-1 rtl:mr-1" />
-                  </div>
-                )} */}
             </div>
 
             {Single.discription && (
