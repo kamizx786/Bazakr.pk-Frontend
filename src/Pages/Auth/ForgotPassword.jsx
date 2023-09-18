@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
-import { ForgotEmail, Reset } from "./auth";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ForgotEmail, Reset } from "./auth";
 
 const ForgotPassword = ({}) => {
   const { loggedIn } = useSelector((state) => ({ ...state }));
@@ -110,7 +110,7 @@ const ForgotPassword = ({}) => {
   return loggedIn && loggedIn.token ? (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center">
-        <AiOutlineLoading3Quarters className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+        <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
         <span className="mt-4 text-gray-500 text-lg font-semibold">
           Redirecting to Homepage...
         </span>

@@ -8,7 +8,7 @@ const Register = ({ setauthCon }) => {
   const [loading, setloading] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const Register = ({ setauthCon }) => {
       if (emailError || passwordError) {
         return toast.error("Please Add Valid Email and Password");
       }
-      
+
       setloading(true);
       createUser(name, email, password).then((res) => {
         if (res.error) {
@@ -43,38 +43,40 @@ const Register = ({ setauthCon }) => {
   const validateEmail = (email) => {
     // Regular expression pattern for email validation
     const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    
+
     return emailPattern.test(email);
   };
   const handleEmailChange = (e) => {
     const enteredEmail = e.target.value;
     setEmail(enteredEmail);
-  
+
     if (enteredEmail && !validateEmail(enteredEmail)) {
-      setEmailError('Invalid email');
+      setEmailError("Invalid email");
     } else {
-      setEmailError('');
+      setEmailError("");
     }
   };
 
   const handlePasswordChange = (e) => {
     const input = e.target.value;
     setPassword(input);
-  
+
     // Validate password
-    const regex = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+    const regex =
+      /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
     if (!regex.test(input)) {
-      setPasswordError("Password must be at least 8 characters long and contain at least one special character and number.");
+      setPasswordError(
+        "Password must be at least 8 characters long and contain at least one special character and number."
+      );
     } else {
       setPasswordError("");
     }
   };
-  return  (
+  return (
     // Register Card
     <>
-      <div >
+      <div>
         <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto  justify-center">
-        
           <h1 className="text-[#248F59]  flex justify-center items-center italic mb-6 font-sans">
             Register New Account
           </h1>
@@ -104,7 +106,7 @@ const Register = ({ setauthCon }) => {
             onChange={handleEmailChange}
             className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
-         {emailError && <p className="text-red-500">{emailError}</p>}
+          {emailError && <p className="text-red-500">{emailError}</p>}
           {/* PASSWORD */}
           <label className="font-semibold flex flex-wrap mb-3  text-sm leading-none text-body-dark">
             Password
