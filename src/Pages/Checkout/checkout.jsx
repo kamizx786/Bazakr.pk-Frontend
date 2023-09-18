@@ -141,13 +141,13 @@ const Checkout = () => {
                 setValues={setValues}
                 whatsappError={whatsappError}
                 setWhatsappError={setWhatsappError}
-                className="p-5 bg-light  md:p-8"
+                className="p-5  md:p-8"
               />
               <BillingAddress
                 savedAddress={savedAddress}
                 setValues={setValues}
                 values={values}
-                className="p-5 bg-light  md:p-8"
+                className="p-5  md:p-8"
               />
             </div>
 

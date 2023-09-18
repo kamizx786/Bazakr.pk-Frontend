@@ -111,7 +111,7 @@ const ForgotPassword = ({}) => {
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col items-center">
         <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 text-lg font-semibold">
+        <span className="mt-4 text-gray-500 text-lg font-sans font-semibold">
           Redirecting to Homepage...
         </span>
       </div>
