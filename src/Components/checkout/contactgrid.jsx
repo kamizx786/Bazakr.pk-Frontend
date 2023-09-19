@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Bs1CircleFill } from "react-icons/bs";
 
 const ContactGrid = ({
@@ -7,12 +7,11 @@ const ContactGrid = ({
   whatsappError,
   setWhatsappError,
 }) => {
+
   const handleInputChange = (e) => {
     const input = e.target.value;
-
     // Remove any non-digit characters
     const digitsOnly = input.replace(/\D/g, "");
-
     // Limit the input to a maximum of 11 digits
     const limitedInput = digitsOnly.slice(0, 11);
     setValues((prevValues) => ({
@@ -23,7 +22,7 @@ const ContactGrid = ({
     // Validate Pakistan phone number
     const regex = /^(\+92|0)?[0-9]{10}$/;
     if (!regex.test(limitedInput)) {
-      setWhatsappError("Please enter a valid Pakistan phone number.");
+      setWhatsappError("Please enter a valid Pakistan Phone NO#.");
     } else {
       setWhatsappError("");
     }
@@ -34,7 +33,7 @@ const ContactGrid = ({
       <div className="bg-white flex flex-col rounded border p-4 mb-5 font-sans justify-between">
         <div className="flex items-center mb-5 gap-2">
           <Bs1CircleFill color="#248F59" size={25} />
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize lg:text-xl">
             Contact Number
           </p>
         </div>

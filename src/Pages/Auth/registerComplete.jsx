@@ -86,7 +86,7 @@ const RegisterComplete = () => {
             Complete Registration
           </h1>
           {/* EMAIL */}
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          <label className="mb-3 block text-sm font-semibold leading-none   ">
             Email
           </label>
           <input
@@ -99,7 +99,7 @@ const RegisterComplete = () => {
           {emailError && <p className="text-red-500">{emailError}</p>}
 
           {/* SECRET */}
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          <label className="mb-3 block text-sm font-semibold leading-none   ">
             Secret
           </label>
           <input

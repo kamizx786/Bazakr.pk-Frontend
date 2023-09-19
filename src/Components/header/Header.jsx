@@ -1,7 +1,7 @@
 import { Bars3Icon, ShoppingBagIcon } from "@heroicons/react/24/solid";
-import { Badge, Button, Drawer, Modal } from "antd";
+import { Badge, Drawer, Modal } from "antd";
 import React, { useState } from "react";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { BsFillChatRightTextFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "../../Pages/Auth/Login";
@@ -9,9 +9,10 @@ import Register from "../../Pages/Auth/Register";
 import CartSidebarView from "../cart/cart_sidebar_viewer";
 import AuthorizedMenu from "./authorizedMenu";
 import Logo from "./logo";
+
 const Header = () => {
+  
   const [open, setOpen] = useState(false);
-  const [openCart, setOpencart] = useState(false);
   const [authCon, setauthCon] = useState(false);
   const { loggedIn, LoginModal, CartDrawer, cart, search } = useSelector(
     (state) => ({
@@ -24,6 +25,7 @@ const Header = () => {
   const showDrawer = () => {
     setOpen(true);
   };
+  
   const handleCloseModal = () => {
     dispatch({
       type: "Visible",
@@ -34,6 +36,7 @@ const Header = () => {
   const onClose = () => {
     setOpen(false);
   };
+  
   //Handle Modal
   const handleModal = () => {
     dispatch({
@@ -42,6 +45,7 @@ const Header = () => {
     });
     setOpen(false);
   };
+  
   const handleCart = () => {
     dispatch({
       type: "CartDrawer",
@@ -49,6 +53,7 @@ const Header = () => {
     });
     setOpen(false);
   };
+  
   const { text } = search;
 
   const handlechange = (e) => {
@@ -57,14 +62,17 @@ const Header = () => {
       payload: { text: e },
     });
   };
+  
   const handleclick = (e) => {
     e.preventDefault();
     setOpen(false);
     navigate(`/shops?${text}`);
   };
+  
   return (
     <>
-      <header className="flex items-center justify-between px-10 border-b border-[#D9D9D9]">
+      <header className="flex items-center justify-between px-3 md:px-10 border-b border-[#D9D9D9]">
+       {/* BAZAR LOGO */}
         <Link to="/">
           <Logo />
         </Link>
@@ -87,6 +95,7 @@ const Header = () => {
                 />
               </form>
             </div>
+            {/* SHOP */}
             <div>
               <Link
                 to="/shops"
@@ -96,7 +105,7 @@ const Header = () => {
               </Link>
             </div>
           </>
-
+          {/* CONTCAT */}
           <div>
             <Link
               to="/contact"
@@ -112,26 +121,27 @@ const Header = () => {
               <img
                 className="w-8 transition-transform hover:scale-95"
                 src="https://res.cloudinary.com/die5mkbau/image/upload/v1682795927/Cart_yt9caj.svg"
-                alt="logo"
+                alt="cart"
               />
             </Badge>
           </div>
 
           {/* Account */}
           <div>
+            {/* NOT LOGIN THEN OPEN MODAL */}
             {!loggedIn || !loggedIn.token ? (
               <Link onClick={handleModal}>
                 <img
                   className="w-8 transition-transform hover:scale-95"
                   src="https://res.cloudinary.com/die5mkbau/image/upload/v1682777929/Account_tk44nt.svg"
-                  alt=""
+                  alt="user"
                 />
               </Link>
             ) : (
               <AuthorizedMenu />
             )}
           </div>
-
+           {/* SELLER BUTTON */}
           <div>
             <button className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded transition-transform hover:scale-95 uppercase font-semibold ">
               <a href="https://bazar-pk-sellerside.vercel.app/" target="_blank">
@@ -140,9 +150,9 @@ const Header = () => {
             </button>
           </div>
         </div>
-        {/* Account */}
 
-        <div className="lg:hidden h-fit flex gap-4 items-center py-3 justify-evenly">
+        {/* ACCOUNT FOR SMALL SCREENS */}
+        <div className="lg:hidden h-fit flex gap-14 items-center py-3 justify-between">
           <div className="lg:hidden mt-1 mr-12">
             {!loggedIn || !loggedIn.token ? (
               <Link onClick={handleModal}>
@@ -156,13 +166,13 @@ const Header = () => {
               <AuthorizedMenu />
             )}
           </div>
-          {/* FOR SMALL SCREEN */}
-          <Button onClick={showDrawer} className="pb-2">
-            <Bars3Icon className="h-8 pb-2 text-[#248F59]" />
-          </Button>
-
+          {/* FOR SMALL SCREENS */}
+          <button onClick={showDrawer} className="p-2 flex hover:border-[#248f59] items-center rounded-md justify-center border transition-transform hover:scale-95">
+            <Bars3Icon className="h-8 text-[#248F59]" />
+          </button>
+          {/* DRAWER FOR SMALL SCREEN */}
           <Drawer title="Menu" placement="right" onClose={onClose} open={open}>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col ml-5 gap-7">
               {/* Search */}
               <div>
                 <form onSubmit={handleclick}>
@@ -176,6 +186,7 @@ const Header = () => {
                   />
                 </form>
               </div>
+              {/* SHOPS */}
               <div>
                 <Link
                   to="/shops"
@@ -188,13 +199,14 @@ const Header = () => {
                   </div>
                 </Link>
               </div>
+              {/* CONTACT */}
               <div>
                 <Link
                   to="/contact"
                   onClick={onClose}
                   className="text-muted flex gap-3 items-center text-base"
                 >
-                  <BsFillTelephoneFill
+                  <BsFillChatRightTextFill
                     size={25}
                     className="w-6 text-[#248F59]"
                   />

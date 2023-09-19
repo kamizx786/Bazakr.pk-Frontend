@@ -3,10 +3,10 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { GoHome } from "react-icons/go";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import InvoicePDF from "../../Components/order/invoice";
-import OrderCard from "../../Components/order/ordercard";
-import OrderDetail from "../../Components/order/orderdetails";
-import { OrderTable } from "../../Components/order/table";
+import InvoicePDF from "../../Components/Invoice/invoice";
+import OrderCard from "../../Components/Invoice/ordercard";
+import OrderDetail from "../../Components/Invoice/orderdetails";
+import { OrderTable } from "../../Components/Invoice/table";
 
 const Order = () => {
   const { Orders, loggedIn } = useSelector((state) => ({ ...state }));
@@ -60,14 +60,13 @@ const Order = () => {
             <InvoicePDF singleOrder={singleOrder} GrandTotal={GrandTotal} />
           </div>
 
-          {/* STRIPE */}
-          {/* <StripePay /> */}
+          
         </div>
         <div
           ref={invoiceRef}
           className="relative overflow-hidden rounded border shadow-sm"
         >
-          <div className="bg-light p-6 sm:p-8 lg:p-12">
+          <div className="bg-white p-6 sm:p-8 lg:p-12">
             {/* ORDER CARDS */}
             <OrderCard singleOrder={singleOrder} GrandTotal={GrandTotal} />
 

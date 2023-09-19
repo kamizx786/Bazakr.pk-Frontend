@@ -3,6 +3,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 
 const FileInput = ({ keyPrefix, multiple }) => {
+
   const [files, setFiles] = useState([]);
 
   const handleFileUpload = (event) => {
@@ -38,6 +39,7 @@ const FileInput = ({ keyPrefix, multiple }) => {
     event.preventDefault();
     event.stopPropagation();
   };
+
   const handleRemoveFile = (index) => {
     const newFiles = [...files];
     newFiles.splice(index, 1);
@@ -47,6 +49,7 @@ const FileInput = ({ keyPrefix, multiple }) => {
   return (
     <>
       <div className="flex flex-col cursor-pointer w-full border-green-500 border-2 border-dashed">
+        {/* UPLOAD IMAGES */}
         <label htmlFor={`${keyPrefix}-file-input`}>
           <div
             className="flex items-center cursor-pointer w-full justify-center flex-col font-sans rounded-lg p-5"
@@ -75,11 +78,14 @@ const FileInput = ({ keyPrefix, multiple }) => {
             <div key={index} className="flex flex-row m-2  my-2">
               <div className="flex-1  text-gray-500 font-semibold">
                 {file.name}
-                <span><img src={file.path} height={50} width={50} /></span>
+                <span>
+                  <img src={file.path} height={50} width={50} />
+                </span>
               </div>
+              {/* DELETE IMAGES */}
               <TiDeleteOutline
                 color="red"
-                className="cursor-pointer"
+                className="cursor-pointer hover:scale-95 transition-transform"
                 size={20}
                 onClick={() => handleRemoveFile(index)}
               />

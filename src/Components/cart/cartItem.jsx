@@ -3,8 +3,10 @@ import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
+
   const removeCartItem = (p) => {
     let cart = [];
     if (localStorage.getItem("cart")) {
@@ -76,55 +78,58 @@ const CartItem = ({ item, index }) => {
   };
 
   return (
-    <div className="flex justify-between items-center border-b border-solid border-opacity-75 py-4 text-sm">
-      <div className="flex gap-3">
-        <div className="flex-shrink-0">
-          <div className="flex overflow-hidden items-center justify-center gap-1 flex-col">
-            <button onClick={DecreaseQuan}>
-              <AiOutlineMinusSquare color="green" size={25} />
-            </button>
-            <div className="flex flex-1 font-sans items-center justify-center px-4 text-sm font-semibold text-heading">
-              {item.order_quantity}
+    <>
+      <div className="flex justify-between items-center border-b border-solid border-opacity-75 py-4 text-sm">
+        <div className="flex gap-3">
+          <div className="flex-shrink-0">
+            <div className="flex overflow-hidden items-center justify-center gap-1 flex-col">
+              {/* INCREASE N DECREASE */}
+              <button onClick={DecreaseQuan}>
+                <AiOutlineMinusSquare color="green" size={25} />
+              </button>
+              <div className="flex flex-1 font-sans items-center justify-center px-4 text-sm font-semibold">
+                {item.order_quantity}
+              </div>
+              <button onClick={IncreaseQuan}>
+                <AiOutlinePlusSquare color="green" size={25} />
+              </button>
             </div>
-            <button onClick={IncreaseQuan}>
-              <AiOutlinePlusSquare color="green" size={25} />
-            </button>
+          </div>
+          {/* image */}
+          <div className=" flex gap-2.5 justify-evenly items-center">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16">
+              <img
+                src={item?.feature_pic?.url}
+                alt={item.name}
+                className="object-contain"
+              />
+            </div>
+            <br />
+            {/* QUNATITY & SALE PRICE */}
+            <div className="flex flex-col items-start justify-center gap-1">
+              <h3 className="font-semibold flex font-sans">{item.name} </h3>
+              <span className="text-xs flex whitespace-nowrap font-sans    ">
+                {item.order_quantity} X {item.salePrice}
+              </span>
+            </div>
+            {/* TOTAL */}
+            <div className="flex ml-4">
+              <span className="font-bold font-sans">
+                {item.order_quantity * item.salePrice}/Rs
+              </span>
+            </div>
           </div>
         </div>
-
-        <div className=" flex gap-2.5 justify-evenly items-center">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-gray-100 sm:h-16 sm:w-16">
-            <img
-              src={item?.feature_pic?.url}
-              alt={item.name}
-              className="object-contain"
-            />
-          </div>
-          <br />
-          <div className="flex flex-col items-start justify-center gap-1">
-            <h3 className="font-semibold flex font-sans text-heading">
-              {item.name}{" "}
-            </h3>
-            <span className="text-xs flex whitespace-nowrap font-sans text-body">
-              {item.order_quantity} X {item.salePrice}
-            </span>
-          </div>
-          <div className="flex ml-4">
-            <span className="font-bold font-sans text-heading">
-              {item.order_quantity * item.salePrice}/Rs
-            </span>
-          </div>
-        </div>
+        {/* DELETE ITEM */}
+        <button className="flex h-7 w-7 shrink-0 items-center justify-center transition-all duration-200 ">
+          <RiDeleteBack2Line
+            onClick={() => removeCartItem(item._id)}
+            color="red"
+            size={17}
+          />
+        </button>
       </div>
-
-      <button className="flex h-7 w-7 shrink-0 items-center justify-center transition-all duration-200 ">
-        <RiDeleteBack2Line
-          onClick={() => removeCartItem(item._id)}
-          color="red"
-          size={17}
-        />
-      </button>
-    </div>
+    </>
   );
 };
 

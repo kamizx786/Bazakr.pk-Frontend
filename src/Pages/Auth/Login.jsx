@@ -50,7 +50,7 @@ const Login = ({ setauthCon }) => {
             Login
           </h1>
           {/* EMAIL */}
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          <label className="mb-3 block text-sm font-semibold leading-none   ">
             Email
           </label>
           <input
@@ -62,7 +62,7 @@ const Login = ({ setauthCon }) => {
           {emailError && <p className="text-red-500">{emailError}</p>}
 
           {/* PASSWORD */}
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          <label className="mb-3 block text-sm font-semibold leading-none   ">
             Password
           </label>
           <p
@@ -85,9 +85,9 @@ const Login = ({ setauthCon }) => {
             {loading ? <LoadingOutlined /> : " Login"}
           </button>
           {/* OR */}
-          <div className="relative flex my-5 flex-col items-center justify-center text-sm text-heading">
+          <div className="relative flex my-5 flex-col items-center justify-center text-sm  ">
             <hr className="w-full" />
-            <span className="start-2/4 -ms-4 absolute -top-2.5 bg-light px-2">
+            <span className="start-2/4 -ms-4 absolute -top-2.5 bg-white px-2">
               OR
             </span>
           </div>

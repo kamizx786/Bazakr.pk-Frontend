@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SaveButton from "../../common/save";
-import AddressModal from "./addressModel";
+
 const ProfileForm = ({
   address,
   name,
@@ -21,15 +21,6 @@ const ProfileForm = ({
   whatsappError,
   setWhatsappError,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
   const handlePasswordChange = (e) => {
     const input = e.target.value;
     setPassword(input);
@@ -66,19 +57,12 @@ const ProfileForm = ({
     }
   };
 
-  const handleAddressSubmit = (event) => {
-    // event.preventDefault();
-    // const address = `${country}, ${city}, ${street}, ${zipCode}`;
-    // setSavedAddress(address);
-    // localStorage.setItem("billingAddress", address);
-    // closeModal();
-  };
   return (
     <>
       <div className="border border-[#f2f2f2] rounded bg-white w-full  flex flex-col p-5 mb-3 font-sans justify-between">
         {/* NAME */}
         <div className=" flex items-center my-2 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize   lg:text-xl">
             Name
           </p>
         </div>
@@ -93,12 +77,14 @@ const ProfileForm = ({
               }
             }}
             type="text"
-            className="focus:outline-none mb-2 focus:ring-2  focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2  focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border  !rounded focus:!border-accent !h-12"
           />
         </div>
         {/* BIO */}
+
+        {/* EMAIL */}
         <div className=" rounded flex  items-center mb-2 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize   lg:text-xl">
             Email
           </p>
         </div>
@@ -107,12 +93,12 @@ const ProfileForm = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border !rounded focus:!border-accent !h-12"
             disabled
           />
         </div>
-        <div className="flex   items-center mb-2 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <div className="flex items-center mb-2 space-x-3 rtl:space-x-reverse md:space-x-4">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize   lg:text-xl">
             Contact Number
           </p>
         </div>
@@ -120,20 +106,21 @@ const ProfileForm = ({
           <input
             value={whatsapp}
             onChange={handleWhatsappChange}
-            type="number"
-            className="focus:outline-none mb-3 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            type="tel"
+            className="focus:outline-none mb-3 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border  !rounded focus:!border-accent !h-12"
           />
           {whatsappError && <p className="text-red-500">{whatsappError}</p>}
         </div>
       </div>
+      
       {/* CHANGE PASSWORD */}
       <div className="border border-[#f2f2f2] rounded bg-white w-full  flex flex-col  p-5 mb-3 font-sans justify-between">
         <div className="flex   items-center my-3 space-x-3 rtl:space-x-reverse md:space-x-4">
-          <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-2xl">
+          <p className="text-lg font-serif font-medium text-[#248F59] capitalize   lg:text-2xl">
             Change Password
           </p>
         </div>
-        <p className="text-lg  mb-2 font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <p className="text-lg  mb-2 font-serif font-medium text-[#248F59] capitalize   lg:text-xl">
           New Password
         </p>
         <div className="w-full my-2 ">
@@ -141,11 +128,11 @@ const ProfileForm = ({
             value={password}
             onChange={handlePasswordChange}
             type="password"
-            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border  !rounded focus:!border-accent !h-12"
           />
           {passwordError && <p className="text-red-500">{passwordError}</p>}
         </div>
-        <p className="text-lg font-serif mb-2 font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+        <p className="text-lg font-serif mb-2 font-medium text-[#248F59] capitalize   lg:text-xl">
           Confirm Password
         </p>
         <div className="w-full my-2 ">
@@ -153,7 +140,7 @@ const ProfileForm = ({
             value={Conpassword}
             onChange={(e) => setConPassword(e.target.value)}
             type="password"
-            className="focus:outline-none mb-2 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent !h-12"
+            className="focus:outline-none mb-2 outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border  !rounded focus:!border-accent !h-12"
           />
         </div>
       </div>
@@ -162,27 +149,14 @@ const ProfileForm = ({
       <div className="border border-[#f2f2f2] rounded bg-white flex flex-col w-full p-5 mb-3  font-sans justify-between">
         <div className="flex justify-between flex-row my-3 space-x-3 rtl:space-x-reverse md:space-x-4">
           <div className="gap-2 mb-2 flex flex-row">
-            <p className="text-lg font-serif font-medium text-[#248F59] capitalize text-heading lg:text-xl">
+            <p className="text-lg font-serif font-medium text-[#248F59] capitalize   lg:text-xl">
               Billing and Shipping Address
             </p>
           </div>
-          {/* <p
-            className="text-[#248F59] cursor-pointer font-normal py-2 px-4 "
-            onClick={openModal}
-          >
-            + UPDATE
-          </p> */}
-          {/* MODAL */}
-          <AddressModal
-            isOpen={isOpen}
-            closeModal={closeModal}
-            handleSubmit={handleAddressSubmit}
-            setaddress={setaddress}
-          />
         </div>
 
         {/* SHOW ADDRESS */}
-        <div className=" focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm border  !rounded focus:!border-accent">
+        <div className=" focus:outline-none focus:ring-2 focus:ring-green-600 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 p-3 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !  !text-sm border  !rounded focus:!border-accent">
           {address}
         </div>
         <div className="flex justify-end">

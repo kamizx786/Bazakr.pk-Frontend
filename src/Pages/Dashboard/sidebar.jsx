@@ -33,7 +33,7 @@ const DashboardSidebar = () => {
         </ul>
         {/* End of top part menu */}
 
-        <ul className="border-t border-border-200 bg-light py-4">
+        <ul className="border-t border-border-200 bg-white py-4">
           <li className="block py-2 px-11  ">
             <button
               onClick={HandleLogout}

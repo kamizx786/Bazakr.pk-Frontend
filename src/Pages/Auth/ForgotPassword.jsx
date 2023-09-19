@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { ForgotEmail, Reset } from "./auth";
 
 const ForgotPassword = ({}) => {
+
   const { loggedIn } = useSelector((state) => ({ ...state }));
 
   const [email, setEmail] = useState("");
@@ -124,7 +125,7 @@ const ForgotPassword = ({}) => {
             Forgot Password
           </h1>
           {/* EMAIL */}
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+          <label className="mb-3 block text-sm font-semibold leading-none">
             Email
           </label>
           <input
@@ -136,7 +137,7 @@ const ForgotPassword = ({}) => {
           {emailError && <p className="text-red-500">{emailError}</p>}
           {ok ? (
             <>
-              <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+              <label className="mb-3 block text-sm font-semibold leading-none">
                 New Password
               </label>
               <input
@@ -146,7 +147,7 @@ const ForgotPassword = ({}) => {
                 className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
               />
               {passwordError && <p className="text-red-500">{passwordError}</p>}
-              <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+              <label className="mb-3 block text-sm font-semibold leading-none">
                 Code
               </label>
               <input

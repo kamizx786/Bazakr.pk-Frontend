@@ -1,10 +1,11 @@
 import React from "react";
 import { AiFillFacebook, AiOutlineInstagram } from "react-icons/ai";
-
 import { Link } from "react-router-dom";
+
 const ShopeSidebarCard = ({ shop }) => {
   return (
     <>
+      {/* SHOP INFO */}
       <div className="w-full font-sans">
         <div className="flex flex-col items-center w-full border-b border-gray-200 p-7">
           <div className="relative mx-auto mb-8 overflow-hidden bg-gray-200 border border-gray-100 rounded-lg w-44 h-44">

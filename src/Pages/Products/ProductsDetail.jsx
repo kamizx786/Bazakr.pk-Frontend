@@ -73,7 +73,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
             </Link>
           </div>
           {/* IAMGES SLIDER */}
-          <div className="product-gallery h-full">
+          <div className="productGallery h-full">
             <ProductDetailsSlider gallery={Single?.gallery_pics} />
           </div>
         </div>
@@ -81,18 +81,18 @@ const ProductDetails = ({ singleOrder, shop }) => {
         <div className="flex flex-col items-start p-5 pt-10 md:w-1/2 lg:p-14 xl:p-16">
           <div className="w-full">
             <div className="flex w-full items-start justify-between space-x-8 space-x-reverse">
-              <h1 className="text-lg font-normal font-serif tracking-tight text-heading md:text-2xl xl:text-3xl">
+              <h1 className="text-lg font-normal font-serif tracking-tight   md:text-2xl xl:text-3xl">
                 {Single?.name}
               </h1>
             </div>
             <div className="mt-2 flex items-center justify-between">
-              <span className="block text-sm font-normal text-body">
+              <span className="block text-sm font-normal    ">
                 {Single?.unit}
               </span>
             </div>
 
             {Single.discription && (
-              <div className="mt-3 text-md leading-7  text-body md:mt-4">
+              <div className="mt-3 text-md leading-7      md:mt-4">
                 {Single?.discription}
               </div>
             )}
@@ -116,7 +116,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
                     </button>
                   </div>
 
-                  <span className="whitespace-nowrap text-base font-sans text-body lg:ml-7 lg:mr-7">
+                  <span className="whitespace-nowrap text-base font-sans     lg:ml-7 lg:mr-7">
                     {Single.quantity} Pieces available
                   </span>
                 </>
@@ -130,7 +130,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
                 {/* CATEGORY AND SELLER DETAILS */}
           {Single?.category && (
             <div className="mt-2 flex items-center">
-              <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">
+              <span className="py-1 text-sm font-semibold capitalize   mr-6 ml-6">
                 category
               </span>
               <Link>
@@ -142,7 +142,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
           )}
           {Single?.store && (
             <div className="mt-2 flex items-center">
-              <span className="py-1 text-sm font-semibold capitalize text-heading mr-6 ml-6">
+              <span className="py-1 text-sm font-semibold capitalize   mr-6 ml-6">
                 Seller
               </span>
               <Link to={`/shop/${Single?.store?.slug}`}>
@@ -156,7 +156,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
       </div>
             {/* REVIEW AND RATING */}
       <div className="flex flex-col border-y-2 border-[#f2f2f2] border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
-        <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
+        <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight   md:mb-6">
           Rating and Review of <span> {Single?.name}</span>
         </h1>
         <div className="flex w-full border-b-4 border-opacity-70 border-[#f2f2f2] mb-2  flex-row">
@@ -191,7 +191,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
           </div>
         </div>
         <div>
-          <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight text-heading md:mb-6">
+          <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight   md:mb-6">
             Product Review(s)
           </h1>
           <div className="flex  flex-col border-b-4 border-opacity-70 border-[#f2f2f2] mb-2">

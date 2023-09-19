@@ -35,15 +35,16 @@ const ProductDetailsSlider = ({ gallery }) => {
         <Swiper
           id="productGallery"
           modules={[Navigation, Thumbs, FreeMode]}
-          //   thumbs={{ swiper: thumbsSwiper }}
+          //thumbs={{ swiper: thumbsSwiper }}
           navigation={{
             prevEl: ".prev",
             nextEl: ".next",
           }}
           {...swiperParams}
         >
-          {gallery?.map((item) => (
+          {gallery?.map((item, index) => (
             <SwiperSlide
+              key={index}
               className="flex items-center justify-center selection:bg-transparent"
             >
               <img
@@ -58,7 +59,7 @@ const ProductDetailsSlider = ({ gallery }) => {
 
         <div
           className="
-          absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 transition-all
+          absolute z-10 prev flex items-center justify-center w-8 h-8 -mt-4 transition-all
            duration-200 border-2 rounded-full top-2/4 bg-white border-opacity-70 
            shadow-xl cursor-pointer -left-4 -right-4 md:-left-5 md:-right-5 md:-mt-5 md:w-9 md:h-9"
           role="button"
@@ -67,7 +68,7 @@ const ProductDetailsSlider = ({ gallery }) => {
         </div>
         <div
           className="
-          absolute z-10 flex items-center justify-center w-8 h-8 top-2/4 -mt-4 transition-all
+          absolute next z-10 flex items-center justify-center w-8 h-8 top-2/4 -mt-4 transition-all
           duration-200 rounded-full shadow-xl cursor-pointer -right-4  md:-right-5
           md:-mt-5 md:w-9 md:h-9 bg-white border-2 border-opacity-70"
           role="button"
@@ -88,8 +89,9 @@ const ProductDetailsSlider = ({ gallery }) => {
           modules={[FreeMode, Navigation, Thumbs]}
           breakpoints={galleryCarouselBreakpoints}
         >
-          {gallery?.map((item) => (
+          {gallery?.map((item, index) => (
             <SwiperSlide
+              key={index}
               className="flex cursor-pointer items-center justify-center overflow-hidden rounded border border-opacity-75"
             >
               <img src={item.url} width={80} height={80} />

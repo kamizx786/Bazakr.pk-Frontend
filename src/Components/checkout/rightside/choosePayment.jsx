@@ -1,12 +1,14 @@
 import { FaStripe } from "react-icons/fa";
 
 const PaymentMethod = ({ values, setValues }) => {
+
   const handleStripeSelect = () => {
     setValues((prevValues) => ({
       ...prevValues,
       paymentType: "stripe",
     }));
   };
+
   const handleCODSelect = () => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -23,7 +25,7 @@ const PaymentMethod = ({ values, setValues }) => {
         <div className="my-4 flex flex-row gap-2">
           {/* STRIPE */}
           <div
-            className={`bg-white flex justify-center items-center p-3 h-fit w-full cursor-pointer shadow rounded  ${
+            className={`bg-white flex justify-center items-center p-3 h-fit w-full cursor-pointer shadow-xl rounded  ${
               values.paymentType === "stripe" ? "border-[#248F59] border-2" : ""
             }`}
             onClick={handleStripeSelect}
@@ -32,7 +34,7 @@ const PaymentMethod = ({ values, setValues }) => {
           </div>
           {/* CASH ON DELIEVERY */}
           <div
-            className={`bg-white flex justify-center items-center text-center font-medium p-3  w-full cursor-pointer shadow rounded ${
+            className={`bg-white flex justify-center items-center text-center font-medium p-3  w-full cursor-pointer shadow-xl rounded ${
               values.paymentType === "cod" ? "border-[#248F59] border-2" : ""
             }`}
             onClick={handleCODSelect}

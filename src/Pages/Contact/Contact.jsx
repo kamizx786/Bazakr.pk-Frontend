@@ -16,16 +16,16 @@ const Contact = () => {
           </div>
 
           <div className="mb-8 flex flex-col">
-            <span className="mb-3 font-semibold text-heading">Address</span>
-            <span className="text-sm text-body">Gujranwala,Pakistan</span>
+            <span className="mb-3 font-semibold  ">Address</span>
+            <span className="text-sm    ">Gujranwala,Pakistan</span>
           </div>
 
           <div className="mb-8 flex flex-col">
-            <span className="mb-3 font-semibold text-heading">Phone</span>
-            <span className="text-sm text-body">+129290122122</span>
+            <span className="mb-3 font-semibold  ">Phone</span>
+            <span className="text-sm    ">+129290122122</span>
           </div>
           <div className="mb-8 flex flex-col">
-            <span className="mb-3 font-semibold text-heading">Website</span>
+            <span className="mb-3 font-semibold  ">Website</span>
             <div className="flex items-center justify-between gap-2">
               <a
                 href="https://bazakr-pk-frontend.vercel.app/"
@@ -42,7 +42,7 @@ const Contact = () => {
 
         {/* Contact form */}
         <div className="border border-[#f2f2f2]  rounded order-2 md:order-1 mb-8 w-full bg-white p-5 md:mb-0 md:p-8 md:ml-7 md:mr-7 lg:ml-9 lg:mr-9">
-          <h1 className="mb-7 font-body text-xl text-[#248f59] font-serif text-heading md:text-3xl">
+          <h1 className="mb-7 font-body text-xl text-[#248f59] font-serif   md:text-3xl">
             Questions, Comments, Or Concerns?
           </h1>
           <ContactForm />

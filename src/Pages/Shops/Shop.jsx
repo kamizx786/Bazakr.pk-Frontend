@@ -97,7 +97,7 @@ const Shop = () => {
       <div className="min-h-screen bg-white relative">
         <div className="flex flex-col w-full max-w-6xl p-8 mx-auto pt-14">
           <div className="flex w-full items-center justify-between">
-            <h3 className="mb-6 text-3xl font-serif text-[#248f59] font-normal text-heading">
+            <h3 className="mb-6 text-3xl font-serif text-[#248f59] font-normal  ">
               All Shops
             </h3>
             {/* Choose Category */}
@@ -125,7 +125,7 @@ const Shop = () => {
           {shops?.length === 0 ? (
             ""
           ) : (
-            <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start  text-heading">
+            <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start   ">
               {shops?.length} shops found in {userLocation.mapAddress}
             </h3>
           )}
@@ -136,7 +136,7 @@ const Shop = () => {
                 <ProductLoader key={i} uniqueKey={`product-${i}`} />
               ))
             ) : filteredShops.length === 0 ? (
-              <h3 className="mb-8 text-xl flex justify-center text-[#00000080] font-medium font-sans text-heading">
+              <h3 className="mb-8 text-xl flex justify-center text-[#00000080] font-medium font-sans  ">
                 No Shops Found <span className="text-black pl-2">🙂</span>
               </h3>
             ) : (
