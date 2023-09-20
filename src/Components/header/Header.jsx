@@ -72,11 +72,11 @@ const Header = () => {
   return (
     <>
       <header className="flex items-center justify-between px-3 md:px-10 border-b border-[#D9D9D9]">
-       {/* BAZAR LOGO */}
+        {/* BAZAR LOGO */}
         <Link to="/">
           <Logo />
         </Link>
-
+        {/* HEADER FOR LARGE SCREENS */}
         <div
           mode="horizontal"
           className="h-fit md:hidden hidden lg:flex gap-4 flex-wrap items-center py-3  justify-evenly"
@@ -86,7 +86,7 @@ const Header = () => {
               {/* Search */}
               <form onSubmit={handleclick}>
                 <input
-                  type="text"
+                  type="search"
                   className=" border focus:border-none  border-[#D9D9D9] font-sans  text-base outline-none focus:outline-none focus:ring-2 focus:ring-green-600 h-[3.4375rem] max-w-[23.4375rem] px-3 rounded-lg text-[#248F59]"
                   onChange={(e) => handlechange(e.target.value)}
                   value={text}
@@ -141,7 +141,7 @@ const Header = () => {
               <AuthorizedMenu />
             )}
           </div>
-           {/* SELLER BUTTON */}
+          {/* SELLER BUTTON */}
           <div>
             <button className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded transition-transform hover:scale-95 uppercase font-semibold ">
               <a href="https://bazar-pk-sellerside.vercel.app/" target="_blank">
@@ -151,7 +151,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* ACCOUNT FOR SMALL SCREENS */}
+        {/* USER ICON FOR SMALL SCREENS */}
         <div className="lg:hidden h-fit flex gap-14 items-center py-3 justify-between">
           <div className="lg:hidden mt-1 mr-12">
             {!loggedIn || !loggedIn.token ? (
@@ -167,11 +167,25 @@ const Header = () => {
             )}
           </div>
           {/* FOR SMALL SCREENS */}
-          <button onClick={showDrawer} className="p-2 flex hover:border-[#248f59] items-center rounded-md justify-center border transition-transform hover:scale-95">
+          <button
+            onClick={showDrawer}
+            className="p-2 flex hover:border-[#248f59] items-center rounded-md justify-center border transition-transform hover:scale-95"
+          >
             <Bars3Icon className="h-8 text-[#248F59]" />
           </button>
           {/* DRAWER FOR SMALL SCREEN */}
-          <Drawer title="Menu" placement="right" onClose={onClose} open={open}>
+          <Drawer
+            title={
+              <>
+                <div className="text-center text-[#248f59] font-serif text-xl">
+                  Menu
+                </div>
+              </>
+            }
+            placement="right"
+            onClose={onClose}
+            open={open}
+          >
             <div className="flex flex-col ml-5 gap-7">
               {/* Search */}
               <div>
@@ -207,8 +221,9 @@ const Header = () => {
                   className="text-muted flex gap-3 items-center text-base"
                 >
                   <BsFillChatRightTextFill
-                    size={25}
-                    className="w-6 text-[#248F59]"
+                    size={19}
+                    color="#248F59"
+                    className="w-6"
                   />
                   <div className="font-sans text-[#00000080]  hover:text-[#248f59]">
                     Contact

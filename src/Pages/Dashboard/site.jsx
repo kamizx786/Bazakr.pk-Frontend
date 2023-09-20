@@ -1,5 +1,5 @@
 export const siteSettings = {
-  name: "Bazar.pk",
+  name: "bazar.pk",
 
   dashboardSidebarMenu: [
     {

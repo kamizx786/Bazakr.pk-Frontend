@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { ForgotEmail, Reset } from "./auth";
 
 const ForgotPassword = ({}) => {
-
   const { loggedIn } = useSelector((state) => ({ ...state }));
 
   const [email, setEmail] = useState("");
@@ -17,7 +16,9 @@ const ForgotPassword = ({}) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [ok, setOK] = useState(false);
+
   const navigate = useNavigate();
+
   const sendResetEmail = (e) => {
     e.preventDefault();
     try {
@@ -70,6 +71,7 @@ const ForgotPassword = ({}) => {
       setloading(false);
     }
   };
+
   useEffect(() => {
     if (loggedIn && loggedIn.token) {
       setTimeout(() => {
@@ -77,12 +79,14 @@ const ForgotPassword = ({}) => {
       }, 3000); // 5 seconds
     }
   }, [loggedIn && loggedIn.token]);
+
   const validateEmail = (email) => {
     // Regular expression pattern for email validation
     const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     return emailPattern.test(email);
   };
+
   const handleEmailChange = (e) => {
     const enteredEmail = e.target.value;
     setEmail(enteredEmail);
@@ -108,53 +112,56 @@ const ForgotPassword = ({}) => {
       setPasswordError("");
     }
   };
+
   return loggedIn && loggedIn.token ? (
-    <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col items-center">
-        <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 text-lg font-sans font-semibold">
-          Redirecting to Homepage...
-        </span>
+    <>
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex flex-col items-center">
+          <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+          <span className="mt-4 text-gray-500 text-lg font-sans font-semibold">
+            Redirecting to Homepage...
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   ) : (
     <>
       <div>
         <div className="bg-white flex flex-col p-4  md:w-fit w-full mx-auto justify-center h-screen">
-          <h1 className="text-[#248F59] italic flex justify-center items-center  mb-6 font-sans">
+          <h1 className="text-[#248F59] italic flex justify-center items-center mb-6 font-sans">
             Forgot Password
           </h1>
           {/* EMAIL */}
-          <label className="mb-3 block text-sm font-semibold leading-none">
+          <label className="mb-3 block text-sm font-sans font-semibold leading-none">
             Email
           </label>
           <input
             value={email}
             onChange={handleEmailChange}
             type="email"
-            className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="h-12 mb-4 focus:border-none flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
-          {emailError && <p className="text-red-500">{emailError}</p>}
+          {emailError && <p className="text-red-500 font-sans">{emailError}</p>}
           {ok ? (
             <>
-              <label className="mb-3 block text-sm font-semibold leading-none">
+              <label className="mb-3 block text-sm font-sans font-semibold leading-none">
                 New Password
               </label>
               <input
                 value={Newpassword}
                 onChange={handlePasswordChange}
                 type="password"
-                className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="h-12 mb-4 focus:border-none flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
               />
-              {passwordError && <p className="text-red-500">{passwordError}</p>}
-              <label className="mb-3 block text-sm font-semibold leading-none">
+              {passwordError && <p className="text-red-500 font-sans">{passwordError}</p>}
+              <label className="mb-3 block font-sans text-sm font-semibold leading-none">
                 Code
               </label>
               <input
                 value={secret}
                 onChange={(e) => setSecret(e.target.value)}
                 type="password"
-                className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="h-12 mb-4 focus:border-none flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
               />
             </>
           ) : (
@@ -164,14 +171,14 @@ const ForgotPassword = ({}) => {
           {!ok ? (
             <button
               onClick={sendResetEmail}
-              className="h-12 my-2 flex flex-wrap justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#FFFFFF]"
+              className="h-12 my-2 flex font-sans flex-wrap transition-transform hover:scale-95 justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#f2f2f2] hover:text-white"
             >
               {loading ? <LoadingOutlined /> : "Submit Email"}
             </button>
           ) : (
             <button
               onClick={ForgotNow}
-              className="h-12 my-2 flex flex-wrap justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#FFFFFF]"
+              className="h-12 my-2 flex flex-wrap font-sans justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#f2f2f2] hover:text-white"
             >
               {loading ? <LoadingOutlined /> : "Forgot Password"}
             </button>

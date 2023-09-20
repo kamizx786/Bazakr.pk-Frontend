@@ -6,13 +6,14 @@ import { handleCart } from "./function";
 
 const Card = ({ ModalProduct, setOpen }) => {
   const [Single] = useState(ModalProduct);
-
   const dispatch = useDispatch();
+  
   return (
     <>
       <article className="rounded-lg bg-white">
         <div className="flex flex-col border-opacity-70 md:flex-row">
           <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
+            {/* IMAGES SLIDER */}
             <div className=" h-full">
               <ProductDetailsSlider gallery={Single?.gallery_pics} />
             </div>

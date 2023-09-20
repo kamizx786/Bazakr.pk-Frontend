@@ -39,7 +39,7 @@ const PromotionSlider = () => {
           {Sliders?.map((d) => (
             <SwiperSlide key={d.id}>
               <img
-                className="w-full h-auto"
+                className="w-full cursor-grab h-auto"
                 src={d.image}
                 width="580"
                 height="270"

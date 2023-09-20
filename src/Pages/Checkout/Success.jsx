@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AllProducts } from "../../Pages/Shops/functions";
 import { CreateOrder, UserOrders } from "./functions";
+
 const Success = () => {
   const [values, setValues] = useState(
     JSON.parse(localStorage.getItem("values"))
@@ -12,7 +13,9 @@ const Success = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+ 
   let no = 0;
+ 
   const hanldeorder = () => {
     if (no == 1) {
       try {
@@ -34,6 +37,7 @@ const Success = () => {
       }
     }
   };
+  
   useEffect(() => {
     if (!values) {
       navigate("/");
@@ -44,18 +48,21 @@ const Success = () => {
       }, 3000);
     }
   }, []);
+  
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 text-gray-500 font-sans text-lg font-semibold">
-          Loading...
-        </span>
-        <span className="mt-4 text-gray-500 font-sans text-lg font-semibold">
-          Payment Processing
-        </span>
+    <>
+      <div className="h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+          <span className="mt-4 text-gray-500 font-sans md:text-lg font-semibold">
+            Loading...
+          </span>
+          <span className="mt-4 text-gray-500 font-sans md:text-lg font-semibold">
+            Payment Processing
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -4,12 +4,11 @@ import ProductLoader from "./product-loader";
 import jsxRangeMap from "../range-map";
 
 const ProductsGrid = ({ products, keyword, Searched }) => {
-
   const [product, setProducts] = useState([]);
-  // INTIALLY 10 PRODUCTS
-  const limit = 10;
+  // INTIALLY 9 PRODUCTS
+  const limit = 9;
   useEffect(() => {
-    setProducts(products.slice(0, 10));
+    setProducts(products.slice(0, 9));
   }, [products]);
   //ON LOADING 5 MORE PRODUCTS
   const LoadMore = (e) => {
@@ -32,7 +31,7 @@ const ProductsGrid = ({ products, keyword, Searched }) => {
         </div>
         {/* LOAD MORE BUTTON */}
         <div className="flex justify-center">
-          {products?.length > 10 && product?.length < products?.length ? (
+          {products?.length > 9 && product?.length < products?.length ? (
             <button
               className="bg-[#248F59] text-[#f2f2f2] hover:text-white font-sans  py-3 px-3 rounded transition-transform hover:scale-95 uppercase font-semibold"
               onClick={LoadMore}

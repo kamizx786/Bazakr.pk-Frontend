@@ -15,6 +15,7 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
             body {
               padding: 20px;
             }
+            
           </style>
         </head>
         <body>
@@ -34,7 +35,7 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
               }</span>
             </h1>
             <h3 style="font-size: 4xl; font-family: serif; color: #248F59; font-weight: normal; margin-bottom: 4px;">
-              Payment Type <span style="font-size:1rem ;"># ${
+              Payment type : <span style="font-size:1rem; text-decoration:underline;">${
                 singleOrder?.paymentType
               }</span>
             </h3>
@@ -117,9 +118,9 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
                   <span style="font-size: 0.875rem; color: #000;">Tax & Delivery Fee<span style="margin-left: 1px; margin-right: auto;">:</span></span>
                   <span style="font-size: 0.875rem; color: #000;">0</span>
                 </div>
-                <div style="display: flex; justify-content: space-between;">
-                  <span style="font-size: 0.875rem; font-weight: bold; color: #000;">Total<span style="margin-left: 1px; margin-right: auto;">:</span></span>
-                  <span style="font-size: 0.875rem; font-weight: bold; color: #000;">${GrandTotal}/PKR</span>
+                <div style="display: flex; justify-content: space-between; border-top:1px solid #248f59">
+                  <span style="font-size: 0.875rem; font-weight: bold; color: #248f59;">Total<span style="margin-left: 1px; margin-right: auto;">:</span></span>
+                  <span style="font-size: 0.875rem; font-weight: bold; color: #248f59;">${GrandTotal}/PKR</span>
                 </div>
               </div>
             </div>

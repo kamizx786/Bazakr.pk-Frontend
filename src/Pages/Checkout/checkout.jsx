@@ -16,8 +16,10 @@ const Checkout = () => {
   const [savedAddress, setSavedAddress] = useState("");
   const [loading, setLoading] = useState(false);
   const [whatsappError, setWhatsappError] = useState("");
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const [values, setValues] = useState({
     Products: [
       {
@@ -31,6 +33,7 @@ const Checkout = () => {
     paymentType: "",
     orderContact: "",
   });
+  
   useEffect(() => {
     const products = cart?.map((product) => ({
       Product: product._id,
@@ -42,6 +45,7 @@ const Checkout = () => {
       store: cart[0]?.store?._id,
     }));
   }, [cart]);
+  
   let GrandTotal =
     cart &&
     cart.length &&
@@ -68,6 +72,7 @@ const Checkout = () => {
       handleStripeOrder();
     }
   };
+  
   const hanldeCod = () => {
     try {
       setLoading(true);
@@ -90,6 +95,7 @@ const Checkout = () => {
       toast.error(error);
     }
   };
+  
   const handleStripeOrder = () => {
     try {
       setLoading(true);
@@ -101,19 +107,13 @@ const Checkout = () => {
           const stripe = await loadStripe(import.meta.env.VITE_PUBLIC_KEY);
           stripe.redirectToCheckout({ sessionId: res.sessionId });
           localStorage.setItem("values", JSON.stringify(values));
-          // toast.success("Order Placed SuccessFully");
-          // setLoading(false);
-          // localStorage.removeItem("cart");
-          // dispatch({type:"Cart",payload:[]})
-          // AllProducts(dispatch);
-          // UserOrders(dispatch);
-          // navigate(`/order/${res?.order?._id}`);
         }
       });
     } catch (error) {
       toast.error(error);
     }
   };
+  
   useEffect(() => {
     const storedAddress = JSON.parse(localStorage.getItem("location"));
     if (storedAddress) {
@@ -139,13 +139,13 @@ const Checkout = () => {
                 setValues={setValues}
                 whatsappError={whatsappError}
                 setWhatsappError={setWhatsappError}
-                className="p-5  md:p-8"
+                className="p-5 md:p-8"
               />
               <BillingAddress
                 savedAddress={savedAddress}
                 setValues={setValues}
                 values={values}
-                className="p-5  md:p-8"
+                className="p-5 md:p-8"
               />
             </div>
 

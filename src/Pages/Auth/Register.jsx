@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import { createUser } from "./auth";
+
 const Register = ({ setauthCon }) => {
+  
   const [email, setEmail] = useState("");
   const [loading, setloading] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -40,16 +43,16 @@ const Register = ({ setauthCon }) => {
       setloading(false);
     }
   };
+  
   const validateEmail = (email) => {
     // Regular expression pattern for email validation
     const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
     return emailPattern.test(email);
   };
+  
   const handleEmailChange = (e) => {
     const enteredEmail = e.target.value;
     setEmail(enteredEmail);
-
     if (enteredEmail && !validateEmail(enteredEmail)) {
       setEmailError("Invalid email");
     } else {
@@ -60,7 +63,6 @@ const Register = ({ setauthCon }) => {
   const handlePasswordChange = (e) => {
     const input = e.target.value;
     setPassword(input);
-
     // Validate password
     const regex =
       /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
@@ -72,16 +74,16 @@ const Register = ({ setauthCon }) => {
       setPasswordError("");
     }
   };
+
   return (
-    // Register Card
     <>
       <div>
         <div className="bg-white flex flex-col p-4 md:w-fit w-full mx-auto  justify-center">
-          <h1 className="text-[#248F59]  flex justify-center items-center italic mb-6 font-sans">
+          <h1 className="text-[#248F59] flex justify-center items-center italic mb-6 font-sans">
             Register New Account
           </h1>
           {/* NAME */}
-          <label className="mb-3 block text-sm font-semibold leading-none   ">
+          <label className="mb-3 block text-sm font-semibold leading-none">
             Name
           </label>
           <input
@@ -94,41 +96,41 @@ const Register = ({ setauthCon }) => {
                 setName(input);
               }
             }}
-            className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="h-12 mb-4 focus:border-none flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
           {/* EMAIL */}
-          <label className="mb-3 block text-sm font-semibold leading-none   ">
+          <label className="mb-3 block text-sm font-semibold leading-none font-sans">
             Email
           </label>
           <input
             type="email"
             value={email}
             onChange={handleEmailChange}
-            className="h-12 mb-4 flex flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="h-12 mb-4 flex focus:border-none flex-wrap bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
-          {emailError && <p className="text-red-500">{emailError}</p>}
+          {emailError && <p className="text-red-500 font-sans">{emailError}</p>}
           {/* PASSWORD */}
-          <label className="font-semibold flex flex-wrap mb-3  text-sm leading-none   ">
+          <label className="font-semibold flex flex-wrap mb-3 text-sm leading-none font-sans">
             Password
           </label>
           <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
-            className="h-12 mb-4 flex flex-wrap  bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="h-12 mb-4 focus:border-none flex flex-wrap  bg-white border border-gray-400 rounded-lg px-3 py-2 text-lg font-sans font-normal tracking-normal text-left focus:outline-none focus:ring-2 focus:ring-green-600"
           />
-          {passwordError && <p className="text-red-500">{passwordError}</p>}
+          {passwordError && <p className="text-red-500 font-sans">{passwordError}</p>}
           {/* BUTTON */}
           <button
             onClick={handleSubmit}
-            className="h-12 mb-3 flex flex-wrap justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#FFFFFF]"
+            className="h-12 mb-3 flex transition-transform hover:scale-95 font-sans flex-wrap justify-center items-center rounded-lg w-full bg-[#248F59] uppercase text-[#f2f2f2] hover:text-white"
           >
             {loading ? <LoadingOutlined /> : " Register"}
           </button>
           {/* OR */}
           <div className="relative flex flex-col mt-2 items-center justify-center text-sm  ">
             <hr className="w-full " />
-            <span className="start-2/4 -ms-4 absolute -top-2.5 bg-white px-2">
+            <span className="start-2/4 -ms-4 absolute font-sans -top-2.5 bg-white px-2">
               OR
             </span>
           </div>

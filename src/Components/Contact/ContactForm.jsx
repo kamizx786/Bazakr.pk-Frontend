@@ -90,7 +90,7 @@ const ContactForm = () => {
                 name="email"
                 placeholder="Enter Your Email"
                 onChange={handleEmailChange}
-                className="focus:outline-none focus:ring-2 focus:ring-green-600 h-12  px-3 border rounded-lg border-neutral-300"
+                className="focus:outline-none font-sans focus:border-none focus:ring-2 focus:ring-green-600 h-12  px-3 border rounded-lg border-neutral-300"
               />
               {emailError && <p className="text-red-500">{emailError}</p>}
             </div>
@@ -110,8 +110,7 @@ const ContactForm = () => {
                   }
                 }}
                 placeholder="Enter Your Name"
-                className="focus:outline-none
-             focus:ring-2 focus:ring-green-600 h-12  px-3 border rounded-lg border-neutral-300"
+                className="focus:outline-none font-sans focus:border-none focus:ring-2 focus:ring-green-600 h-12  px-3 border rounded-lg border-neutral-300"
               />
             </div>
           </div>
@@ -124,8 +123,7 @@ const ContactForm = () => {
             value={values.subject}
             onChange={handleChange}
             placeholder="Enter Your Subject"
-            className="focus:outline-none mb-2
-             focus:ring-2 focus:ring-green-600 h-12 w-full px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none mb-2 font-sans focus:border-none focus:ring-2 focus:ring-green-600 h-12 w-full px-3 border rounded-lg border-neutral-300"
           />
           {/* DESCRIPTION */}
           <h4 className="font-sans">Description</h4>
@@ -133,7 +131,7 @@ const ContactForm = () => {
             onChange={handleChange}
             value={values.discription}
             name="discription"
-            className="focus:outline-none focus:ring-2 focus:ring-green-600 h-48 w-full px-3 border rounded-lg border-neutral-300"
+            className="focus:outline-none font-sans focus:border-none focus:ring-2 focus:ring-green-600 h-48 w-full px-3 border rounded-lg border-neutral-300"
           />
 
           {/* Button */}

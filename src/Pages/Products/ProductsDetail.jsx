@@ -6,10 +6,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import ProductDetailsSlider from "../../Components/products/ProductDetailsSlider";
 import { handleCart } from "./function";
-const ProductDetails = ({ singleOrder, shop }) => {
+
+const ProductDetails = () => {
+  
+  const [averageRating, setAverageRating] = useState(0);
   const [Single, setSingle] = useState({});
   const { product, LocationShops } = useSelector((state) => ({ ...state }));
-  const [averageRating, setAverageRating] = useState(0);
+  
   // Calculate the average rating
   useEffect(() => {
     const ratings = Single?.rating || [];
@@ -17,16 +20,20 @@ const ProductDetails = ({ singleOrder, shop }) => {
     const average = sum / ratings.length;
     setAverageRating(average);
   }, [Single]);
+  
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const LoadProuct = () => {
     const updated = product?.filter((p) => {
       return params.slug === p.slug;
     });
+  
     const filter = LocationShops?.filter((s) => {
       return s._id === updated[0]?.store?._id;
     });
+    
     if (filter?.length > 0) {
       setSingle(updated[0]);
     } else {
@@ -36,11 +43,13 @@ const ProductDetails = ({ singleOrder, shop }) => {
       return () => clearTimeout(timeoutId);
     }
   };
+  
   useEffect(() => {
     if (product?.length && LocationShops?.length) {
       LoadProuct();
     }
   }, [product, params]);
+  
   useEffect(() => {
     if (!Single || !LocationShops?.length) {
       const timeoutId = setTimeout(() => {
@@ -49,17 +58,20 @@ const ProductDetails = ({ singleOrder, shop }) => {
       return () => clearTimeout(timeoutId);
     }
   }, [Single]);
+  
   return Object.keys(Single).length === 0 ||
     product === null ||
     LocationShops?.length < 1 ? (
-    <div className="h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
-        <span className="mt-4 font-sans text-gray-500 text-lg font-semibold">
-          Loading...
-        </span>
+    <>
+      <div className="h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <FaSpinner className="text-6xl w-16 h-16 text-[#248F59] animate-spin" />
+          <span className="mt-4 font-sans text-gray-500 text-lg font-semibold">
+            Loading...
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   ) : (
     <article className="rounded-lg bg-white">
       <div className="flex flex-col border-b border-opacity-70 md:flex-row">
@@ -92,7 +104,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
             </div>
 
             {Single.discription && (
-              <div className="mt-3 text-md leading-7      md:mt-4">
+              <div className="mt-3 text-md leading-7 md:mt-4">
                 {Single?.discription}
               </div>
             )}
@@ -116,18 +128,20 @@ const ProductDetails = ({ singleOrder, shop }) => {
                     </button>
                   </div>
 
-                  <span className="whitespace-nowrap text-base font-sans     lg:ml-7 lg:mr-7">
+                  <span className="whitespace-nowrap text-base font-sans lg:ml-7 lg:mr-7">
                     {Single.quantity} Pieces available
                   </span>
                 </>
               ) : (
-                <div className="whitespace-nowrap text-base text-red-500 lg:ml-7 lg:mr-7">
-                  Out of Stock
-                </div>
+                <>
+                  <div className="whitespace-nowrap text-base text-red-500 lg:ml-7 lg:mr-7">
+                    Out of Stock
+                  </div>
+                </>
               )}
             </div>
           </div>
-                {/* CATEGORY AND SELLER DETAILS */}
+          {/* CATEGORY AND SELLER DETAILS */}
           {Single?.category && (
             <div className="mt-2 flex items-center">
               <span className="py-1 text-sm font-semibold capitalize   mr-6 ml-6">
@@ -154,7 +168,7 @@ const ProductDetails = ({ singleOrder, shop }) => {
           )}
         </div>
       </div>
-            {/* REVIEW AND RATING */}
+      {/* REVIEW AND RATING */}
       <div className="flex flex-col border-y-2 border-[#f2f2f2] border-opacity-70 px-5 py-4 lg:px-16 lg:py-14">
         <h1 className="text-lg mb-4 font-semibold font-sans tracking-tight   md:mb-6">
           Rating and Review of <span> {Single?.name}</span>
