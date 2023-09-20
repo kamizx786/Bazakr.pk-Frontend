@@ -3,7 +3,7 @@ import React from "react";
 const NotFound = () => {
   return (
     <>
-      <div className="flex items-center justify-center h-[25rem]">
+      <div className="flex items-center justify-center h-[24.3rem]">
         <div className="flex flex-col justify-center items-center">
           <span className="mt-4 font-serif text-red-500 text-4xl font-semibold">
             404 Error
