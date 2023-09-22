@@ -42,15 +42,15 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
             
             <!-- Customer and Store Details -->
 
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-              <div style=" display: flex; flex-direction: column; margin-bottom: 3px; font-family: sans-serif; padding: 5px;">
-                <h1 style="font-weight: bold; margin: 0.5px;">Customer</h1>
-                <p style="margin: 0.5rem;">${singleOrder?.orderBy?.name}</p>
-                <p style="margin: 0.5rem;">${singleOrder?.orderContact}</p>
+            <div style="display: flex; flex-direction: row; justify-content: space-around;">
+              <div style=" display: flex; flex-direction: column; margin-bottom: 1px; font-family: sans-serif; padding: 1px;">
+                <h1 style="font-weight: bold; margin: 0.5px;">Customer Detail</h1>
+                <h4 style="margin: 0.5rem;">Name: ${singleOrder?.orderBy?.name}</h4>
+                <h4 style="margin: 0.5rem;">Phone No#  +92-${singleOrder?.orderContact}</h4>
               </div>
-              <div style=" display: flex; flex-direction: column; margin-bottom: 3px; font-family: sans-serif; padding: 5px;">
-                <h1 style="font-weight: bold; margin: 0.5rem;">Store</h1>
-                <p style="margin: 0.5rem;">${singleOrder?.store?.Storename}</p>
+              <div style=" display: flex; flex-direction: column; margin-bottom: 1px; font-family: sans-serif; padding: 1px;">
+                <h1 style="font-weight: bold; margin: 0.5rem;">Store Name</h1>
+                <h4 style="margin: 0.5rem;">${singleOrder?.store?.Storename}</h4>
               </div>
             </div>
             
@@ -129,7 +129,9 @@ const InvoicePDF = ({ singleOrder, GrandTotal }) => {
       </html>
     `);
     printWindow.document.close();
-    printWindow.print();
+    printWindow.addEventListener("load", () => {
+      printWindow.print();
+    });
   };
 
   return (
