@@ -55,7 +55,7 @@ const ShopeSidebarCard = ({ shop }) => {
             <span className="mb-2 text-sm font-semibold font-sans">
               Phone
             </span>
-            <span className="text-sm sans">{shop?.Storewhatsapp}</span>
+            <span className="text-sm sans">+92-{shop?.Storewhatsapp}</span>
           </div>
         </div>
       </div>
