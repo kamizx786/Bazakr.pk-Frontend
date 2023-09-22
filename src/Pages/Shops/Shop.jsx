@@ -110,13 +110,13 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
     <>
       <div className="min-h-screen bg-white relative">
         <div className="flex flex-col w-full max-w-6xl p-8 mx-auto pt-14">
-          <div className="flex w-full items-center justify-between">
-            <h3 className="mb-6 text-3xl font-serif text-[#248f59] font-normal  ">
-              All Shops
-            </h3>
+          <div className="flex w-full mb-2 flex-col md:flex-row items-center justify-between">
+            <div className="w-fit p-2 text-3xl font-serif whitespace-nowrap text-[#248f59] font-normal">
+              <h3>All Shops</h3>
+            </div>
             {/* Choose Filter Category*/}
-            <div className="flex pr-2 py-2 mb-6 flex-row gap-2 justify-start  items-center">
-              <label className="font-sans font-medium mr-2 opacity-80">
+            <div className="flex pr-2 py-2 mb-6 flex-row whitespace-nowrap gap-2 justify-start items-center">
+              <label className="font-sans md:font-medium mr-2 opacity-80">
                 Filter by:
               </label>
 
@@ -140,9 +140,9 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
             ""
           ) : (
             <>
-            {/* NO OF SHOPS IN THAT LOCATION */}
+              {/* NO OF SHOPS IN THAT LOCATION */}
               <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start   ">
-                {shops?.length} shops found in {userLocation.mapAddress}
+               <span className="text-3xl font-serif text-[#248f59] mr-2">{shops?.length}</span> shops found in {userLocation.mapAddress}
               </h3>
             </>
           )}
