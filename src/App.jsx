@@ -1,8 +1,6 @@
 import "@ant-design/icons";
 import "antd";
-import axios from "axios";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +13,6 @@ import RegisterComplete from "./Pages/Auth/registerComplete";
 import Cancel from "./Pages/Checkout/Cancel";
 import Success from "./Pages/Checkout/Success";
 import Checkout from "./Pages/Checkout/checkout";
-import { UserOrders } from "./Pages/Checkout/functions";
 import Contact from "./Pages/Contact/Contact";
 import PrivacynPolicy from "./Pages/FooterPages/privacynpolicy";
 import RefundPolicy from "./Pages/FooterPages/refund";
@@ -25,45 +22,14 @@ import Home from "./Pages/Home/Home";
 import ProductDetails from "./Pages/Products/ProductsDetail";
 import Shop from "./Pages/Shops/Shop";
 import ShopProfile from "./Pages/Shops/ShopProfile";
-import { AllCategories, AllProducts, AllShops } from "./Pages/Shops/functions";
 import MyOrders from "./Pages/UserDashboard/orders";
 import Profile from "./Pages/UserDashboard/profile";
 import Order from "./Pages/order/order";
-import { GetSettings } from "./Pages/site/functions";
 import "./index.css";
 function App() {
-  const { loggedIn } = useSelector((state) => ({ ...state }));
-  //Default setting
-  axios.defaults.baseURL = import.meta.env.VITE_PUBLIC_API;
-  let token = loggedIn?.token;
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  //When Token Expire Logout automatically
-  axios.interceptors.response.use(
-    function (response) {
-      return response;
-    },
-    function (Error) {
-      let res = Error.response;
-      if (res.status === 401 && res.config && !res.config._isRetryREquest) {
-        window.localStorage.removeItem("auth");
-        window.location.href = "/";
-      }
-    }
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (loggedIn && loggedIn.token) {
-      UserOrders(dispatch);
-    }
-  }, [loggedIn]);
-  useEffect(() => {
-    GetSettings(dispatch);
-    AllShops(dispatch);
-    AllProducts(dispatch);
-    AllCategories(dispatch);
-  }, []);
+  
   return (
-    <React.Fragment>
+    <>
       <ScrollToTop/>
       <Header />
       <ToastContainer />
@@ -88,8 +54,7 @@ function App() {
         <Route exact path="/refund-policy" element={<RefundPolicy />} />
       </Routes>
       <Footer />
-      <ToastContainer />
-    </React.Fragment>
+    </>
   );
 }
 
