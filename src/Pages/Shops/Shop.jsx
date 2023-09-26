@@ -5,60 +5,59 @@ import jsxRangeMap from "../../Components/range-map";
 import ShopCard from "../../Components/shop/ShopCard";
 
 const Shop = () => {
-  
   const [shops, setShops] = useState([]);
   const [ok, setOk] = useState(true);
   const [categories, setCategories] = useState([]);
-  
+
   const { allShops, userLocation, search, category } = useSelector((state) => ({
     ...state,
   }));
-  
+
   const limit = 10;
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     if (category) {
       setCategories(category);
     }
   }, [category]);
-  
+
   const Searched = (text) => (c) =>
     c.Storename.toLowerCase().includes(text.toLowerCase());
-  
-    const { text } = search;
+
+  const { text } = search;
   const filteredShops = shops?.filter(Searched(text));
 
   // Define a function called calculateDistance that takes four parameters: lat1, lon1, lat2, and lon2.
-const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  const earthRadius = 6371; // Radius of the Earth in kilometers
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const earthRadius = 6371; // Radius of the Earth in kilometers
 
-  // Define a helper function called toRadians that converts degrees to radians.
-  const toRadians = (degrees) => {
-    return degrees * (Math.PI / 180);
+    // Define a helper function called toRadians that converts degrees to radians.
+    const toRadians = (degrees) => {
+      return degrees * (Math.PI / 180);
+    };
+
+    // Calculate the difference in latitude and longitude between the two points and convert them to radians.
+    const deltaLat = toRadians(lat2 - lat1);
+    const deltaLon = toRadians(lon2 - lon1);
+
+    // Calculate 'a' using the Haversine formula.
+    const a =
+      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(deltaLon / 2) *
+        Math.sin(deltaLon / 2);
+
+    // Calculate the central angle 'c' using the 2-argument arctangent (atan2) function.
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    // Calculate the distance using the formula: distance = radius * central angle.
+    const distance = earthRadius * c;
+
+    // Return the calculated distance between the two points in kilometers.
+    return distance;
   };
-
-  // Calculate the difference in latitude and longitude between the two points and convert them to radians.
-  const deltaLat = toRadians(lat2 - lat1);
-  const deltaLon = toRadians(lon2 - lon1);
-
-  // Calculate 'a' using the Haversine formula.
-  const a =
-    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-    Math.cos(toRadians(lat1)) *
-    Math.cos(toRadians(lat2)) *
-    Math.sin(deltaLon / 2) *
-    Math.sin(deltaLon / 2);
-
-  // Calculate the central angle 'c' using the 2-argument arctangent (atan2) function.
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  // Calculate the distance using the formula: distance = radius * central angle.
-  const distance = earthRadius * c;
-
-  // Return the calculated distance between the two points in kilometers.
-  return distance;
-};
 
   const getNearbyShops = (allShops, userLocation) => {
     const nearbyShops = allShops?.filter((shop) => {
@@ -141,8 +140,11 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
           ) : (
             <>
               {/* NO OF SHOPS IN THAT LOCATION */}
-              <h3 className="mb-8 text-lg opacity-80 font-sans font-medium flex justify-start   ">
-               <span className="text-3xl font-serif text-[#248f59] mr-2">{shops?.length}</span> shops found in {userLocation.mapAddress}
+              <h3 className="mb-8 text-lg opacity-80 font-sans items-center font-medium flex justify-start   ">
+                <span className="text-3xl align-middle items-center justify-center flex font-serif text-[#248f59] mr-2">
+                  {shops?.length}
+                </span>
+                shops found in {userLocation.mapAddress}
               </h3>
             </>
           )}
