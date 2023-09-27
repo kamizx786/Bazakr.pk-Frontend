@@ -38,3 +38,18 @@ export const CreateandUpateRatings = async (slug, star, review) => {
   const { data } = await axios.put(`/product/rating/${slug}`, { star, review });
   return data;
 };
+
+export const findStoresNearby = async (longitude, latitude) => {
+  try {
+    const { data } = await axios.get("/shop/findNearby", {
+      params: {
+        longitude,
+        latitude,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

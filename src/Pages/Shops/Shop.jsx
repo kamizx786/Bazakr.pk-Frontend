@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductLoader from "../../Components/products/product-loader";
 import jsxRangeMap from "../../Components/range-map";
 import ShopCard from "../../Components/shop/ShopCard";
+import { findStoresNearby } from "./functions";
 
 const Shop = () => {
   const [shops, setShops] = useState([]);
@@ -28,69 +29,67 @@ const Shop = () => {
   const { text } = search;
   const filteredShops = shops?.filter(Searched(text));
 
-  // Define a function called calculateDistance that takes four parameters: lat1, lon1, lat2, and lon2.
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const earthRadius = 6371; // Radius of the Earth in kilometers
+ 
+  useEffect(() => {
+    // Inside this effect, call the async function and dispatch the result
+    async function fetchData() {
+      try {
+        const data = await findStoresNearby(
+          userLocation?.location?.lat,
+          userLocation?.location?.lng
+        );
+        setShops(data.stores);
+        dispatch({
+          type: "Location_Shops",
+          payload: data.stores,
+        });
+        localStorage.setItem("shops", JSON.stringify(data.stores));
 
-    // Define a helper function called toRadians that converts degrees to radians.
-    const toRadians = (degrees) => {
-      return degrees * (Math.PI / 180);
-    };
+        if (data.stores.length < 1) {
+          setTimeout(() => {
+            setOk(false);
+          }, 4000);
+        }
+        setLoading(false); // Set loading to false after the data is fetched
+      } catch (error) {
+        console.error(error);
+        setLoading(false); // Set loading to false in case of an error
+        // Handle errors as needed
+      }
+    }
 
-    // Calculate the difference in latitude and longitude between the two points and convert them to radians.
-    const deltaLat = toRadians(lat2 - lat1);
-    const deltaLon = toRadians(lon2 - lon1);
-
-    // Calculate 'a' using the Haversine formula.
-    const a =
-      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-      Math.cos(toRadians(lat1)) *
-        Math.cos(toRadians(lat2)) *
-        Math.sin(deltaLon / 2) *
-        Math.sin(deltaLon / 2);
-
-    // Calculate the central angle 'c' using the 2-argument arctangent (atan2) function.
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    // Calculate the distance using the formula: distance = radius * central angle.
-    const distance = earthRadius * c;
-
-    // Return the calculated distance between the two points in kilometers.
-    return distance;
-  };
-
-  const getNearbyShops = (allShops, userLocation) => {
-    const nearbyShops = allShops?.filter((shop) => {
-      const shopDistance = calculateDistance(
-        userLocation?.location?.lat,
-        userLocation?.location?.lng,
-        shop?.location?.lat,
-        shop?.location?.lng
-      );
-      return shopDistance < 4;
-    });
-    return nearbyShops;
-  };
+    fetchData();
+  }, [userLocation, dispatch]);
 
   const handleCategoryFilter = (e) => {
     if (e.target.value === "select") {
-      const nearbyShops = getNearbyShops(allShops, userLocation);
-      return setShops(nearbyShops);
-    }
-    const nearbyShops = getNearbyShops(allShops, userLocation);
-    const filter = nearbyShops?.filter((s) => {
-      return s.category._id === e.target.value;
-    });
-    filter && setShops(filter);
-    if (filter?.length < 1) {
-      setTimeout(() => {
-        setOk(false);
-      }, 5000);
+      const nearbyShops = findStoresNearby(
+        userLocation?.location?.lat,
+        userLocation?.location?.lng
+      );
+      setShops(nearbyShops);
+    } else {
+      const nearbyShops = findStoresNearby(
+        userLocation?.location?.lat,
+        userLocation?.location?.lng
+      );
+      const filter = nearbyShops?.filter((s) => {
+        return s.category._id === e.target.value;
+      });
+      filter && setShops(filter);
+      if (filter?.length < 1) {
+        setTimeout(() => {
+          setOk(false);
+        }, 5000);
+      }
     }
   };
 
   useEffect(() => {
-    const nearbyShops = getNearbyShops(allShops, userLocation);
+    const nearbyShops = findStoresNearby(
+      userLocation?.location?.lat,
+      userLocation?.location?.lng
+    );
     nearbyShops && setShops(nearbyShops);
     nearbyShops &&
       dispatch({
