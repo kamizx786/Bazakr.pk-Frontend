@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ProductLoader from "../../Components/products/product-loader";
 import jsxRangeMap from "../../Components/range-map";
 import ShopCard from "../../Components/shop/ShopCard";
-import { findStoresNearby } from "./functions";
-
 const Shop = () => {
-  const [shops, setShops] = useState([]);
   const [ok, setOk] = useState(true);
+  const [shops, setShops] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const { allShops, userLocation, search, category } = useSelector((state) => ({
     ...state,
   }));
@@ -29,50 +26,12 @@ const Shop = () => {
   const { text } = search;
   const filteredShops = shops?.filter(Searched(text));
 
- 
-  useEffect(() => {
-    // Inside this effect, call the async function and dispatch the result
-    async function fetchData() {
-      try {
-        const data = await findStoresNearby(
-          userLocation?.location?.lat,
-          userLocation?.location?.lng
-        );
-        setShops(data.stores);
-        dispatch({
-          type: "Location_Shops",
-          payload: data.stores,
-        });
-        localStorage.setItem("shops", JSON.stringify(data.stores));
-
-        if (data.stores.length < 1) {
-          setTimeout(() => {
-            setOk(false);
-          }, 4000);
-        }
-        setLoading(false); // Set loading to false after the data is fetched
-      } catch (error) {
-        console.error(error);
-        setLoading(false); // Set loading to false in case of an error
-        // Handle errors as needed
-      }
-    }
-
-    fetchData();
-  }, [userLocation, dispatch]);
-
   const handleCategoryFilter = (e) => {
     if (e.target.value === "select") {
-      const nearbyShops = findStoresNearby(
-        userLocation?.location?.lat,
-        userLocation?.location?.lng
-      );
+      const nearbyShops = getNearbyShops(allShops, userLocation);
       setShops(nearbyShops);
     } else {
-      const nearbyShops = findStoresNearby(
-        userLocation?.location?.lat,
-        userLocation?.location?.lng
-      );
+      const nearbyShops = getNearbyShops(allShops, userLocation);
       const filter = nearbyShops?.filter((s) => {
         return s.category._id === e.target.value;
       });
@@ -85,23 +44,44 @@ const Shop = () => {
     }
   };
 
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const earthRadius = 6371; // Radius of the Earth in kilometers
+
+    const toRadians = (degrees) => {
+      return degrees * (Math.PI / 180);
+    };
+
+    const deltaLat = toRadians(lat2 - lat1);
+    const deltaLon = toRadians(lon2 - lon1);
+
+    const a =
+      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(deltaLon / 2) *
+        Math.sin(deltaLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = earthRadius * c;
+
+    return distance;
+  };
+  const getNearbyShops = (allShops, userLocation) => {
+    const nearbyShops = allShops?.filter((shop) => {
+      const shopDistance = calculateDistance(
+        userLocation?.location?.lat,
+        userLocation?.location?.lng,
+        shop?.location?.lat,
+        shop?.location?.lng
+      );
+      return shopDistance < 4;
+    });
+    return nearbyShops;
+  };
+
   useEffect(() => {
-    const nearbyShops = findStoresNearby(
-      userLocation?.location?.lat,
-      userLocation?.location?.lng
-    );
+    const nearbyShops = getNearbyShops(allShops, userLocation);
     nearbyShops && setShops(nearbyShops);
-    nearbyShops &&
-      dispatch({
-        type: "Location_Shops",
-        payload: nearbyShops,
-      });
-    nearbyShops && localStorage.setItem("shops", JSON.stringify(nearbyShops));
-    if (nearbyShops?.length < 1) {
-      setTimeout(() => {
-        setOk(false);
-      }, 4000);
-    }
   }, [allShops]);
 
   return (
