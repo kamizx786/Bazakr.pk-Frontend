@@ -1,13 +1,14 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductLoader from "../../Components/products/product-loader";
 import jsxRangeMap from "../../Components/range-map";
 import ShopCard from "../../Components/shop/ShopCard";
+
 const Shop = () => {
   const [ok, setOk] = useState(true);
-  const [shops, setShops] = useState([]);
   const [categories, setCategories] = useState([]);
-  const { allShops, userLocation, search, category } = useSelector((state) => ({
+  const { userLocation, search, category, allShops } = useSelector((state) => ({
     ...state,
   }));
 
@@ -24,65 +25,47 @@ const Shop = () => {
     c.Storename.toLowerCase().includes(text.toLowerCase());
 
   const { text } = search;
-  const filteredShops = shops?.filter(Searched(text));
+
+  const locationShops = useSelector((state) => state.LocationShops);
+
+  const filteredShops = locationShops?.filter(Searched(text));
+
+  useEffect(() => {
+    // Create a function to fetch nearby shops from the backend
+    const fetchNearbyShops = async () => {
+      try {
+        const response = await axios.get("/shop/findNearby", {
+          params: {
+            longitude: userLocation.location.lng,
+            latitude: userLocation.location.lat,
+          },
+        });
+        // Extract the list of shops from the response
+        const nearbyShops = response.data.stores;
+        dispatch({ type: "Location_Shops", payload: nearbyShops });
+      } catch (error) {
+        console.error("Error fetching nearby shops:", error);
+      }
+    };
+    fetchNearbyShops();
+  }, [userLocation, category, dispatch]);
 
   const handleCategoryFilter = (e) => {
     if (e.target.value === "select") {
-      const nearbyShops = getNearbyShops(allShops, userLocation);
-      setShops(nearbyShops);
+      // Reset the filter to show all shops
+      setShops(allShops); 
     } else {
-      const nearbyShops = getNearbyShops(allShops, userLocation);
-      const filter = nearbyShops?.filter((s) => {
-        return s.category._id === e.target.value;
-      });
-      filter && setShops(filter);
-      if (filter?.length < 1) {
+      // Apply the category filter
+      const filtered = allShops.filter(
+        (s) => s.category._id === e.target.value
+      );
+      if (filtered.length === 0) {
         setTimeout(() => {
           setOk(false);
         }, 5000);
       }
     }
   };
-
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const earthRadius = 6371; // Radius of the Earth in kilometers
-
-    const toRadians = (degrees) => {
-      return degrees * (Math.PI / 180);
-    };
-
-    const deltaLat = toRadians(lat2 - lat1);
-    const deltaLon = toRadians(lon2 - lon1);
-
-    const a =
-      Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-      Math.cos(toRadians(lat1)) *
-        Math.cos(toRadians(lat2)) *
-        Math.sin(deltaLon / 2) *
-        Math.sin(deltaLon / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = earthRadius * c;
-
-    return distance;
-  };
-  const getNearbyShops = (allShops, userLocation) => {
-    const nearbyShops = allShops?.filter((shop) => {
-      const shopDistance = calculateDistance(
-        userLocation?.location?.lat,
-        userLocation?.location?.lng,
-        shop?.location?.lat,
-        shop?.location?.lng
-      );
-      return shopDistance < 4;
-    });
-    return nearbyShops;
-  };
-
-  useEffect(() => {
-    const nearbyShops = getNearbyShops(allShops, userLocation);
-    nearbyShops && setShops(nearbyShops);
-  }, [allShops]);
 
   return (
     <>
@@ -114,30 +97,30 @@ const Shop = () => {
               </select>
             </div>
           </div>
-          {shops?.length === 0 ? (
+          {locationShops?.length === 0 ? (
             ""
           ) : (
             <>
               {/* NO OF SHOPS IN THAT LOCATION */}
               <h3 className="mb-8 text-lg opacity-80 font-sans items-center font-medium flex justify-start   ">
                 <span className="text-3xl align-middle items-center justify-center flex font-serif text-[#248f59] mr-2">
-                  {shops?.length}
+                  {locationShops?.length}
                 </span>
                 shops found in {userLocation.mapAddress}
               </h3>
             </>
           )}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {shops?.length === 0 && ok ? (
+            {locationShops?.length === 0 && ok ? (
               jsxRangeMap(limit, (i) => (
                 <ProductLoader key={i} uniqueKey={`product-${i}`} />
               ))
-            ) : filteredShops.length === 0 ? (
+            ) : filteredShops?.length === 0 ? (
               <h3 className="mb-8 text-xl flex justify-center text-[#00000080] font-medium font-sans  ">
                 No Shops Found <span className="text-black pl-2">🙂</span>
               </h3>
             ) : (
-              filteredShops.map((shop) => (
+              filteredShops?.map((shop) => (
                 <ShopCard shop={shop} key={shop.id} />
               ))
             )}
@@ -147,4 +130,5 @@ const Shop = () => {
     </>
   );
 };
+
 export default Shop;
